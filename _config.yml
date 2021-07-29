@@ -22,7 +22,7 @@ title: Rem_のおふとん
 author: Rem_
 # email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
-baseurl: "/silverag-corgi.github.io" # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, your repository name, e.g. /blog
 url: "https://silverag-corgi.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: silverag_corgi
 github_username:  silverag-corgi
