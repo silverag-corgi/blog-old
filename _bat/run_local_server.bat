@@ -1,5 +1,7 @@
 @echo off
 
-echo Jekyllサーバ起動
+echo Running Jekyll Server
+cd ..
 bundle exec jekyll serve
+pause
 
