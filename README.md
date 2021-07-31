@@ -1,4 +1,4 @@
-# Rem_のおふとん
+# Rem_ Lab
 
 ## 概要
 
@@ -8,10 +8,10 @@
 
 ## リンク
 
-  - [公開用ブログ](https://silverag-corgi.github.io/)
-  - [開発用ブログ](http://localhost:4000/silverag-corgi.github.io/)
+  - [公開用リンク](https://silverag-corgi.github.io/)
+  - [開発用リンク](http://localhost:4000/silverag-corgi.github.io/)
 
-## Jekyll Clean Dark
+## Jekyll Clean Dark テーマ
 
 ※以降は[JekyllCleanDark](https://github.com/streetturtle/jekyll-clean-dark)のREADMEの和訳です。
 

@@ -2,7 +2,6 @@
 layout: page
 ---
 <div class="page-content wc-container">
-
   <div class="post">
     <h2 class="post_title">{{page.title}}</h2>
     <ul>
@@ -10,7 +9,7 @@ layout: page
         {% for tag in post.tags %}
           {% if tag == page.tag %}
           <li class="archive_list">
-            <time>{{ post.date | date_to_string }}</time>
+            <time>{{ post.date | date: '%Y/%m/%d' }}</time>
             <a class="archive_list_article_link" href='{{ post.url | relative_url }}'>{{post.title}}</a>
             <p>{{post.description}}</p>
           </li>

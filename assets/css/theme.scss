@@ -31,23 +31,32 @@ $post-panel-color: #39393a;
 $footer-background-color: #292c2f;
 $note-color: #87CEFA;
 $warning-color: #ffff00;
-// use this or pick any from /css/pics/background folder or from transparenttextures.com
-$background-pattern: 'gplay.png';
+$site-header-img: 'pics/site-header/corgi01.jpg';
+$site-bg-img: 'pics/background/gplay.png';
+$site-icon-img: 'pics/icon/corgi01.jpg';
 
 //********************************************************
 //                  Common styles
 //********************************************************
 body {
   color: $font-color;
-  background: $background-color url(pics/background/#{$background-pattern});
+  background: $background-color url($site-bg-img);
 }
 .card {
   background-color: $post-panel-color;
   box-shadow: 0 0 0 0, 0 8px 16px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   padding: 20px;
-//  font-size: 14px;
   font-size: 16px;
+}
+.site-header-img {
+  background-image: url($site-header-img);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 400px;
+  margin-bottom: 10px;
+  display: none;
 }
 .main-page {
   width: 75%;
@@ -81,6 +90,11 @@ blockquote {
 
 a {
   color: $accent-color;
+}
+
+.page-link {
+  color: $font-color;
+  background-color: $background-color;
 }
 
 //********************************************************
@@ -240,11 +254,10 @@ blockquote.warning p{
 nav {
   background-color: #222;
   border-color: #080808;
-//  font-size: 18px;
   font-size: 20px;
   font-family: "Ubuntu", sans-serif;
   padding: 0 10px !important;
-  border-top: 3px #3CA2A2 solid;
+  border-top: 1px #000000 solid;
   border-bottom: 1px #000000 solid;
   .navbar-brand, .nav-link {
    color: #777;
@@ -255,7 +268,6 @@ nav {
     color: white !important;
   }
   .navbar-brand {
-//    font-size: 30px;
     font-size: 40px;
     color: #777;
   }

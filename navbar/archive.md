@@ -21,7 +21,7 @@ title: Blog archive
 			{% endif %}
 			
 			<li>
-				<span class="">{{ post.date | date: '%Y/%m/%d' }}</span>
+				<time>{{ post.date | date: '%Y/%m/%d' }}</time>
 				<a href="{{ post.url | relative_url }}">{{ post.title }}</a>
 			</li>
 			
