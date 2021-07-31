@@ -4,26 +4,25 @@ layout: page
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.2/randomColor.min.js"></script>
 
-<h1>Blog statistics</h1>
+<h1>統計</h1>
 
-<div id="total-posts">Total number of posts:</div>
-<div id="total-words">Total number of words:</div>
-<div id="words-per-post">Number of words per post:</div>
+<div id="total-posts">投稿の総数：</div>
+<div id="total-words">文字の総数：</div>
+<div id="words-per-post">１投稿あたりの文字数：</div>
 
-<h1>Number of posts per month</h1>
+<h1>月間投稿数</h1>
 <canvas id="postsPerMonth" width="400" height="300"></canvas>
 
-<h1>Number of words per month</h1>
+<h1>月間文字数</h1>
 <canvas id="wordsPerMonth" width="400" height="300"></canvas>
 
-<h1>Number of posts per year</h1>
+<h1>年間投稿数</h1>
 <canvas id="postsPerYear" width="400" height="300"></canvas>
 
-<h1>Tags distribution</h1>
+<h1>タグ分布</h1>
 <canvas id="tagsDistr" width="400" height="300"></canvas>
 
 <script>
-
     var accentColor = "#3CA2A2";
 
     var datePostsWords = [

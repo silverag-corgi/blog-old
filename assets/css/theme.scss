@@ -17,12 +17,13 @@
 //********************************************************
 
 // Several accent colors, choose one or create your own!
-$accent-color: #3CA2A2;    // original =)
+//$accent-color: #3CA2A2;  // default
 //$accent-color: #C38FD6;  // velvet
-//$accent-color: #8FD6B3;  // greenish
-//$accent-color: #35B4DE;  // bluish
-//$accent-color: #D2E354;  // yellowish
+//$accent-color: #8FD6B3;  // green
+//$accent-color: #35B4DE;  // blue
+//$accent-color: #D2E354;  // yellowi
 //$accent-color: #52B54B;  // green
+$accent-color: #75A9FF;    // blue
 
 $font-color: #dddddd;
 $background-color: #292929;
@@ -31,7 +32,7 @@ $footer-background-color: #292c2f;
 $note-color: #87CEFA;
 $warning-color: #ffff00;
 // use this or pick any from /css/pics/background folder or from transparenttextures.com
-$background-pattern: 'random-grey-variations.png';
+$background-pattern: 'gplay.png';
 
 //********************************************************
 //                  Common styles
@@ -45,7 +46,8 @@ body {
   box-shadow: 0 0 0 0, 0 8px 16px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   padding: 20px;
-  font-size: 14px;
+//  font-size: 14px;
+  font-size: 16px;
 }
 .main-page {
   width: 75%;
@@ -55,8 +57,8 @@ h1 { font-size: 2em; }
 h2 { font-size: 1.5em; }
 h3 { font-size: 1.17em; }
 h4 { font-size: 1.12em; }
-h5 { font-size: .83em; }
-h6 { font-size: .75em; }
+h5 { font-size: 0.83em; }
+h6 { font-size: 0.75em; }
 
 img {
   display: inline-block;
@@ -238,7 +240,8 @@ blockquote.warning p{
 nav {
   background-color: #222;
   border-color: #080808;
-  font-size: 18px;
+//  font-size: 18px;
+  font-size: 20px;
   font-family: "Ubuntu", sans-serif;
   padding: 0 10px !important;
   border-top: 3px #3CA2A2 solid;
@@ -252,7 +255,8 @@ nav {
     color: white !important;
   }
   .navbar-brand {
-    font-size: 30px;
+//    font-size: 30px;
+    font-size: 40px;
     color: #777;
   }
   .navbar-nav {

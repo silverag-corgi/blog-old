@@ -1,71 +1,85 @@
-Jekyll Clean Dark
-============
+# Rem_のおふとん
 
-<p align="center">
-   <img alt="GitHub stars" src="https://img.shields.io/github/stars/streetturtle/jekyll-clean-dark">
-   <img alt="GitHub forks" src="https://img.shields.io/github/forks/streetturtle/jekyll-clean-dark">
- <img alt="Twitter URL" src="https://img.shields.io/twitter/url?url=https%3A%2F%2Fgithub.com%2Fstreetturtle%2Fjekyll-clean-dark">
-</p>
+## 概要
 
-Dark and Clean Jekyll theme which is easy to customize!
+ブログ用のリポジトリ。
 
-* Get it from [github](https://github.com/streetturtle/jekyll-clean-dark).
-* See the [live demo](http://pavelmakhov.com/jekyll-clean-dark).
-* See it [in action on my own blog](http://pavelmakhov.com).
-* Easily [customizable](http://pavelmakhov.com/jekyll-clean-dark/2016/09/customizations)
+何を公開するか決まっていませんが、試しに作成してみました。
 
-![preview1](./assets/images/preview1.jpg)
-![preview2](./assets/images/preview2.jpg)
-![preview3](./assets/images/preview3.jpg)
+## リンク
 
-This theme uses some parts of Twitter Bootstrap, which allows it to look nice on a mobile devices using a collapsable nav bar and hiding the
-sidebar.
+  - [公開用ブログ](https://silverag-corgi.github.io/)
+  - [開発用ブログ](http://localhost:4000/silverag-corgi.github.io/)
 
-Some cool features:
+## Jekyll Clean Dark
 
- - [Disqus](http://disqus.com) as a comments system;
- - [Google Analytics](http://www.google.com/analytics/);
- - [Yandex Metrica](http://metrica.yandex.com);
- - Blog tags - check the section below;
- - [Share buttons](http://pavelmakhov.com/jekyll-clean-dark/2016/09/be-social);
- - [Table Of Content](http://pavelmakhov.com/jekyll-clean-dark/2018/08/table-of-content);
- - Bootstrap 4 and FontAwesome 5!
- - [Stats page](http://pavelmakhov.com/jekyll-clean-dark/stats) - WIP
+※以降は[JekyllCleanDark](https://github.com/streetturtle/jekyll-clean-dark)のREADMEの和訳です。
 
-All these features could be set up in `_config.yml`. Also you can have social icons which could lead to your social profiles. It uses [font-awesome](http://fontawesome.io/), so you can have any icon you want to any social profile. Out-of-the box it has: LinkedIn, GitHub, StackOverflow, LastFm, Instagram. And you can easily add more by adding new style in `theme.css` and setting it in `_config.yml`.
+JekyllCleanDarkはカスタマイズが簡単なJekyllテーマです。
 
-Installation
-============
+  - [GitHub](https://github.com/streetturtle/jekyll-clean-dark)からDLしてください。
+  - [デモ](http://pavelmakhov.com/jekyll-clean-dark)を見てください。
+  - [テーマ作者のブログ](http://pavelmakhov.com)を見てください。
+  - 簡単に[カスタム](http://pavelmakhov.com/jekyll-clean-dark/2016/09/customizations)できます。
 
-If you don't have your own blog you can clone this repository and put your articles in a `_posts` folder.
-If you already have your own blog then I think you can clone this repository and copy-paste content keeping your `_posts` folder.
+<!-- ![preview01](./assets/images/preview/preview01.jpg) -->
+![preview02](./assets/images/preview/preview02.jpg)
+<!-- ![preview03](./assets/images/preview/preview03.jpg) -->
 
-After you will have to set up your `_config.yml`
+このテーマはTwitterBootstrapの一部を使用しています。
+折りたたみ可能なナビバーを使用したり、サイドバーを隠したりすることで、モバイルデバイスでの見栄えを良くしています。
 
-I tried to setup gem installation, but it doesn't work well as theme has many customizations. So I wouldn't recommend to use gem.
- 
-Blog tags
-=========
+いくつかの機能：
 
-To use this feature you simply will need to create a markdown file for each tag which you are using in you site in **tag** folder. To simplify this procedure there is an [/admin](http://pavelmakhov.com/jekyll-clean-dark/admin.html) page, which outputs the bash command which you just need to run inside **tag** folder of your site. Also don't forget to rerun it when you add a post with new tag.
+  - [Disqus](http://disqus.com) (コメントシステム)
+  - [Google Analytics](http://www.google.com/analytics/) (Googleが提供するWebページのアクセス解析サービス)
+  - [Yandex Metrica](http://metrica.yandex.com) (Yandexが提供するWeb分析サービス)
+  - タグ機能
+    - [共有ボタン](http://pavelmakhov.com/jekyll-clean-dark/2016/09/be-social)
+    - [目次](http://pavelmakhov.com/jekyll-clean-dark/2018/08/table-of-content)
+  - Bootstrap 4
+  - FontAwesome 5
+  - [統計ページ](http://pavelmakhov.com/jekyll-clean-dark/stats)
 
-License
-=======
+これらの機能はすべて `_config.yml` で設定することができます。
 
-The content of this theme is distributed and licensed under a
-[Creative Commons Attribution 4.0 License](https://creativecommons.org/licenses/by/4.0/legalcode)
+また、ソーシャルプロファイルにつながるソーシャルアイコンも用意されています。
+[FontAwesome](http://fontawesome.io/)を使用しているので、
+どんなソーシャルプロフィールにも好きなアイコンを設定することができます。
+すぐに使えるものとしては、LinkedIn、GitHub、StackOverflow、LastFm、Instagramが用意されています。
+また、`social.html`に新しい表示領域を追加し、`_config.yml`で設定することで、簡単に追加することができます。
+
+## インストール
+
+自身のブログを持っていない場合は、このリポジトリをクローンして、記事を`_posts`フォルダに入れてください。
+すでに自身のブログを持っている場合は、このリポジトリをクローンして、`_posts`フォルダにコンテンツをコピペしてください。
+
+その後、`_config.yml`を設定してください。
+
+テーマ作者さんによるとgemのインストールは試したみたいですが、テーマには多くのカスタマイズが施されているため、うまくいかなかったらしいです。
+そのため、テーマを適用するのにgemの使用はお勧めしないとのこと。
+ただ、ローカル環境で動作確認するのには必要だと自分は思いました。
+
+## タグ機能
+
+この機能を使用するには、サイトで使用している各タグのmdファイルを **tag** フォルダに作成する必要があります。
+この手順を簡単にするために、[/admin](http://pavelmakhov.com/jekyll-clean-dark/admin.html)ページがあり、サイトの **tag** フォルダ内で実行する必要のあるbashコマンドを出力します。
+また、新しいタグで記事を追加する時、このコマンドを再実行することを忘れないでください。
+
+## ライセンス
+
+このテーマのコンテンツは、[Creative Commons Attribution 4.0 License](https://creativecommons.org/licenses/by/4.0/legalcode)に基づいて配布・許諾されています。
 
     This license lets others distribute, remix, tweak, and build upon your work,
-    even commercially, as long as they credit you for the original creation. This
-    is the most accommodating of licenses offered. Recommended for maximum
+    even commercially, as long as they credit you for the original creation.
+    This is the most accommodating of licenses offered. Recommended for maximum
     dissemination and use of licensed materials.
 
-In other words: you can do anything you want with this theme on any site, just please
-provide a link to the original theme on github.
+言い換えれば、このテーマでどんなサイトでも何でもできるということです。
+ただし、GitHub上のオリジナルテーマへのリンクを提供してください。
 
-This theme includes the following files which are the properties of their
-respective owners:
+このテーマには以下のファイルが含まれており、それぞれの所有者に帰属します。
 
-* js/bootstrap.min.js - [bootstrap](http://getbootstrap.com)
-* css/bootstrap.min.css - [bootstrap](http://getbootstrap.com)
-* js/jquery.min.js - [jquery](https://jquery.com)
+* assets/js/bootstrap.min.js - [bootstrap](http://getbootstrap.com)
+* assets/css/bootstrap.min.css - [bootstrap](http://getbootstrap.com)
+* assets/js/jquery.min.js - [jquery](https://jquery.com)
