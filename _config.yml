@@ -59,4 +59,4 @@ kramdown:
 plugins:
   - jekyll-paginate
 
-exclude: ['README.md', 'LICENSE']
+exclude: ['README.md', 'Gemfile', 'Gemfile.lock', 'jekyll-clean-dark.gemspec', 'LICENSE']
