@@ -13,7 +13,7 @@
 
 ## Jekyll Clean Dark テーマ
 
-※以降は[JekyllCleanDark](https://github.com/streetturtle/jekyll-clean-dark)のREADMEの和訳です。
+※以降は[JekyllCleanDark](https://github.com/streetturtle/jekyll-clean-dark)のREADMEとテーマ説明用記事の和訳です。
 
 JekyllCleanDarkはカスタマイズが簡単なJekyllテーマです。
 
@@ -32,14 +32,12 @@ JekyllCleanDarkはカスタマイズが簡単なJekyllテーマです。
 いくつかの機能：
 
   - [Disqus](http://disqus.com) (コメントシステム)
-  - [Google Analytics](http://www.google.com/analytics/) (Googleが提供するWebページのアクセス解析サービス)
-  - [Yandex Metrica](http://metrica.yandex.com) (Yandexが提供するWeb分析サービス)
-  - タグ機能
-    - [共有ボタン](http://pavelmakhov.com/jekyll-clean-dark/2016/09/be-social)
-    - [目次](http://pavelmakhov.com/jekyll-clean-dark/2018/08/table-of-content)
-  - Bootstrap 4
-  - FontAwesome 5
-  - [統計ページ](http://pavelmakhov.com/jekyll-clean-dark/stats)
+  - [Google Analytics](http://www.google.com/analytics/) (アクセス解析サービス)
+  - [Yandex Metrica](http://metrica.yandex.com) (アクセス解析サービス)
+  - タグ
+  - [SNS共有ボタン](http://pavelmakhov.com/jekyll-clean-dark/2016/09/be-social)
+  - [目次](http://pavelmakhov.com/jekyll-clean-dark/2018/08/table-of-content)
+  - [統計](http://pavelmakhov.com/jekyll-clean-dark/stats)
 
 これらの機能はすべて `_config.yml` で設定することができます。
 
@@ -49,31 +47,78 @@ JekyllCleanDarkはカスタマイズが簡単なJekyllテーマです。
 すぐに使えるものとしては、LinkedIn、GitHub、StackOverflow、LastFm、Instagramが用意されています。
 また、`social.html`に新しい表示領域を追加し、`_config.yml`で設定することで、簡単に追加することができます。
 
-## インストール
+## インストール方法
 
 自身のブログを持っていない場合は、このリポジトリをクローンして、記事を`_posts`フォルダに入れてください。
-すでに自身のブログを持っている場合は、このリポジトリをクローンして、`_posts`フォルダにコンテンツをコピペしてください。
+すでに自身のブログを持っている場合は、[リポジトリ](https://github.com/streetturtle/jekyll-clean-dark)をクローンして、`_posts`フォルダにコンテンツをコピペしてください。
 
 その後、`_config.yml`を設定してください。
 
 テーマ作者さんによるとgemのインストールは試したみたいですが、テーマには多くのカスタマイズが施されているため、うまくいかなかったらしいです。
 そのため、テーマを適用するのにgemの使用はお勧めしないとのこと。
-ただ、ローカル環境で動作確認するのには必要だと自分は思いました。
 
-## タグ機能
+以下は各機能の設定方法です。
 
-この機能を使用するには、サイトで使用している各タグのmdファイルを **tag** フォルダに作成する必要があります。
-この手順を簡単にするために、[/admin](http://pavelmakhov.com/jekyll-clean-dark/admin.html)ページがあり、サイトの **tag** フォルダ内で実行する必要のあるbashコマンドを出力します。
+### Disqus (コメントシステム)
+
+有効化するためには[ここ](http://disqus.com/)でサービスを開始してください。
+
+その後、`_config.yml`に自分の名前を追加してください。
+
+コメントは投稿ごとにON/OFFを切り替えられます。
+有効化するためには`comments: true`と記述してください。
+
+### Google Analytics (アクセス解析サービス)
+
+有効化するためには[ここ](https://analytics.google.com/analytics/web/provision/#/provision)でサービスを開始してください。
+
+その後、`_config.yml`に`UA-********-1`のような形式のトラッキングIDを追加してください。
+
+### Yandex Metrica (Web分析サービス)
+
+有効化するためには[ここ](http://metrica.yandex.com/)でサービスを開始してください。
+
+その後、カウンタを作成し、`/_includes/yandex-metrica.html`にそのコードをコピペしてください。
+
+### タグ
+
+使用するためには、サイトで使用している各タグのmdファイルを`tag`フォルダに作成する必要があります。
+
+この手順を簡単にするために、[/admin](http://pavelmakhov.com/jekyll-clean-dark/admin.html)ページがあり、サイトの`tag`フォルダ内で実行する必要のあるbashコマンドを出力します。
+
 また、新しいタグで記事を追加する時、このコマンドを再実行することを忘れないでください。
+
+### SNSアイコン
+
+自身のSNSサイトへのリンクを表示するアイコンです。
+
+追加するためには、以下を実施してください。
+
+  1. 使いたいSNSアイコンを[Font Awesome Icons](https://fortawesome.github.io/Font-Awesome/icons/)で選ぶ
+  1. `_config.yml`に変数を追加する
+  1. `social.html`にSNSアイコンを追加する
+
+### SNS共有ボタン
+
+記事を外部に共有するボタンで、記事の下に表示されます。
+
+有効化するためには、記事のFrontMatterで`share: true`と記述してください。
+
+複数ある共有ボタンのいくつかを無効化するためには、`_config.yml`で`twitter: false`のように記述してください。
+
+新しい共有ボタンを追加するためには、以下を実施してください。
+
+  1. `_config.yml`にアイコン名を追加する
+  2. `_includes/share.html`にセクションを追加する
+  3. `css/theme.css`にスタイルを追加する
+
+### 目次
+
+目次を有効化するためには、記事のFrontMatterで`toc: true`と記述してください。
 
 ## ライセンス
 
 このテーマのコンテンツは、[Creative Commons Attribution 4.0 License](https://creativecommons.org/licenses/by/4.0/legalcode)に基づいて配布・許諾されています。
-
-    This license lets others distribute, remix, tweak, and build upon your work,
-    even commercially, as long as they credit you for the original creation.
-    This is the most accommodating of licenses offered. Recommended for maximum
-    dissemination and use of licensed materials.
 
 言い換えれば、このテーマでどんなサイトでも何でもできるということです。
 ただし、GitHub上のオリジナルテーマへのリンクを提供してください。

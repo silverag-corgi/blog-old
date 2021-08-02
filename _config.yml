@@ -1,20 +1,19 @@
 # Jekyll configuration
 
+# Site Name And Description
 name: Rem_ Lab
 #description: >-
 
-# The base hostname & protocol for your site, e.g. http://example.com
-# Url is currently only used only for the RSS feed in feed.xml
+# The Base Hostname of Site
 url: 'https://silverag-corgi.github.io'
 
-# The subpath of your site, your repository name, e.g. /blog
-# For a project page here should be a project name
-# Otherwise for user's/organization's page leave it empty
+# The Subpath of Site, Repository Name, Project Name
 baseurl: ''
 
 author: Rem_
 copyright: 2021
 
+# Share Buttons
 share:
   twitter: true
 #  facebook: true
@@ -23,6 +22,7 @@ share:
 #  pinterest: true
 #  email: true
 
+# My SNS Accounts
 social:
   github: silverag-corgi
   twitter: silverag_corgi
@@ -32,31 +32,30 @@ social:
 #  lastfm: ''
 #  rss: feed.xml
 
-# Google Analytics key, leave blank to ignore
-google_analytics_key:
-# Yandex metrica (https://metrica.yandex.com/)
-# leave blank to ignore or put true to use
-yandex_metrica:
+# Access Analytics Service
+google_analytics_key: 
+yandex_metrica: 
 
-# Set this to your disqus shortname to enable comments. Note that the 'comments'
-# setting below must also be true. Individual posts can override 'comments' to
-# disable on a post-by-post basis
-disqus: streetturtle
+# Comment System
+disqus: 
 comments: false
 
-permalink: /:year:month:day/:title/
+# URL of Post
+permalink: '/post/:year:month:day/:title/'
 
+# Pagination
 paginate: 5
 paginate_path: '/pages/:num/'
 
-#highlighter: rouge
-
+# Markdown Rendering Engine
 markdown: kramdown
 kramdown:
-  input: GFM # Enable GitHub Flavored Markdown (fenced code blocks)
-  hard_wrap: true
+  input: GFM       # Enable GitHub Flavored Markdown (fenced code blocks)
+  hard_wrap: false # New Line
 
+# Plugins
 plugins:
   - jekyll-paginate
 
+# Excluded File
 exclude: ['README.md', 'Gemfile', 'Gemfile.lock', 'jekyll-clean-dark.gemspec', 'LICENSE']
