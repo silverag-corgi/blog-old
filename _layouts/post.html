@@ -3,35 +3,43 @@
       <div class="content">
         <div class="container container-center">
           <div class="row">
-            <div class="col-md-8 offset-md-1">
-              <div class="article">
-                <div class="card">
-                  <h1><a href="{{ page.url | relative_url }}">{{ page.title }}</a></h1>
-                  <div class="post-meta">
+            <div class="col-md-9">
+              <div class="card">
+                <h1>
+                    <a href="{{ page.url | relative_url }}">
+                        <i class="fas fa-sticky-note"></i>{{ page.title }}
+                    </a>
+                </h1>
+                <div class="post-meta">
                     <div class="post-time">
-                      <i class="fa fa-calendar-alt"></i>
-                      <time>{{ page.date | date: '%Y/%m/%d %H:%M:%S' }}</time>
+                        <i class="fa fa-calendar-alt"></i>
+                        <span>投稿日：<time datetime='{{ page.date | date: "%Y-%m-%d" }}'>{{ page.date | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
+                        {% if page.update %}
+                        <i class="fa fa-calendar-alt"></i>
+                        <span>更新日：<time datetime='{{ page.update | date: "%Y-%m-%d" }}'>{{ page.update | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
+                        {% endif %}
                     </div>
-                    <ul>
-                      {% for tag in page.tags %}
-                        <li><a href="{{ '/tag/' | append: tag | relative_url }}">{{ tag }}</a></li>
-                      {% endfor %}
-                    </ul>
-                  </div>
-                  <div class="post-content">
-                    {% if page.toc %}
-                      {% include toc.html html=content class='toc' %}
-                    {% endif %}
-                    {{ content }}
-                    {% include share.html %}
-                  </div>
-                  {% if page.comments %}
-                  <div id="disqus_thread">
-                    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-                  </div>
-                  {% endif %}
+                    <div class="post-tag">
+                        <ul>
+                            {% for tag in page.tags %}
+                            <li><i class="fas fa-tag"></i><a href="{{'/tag/' | append: tag | relative_url }}">{{ tag }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
+                <div class="post-content">
+                  {% if page.toc %}
+                    {% include toc.html html=content class='toc' %}
+                  {% endif %}
+                  {{ content }}
+                  {% include share.html %}
+                </div>
+                {% if page.comments %}
+                <div id="disqus_thread">
+                  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                </div>
+                {% endif %}
               </div>
             </div>
             <div class="col-md-3 hidden-xs">

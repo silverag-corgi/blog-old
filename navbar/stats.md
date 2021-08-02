@@ -1,26 +1,28 @@
 ---
 layout: page
+title: 統計
 ---
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.2/randomColor.min.js"></script>
 
-<h1>統計</h1>
+<div class="page-content wc-container">
+	<h1>統計</h1>
+	<div id="total-posts">投稿の総数：</div>
+	<div id="total-words">文字の総数：</div>
+	<div id="words-per-post">１投稿あたりの文字数：</div>
 
-<div id="total-posts">投稿の総数：</div>
-<div id="total-words">文字の総数：</div>
-<div id="words-per-post">１投稿あたりの文字数：</div>
+	<h1>月間投稿数</h1>
+	<canvas id="postsPerMonth" width="400" height="300"></canvas>
 
-<h1>月間投稿数</h1>
-<canvas id="postsPerMonth" width="400" height="300"></canvas>
+	<h1>月間文字数</h1>
+	<canvas id="wordsPerMonth" width="400" height="300"></canvas>
 
-<h1>月間文字数</h1>
-<canvas id="wordsPerMonth" width="400" height="300"></canvas>
+	<h1>年間投稿数</h1>
+	<canvas id="postsPerYear" width="400" height="300"></canvas>
 
-<h1>年間投稿数</h1>
-<canvas id="postsPerYear" width="400" height="300"></canvas>
-
-<h1>タグ分布</h1>
-<canvas id="tagsDistr" width="400" height="300"></canvas>
+	<h1>タグ分布</h1>
+	<canvas id="tagsDistr" width="400" height="300"></canvas>
+</div>
 
 <script>
     var accentColor = "#3CA2A2";

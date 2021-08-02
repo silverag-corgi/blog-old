@@ -10,6 +10,9 @@ url: 'https://silverag-corgi.github.io'
 # The Subpath of Site, Repository Name, Project Name
 baseurl: ''
 
+# Timezone
+#timezone: Asia/Tokyo
+
 author: Rem_
 copyright: 2021
 

@@ -35,14 +35,6 @@ body {
   color: $font-color;
   background: $background-color url($site-bg-img);
 }
-.card {
-  background-color: $post-panel-color;
-  box-shadow: 0 0 0 0, 0 8px 16px rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
-  padding: 20px;
-  font-size: 16px;
-  margin-bottom: 1em;
-}
 .site-header-img {
   background-image: url($site-header-img);
   background-repeat: no-repeat;
@@ -50,10 +42,15 @@ body {
   background-size: contain;
   height: 400px;
   margin-bottom: 10px;
-  display: none;
 }
-.main-page {
-  width: 75%;
+.card {
+  background-color: $post-panel-color;
+  box-shadow: 0 0 0 0, 0 8px 16px rgba(0, 0, 0, 0.2);
+  border: 0px;
+  border-radius: 6px;
+  padding: 20px;
+  font-size: 16px;
+  margin-bottom: 1em;
 }
 
 h1 { font-size: 2em; }
@@ -180,21 +177,28 @@ div.post-meta {
   border-color: #666666;
   border-style: solid;
   margin: 0 0 20px;
-  ul {
-    display: inline;
-    padding-left: 0;
-    float: right;
-    margin: 0;
-  }
-  ul > li {
-    display: inline;
-    padding: 0 0 5px 20px;
-  }
   .post-time {
     display: inline;
+    span {
+      padding: 0 20px 0 0;
+    }
+  }
+  .post-tag {
+    display: inline;
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+    ul > li {
+      display: inline;
+      padding: 0 20px 0 0;
+    }
   }
 }
-.post-footer {
+div.post-desc {
+
+}
+div.post-footer {
   height: 40px;
   display: table;
   width: 100%;
@@ -270,6 +274,10 @@ nav {
   }
   .navbar-toggler {
     margin: 15px 15px;
+  }
+  .navbar-nav .nav-link {
+    padding-right: 2rem !important;
+    padding-left: 2rem !important;
   }
 }
 

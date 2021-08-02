@@ -1,8 +1,7 @@
 ---
 layout: page 
-title: About
-
+title: プロフィール
 ---
 
-# 自己紹介
+# プロフィール
 
