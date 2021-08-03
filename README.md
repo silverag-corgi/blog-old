@@ -49,7 +49,7 @@ JekyllCleanDarkはカスタマイズが簡単なJekyllテーマです。
 
 ## インストール方法
 
-自身のブログを持っていない場合は、このリポジトリをクローンして、記事を`_posts`フォルダに入れてください。
+自身のブログを持っていない場合は、[リポジトリ](https://github.com/streetturtle/jekyll-clean-dark)をクローンして、記事を`_posts`フォルダに入れてください。
 すでに自身のブログを持っている場合は、[リポジトリ](https://github.com/streetturtle/jekyll-clean-dark)をクローンして、`_posts`フォルダにコンテンツをコピペしてください。
 
 その後、`_config.yml`を設定してください。

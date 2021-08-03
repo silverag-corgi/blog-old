@@ -24,7 +24,8 @@ $footer-background-color: #292c2f;
 $note-color: #87CEFA;
 $warning-color: #ffff00;
 
-$site-header-img: 'pics/site-header/corgi01.jpg';
+$site-header-img: 'pics/site-header/corgi01.png';
+// https://sozai-good.com/illust/animal/dog/68019
 $site-bg-img: 'pics/background/gplay.png';
 $site-icon-img: 'pics/icon/corgi01.jpg';
 
@@ -37,6 +38,14 @@ body {
 }
 .site-header-img {
   background-image: url($site-header-img);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 400px;
+  margin-bottom: 10px;
+  text-align: right;
+}
+.post-header-img {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -86,6 +95,10 @@ a {
 .page-link {
   color: $font-color;
   background-color: $background-color;
+}
+
+.fa-ul {
+  margin-left: 1.5em;
 }
 
 //********************************************************
@@ -167,6 +180,12 @@ ul.share-buttons {
 //********************************************************
 //                    Post
 //********************************************************
+div.posts {
+
+}
+div.post {
+
+}
 h2.post-title {
   padding-top: 10px;
   text-align: left;
@@ -197,6 +216,13 @@ div.post-meta {
 }
 div.post-desc {
 
+}
+div.post-image {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  height: 200px;
+  margin-bottom: 10px;
 }
 div.post-footer {
   height: 40px;

@@ -35,6 +35,10 @@ layout: page
             {{ post.description }}
         </p>
     </div>
+
+    {% if post.image %}
+    <div class="post-image" style="background-image: url({{ post.image | relative_url }})"></div>
+    {% endif %}
   </div>
   {% endfor %}
 </div>
