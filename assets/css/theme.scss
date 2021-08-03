@@ -196,20 +196,14 @@ div.post-meta {
   border-color: #666666;
   border-style: solid;
   margin: 0 0 20px;
-  .post-time {
-    display: inline;
-    span {
-      padding: 0 20px 0 0;
-    }
-  }
-  .post-tag {
+  .post-time, .post-tag {
     display: inline;
     ul {
       margin: 0;
       padding: 0;
     }
     ul > li {
-      display: inline;
+      display: inline-block;
       padding: 0 20px 0 0;
     }
   }
