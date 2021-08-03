@@ -1,9 +1,9 @@
 <div class="sidebar ">
   <h2>最近の投稿</h2>
   <ul class="fa-ul">
-    {% for post in site.posts limit:10 %}
+    {% for post in site.posts limit:site.recent_posts %}
     <li>
-      <span class="fa-li"><i class="fas fa-sticky-note"></i></span>
+      <span class="fa-li"><i class="fas fa-newspaper"></i></span>
       <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
     </li>
     {% endfor %}
@@ -11,7 +11,7 @@
 </div>
 
 <div class="sidebar">
-  <h2>人気タグ</h2>
+  <h2>人気のタグ</h2>
 
   {% comment %}
     1.タグ名と件数をセパレータで結合した文字列のリストを作成し、降順でソートする。
@@ -65,7 +65,7 @@
     件数の降順、タグ名の昇順でソート。
   {% endcomment %}
   <ul class="fa-ul" id="popular-tags">
-    {% for tag in taglist %}
+    {% for tag in taglist limit:site.popular_tags %}
     <li>
     <span class="fa-li"><i class="fas fa-tag"></i></span>
     <a href="{{ '/tag/' | append: tag[0] | relative_url }}">

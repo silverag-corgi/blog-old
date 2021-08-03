@@ -19,7 +19,7 @@ title: アーカイブ
 		{% endif %}
 		
 		<li>
-			<span class="fa-li"><i class="fas fa-sticky-note"></i></span>
+			<span class="fa-li"><i class="fas fa-newspaper"></i></span>
 			<time>{{ post.date | date: '%Y/%m/%d %H:%M:%S' }}</time>
 			<a href="{{ post.url | relative_url }}">{{ post.title }}</a>
 		</li>

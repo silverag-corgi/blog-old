@@ -52,6 +52,12 @@ permalink: '/post/:year:month:day/:title/'
 paginate: 5
 paginate_path: '/pages/:num/'
 
+# Recent Posts
+recent_posts: 5
+
+# Popular Tags
+popular_tags: 5
+
 # Markdown Rendering Engine
 markdown: kramdown
 kramdown:
