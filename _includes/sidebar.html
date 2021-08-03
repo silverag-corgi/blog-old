@@ -11,15 +11,66 @@
 </div>
 
 <div class="sidebar">
-  <h2>タグ</h2>
-  <ul class="fa-ul">
-    {% assign tags = site.tags | sort %}
-    {% for tag in tags %}
+  <h2>人気タグ</h2>
+
+  {% comment %}
+    1.タグ名と件数をセパレータで結合した文字列のリストを作成し、降順でソートする。
+  {% endcomment %}
+  {% assign separator = "{85dc62db-1aac-4ab8-bf7b-0956e1cb964d}" %}
+  {% assign taglist_alpha_reversed = "" | split: "" %}
+  {% for t in site.tags %}
+    {% capture item %}{{ t[0] }}{{ separator }}{{ t[1].size }}{% endcapture %}
+    {% assign taglist_alpha_reversed = taglist_alpha_reversed | push: item %}
+  {% endfor %}
+  {% assign taglist_alpha_reversed = taglist_alpha_reversed | sort | reverse %}
+
+  {% comment %}
+    2.作成したリストから、「0詰めされた件数」「0詰めされたタグ名順序」
+      「タグ名」をセパレータで結合したリストを作成し、再度降順でソートする。
+  {% endcomment %}
+  {% assign taglist_prepend_count = "" | split: "" %}
+  {% assign index = 0 %}
+  {% for t in taglist_alpha_reversed %}
+    {% assign _t = t | split: separator %}
+
+    {% comment %} 0詰め {% endcomment %}
+    {% assign padded_count = _t[1] | prepend: "00000" | slice: -5, 5 %}
+    {% assign padded_index = index | prepend: "00000" | slice: -5, 5 %}
+
+    {% assign item = padded_count | append: separator | append: padded_index
+                                  | append: separator | append: _t[0]
+    %}
+
+    {% assign taglist_prepend_count = taglist_prepend_count | push: item %}
+
+    {% assign index = index | plus: 1 %}
+  {% endfor %}
+  {% assign taglist_prepend_count = taglist_prepend_count | sort | reverse %}
+
+  {% comment %}
+    3.タグ名と件数のリストを作成する。
+  {% endcomment %}
+  {% assign taglist = "" | split: "" %}
+  {% for t in taglist_prepend_count %}
+    {% assign _t = t | split: separator %}
+
+    {% comment %} 0詰め文字列を数値に戻す {% endcomment %}
+    {% assign count = _t[0] | plus: 0 %}
+
+    {% assign item = "" | split: "" | push: _t[2] | push: count %}
+    {% assign taglist = taglist | push: item %}
+  {% endfor %}
+
+  {% comment %}
+    件数の降順、タグ名の昇順でソート。
+  {% endcomment %}
+  <ul class="fa-ul" id="popular-tags">
+    {% for tag in taglist %}
     <li>
-      <span class="fa-li"><i class="fas fa-tag"></i></span>
-      <a href="{{ '/tag/' | append: tag[0] | relative_url }}" data-toggle="tooltip" data-placement="right" title="{{ tag[1].size }}">
-        {{ tag[0] }}
-      </a>
+    <span class="fa-li"><i class="fas fa-tag"></i></span>
+    <a href="{{ '/tag/' | append: tag[0] | relative_url }}">
+      {{ tag[0] }} ({{ tag[1] }})
+    </a>
     </li>
     {% endfor %}
   </ul>

@@ -3,7 +3,9 @@
 # Site Name And Description
 name: Rem_ Lab
 description: >-
-  備忘録的なブログです。雑多な投稿になると思います。
+  備忘録や関心事のメモを保存する場所。
+  個人的な使用がメインなので細々とやっていきます。
+
 # The Base Hostname of Site
 url: 'https://silverag-corgi.github.io'
 
@@ -61,4 +63,9 @@ plugins:
   - jekyll-paginate
 
 # Excluded File
-exclude: ['README.md', 'Gemfile', 'Gemfile.lock', 'jekyll-clean-dark.gemspec', 'LICENSE']
+exclude: 
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - jekyll-clean-dark.gemspec
+  - LICENSE

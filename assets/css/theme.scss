@@ -38,12 +38,16 @@ body {
 }
 .site-header-img {
   background-image: url($site-header-img);
-  background-repeat: no-repeat;
+//background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
   height: 400px;
   margin-bottom: 10px;
-  text-align: right;
+  span {
+    color: $accent-color;
+    width: 50%;
+    margin: 0 20px 0 auto;
+  }
 }
 .post-header-img {
   background-repeat: no-repeat;
