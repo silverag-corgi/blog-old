@@ -3,13 +3,13 @@
       <div class="content">
         <div class="container container-center">
           
-          {% if page.image %}
           <div class="row">
             <div class="col-md-12">
-              <div class="card post-header-img" style="background-image: url({{ page.image | relative_url }})"></div>
+              <div class="card site-header-img">
+                <span>{{ site.description }}</span>
+              </div>
             </div>
           </div>
-          {% endif %}
           
           <div class="row">
             <div class="col-md-9">
@@ -42,6 +42,9 @@
                     </div>
                 </div>
                 <div class="post-content">
+                  {% if page.image %}
+                    <div class="post-header-img" style="background-image: url({{ page.image | relative_url }})"></div>
+                  {% endif %}
                   {% if page.toc %}
                     {% include toc.html html=content class='toc' %}
                   {% endif %}

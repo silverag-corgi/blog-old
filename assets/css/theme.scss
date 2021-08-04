@@ -25,7 +25,6 @@ $note-color: #87CEFA;
 $warning-color: #ffff00;
 
 $site-header-img: 'pics/site-header/corgi01.png';
-// https://sozai-good.com/illust/animal/dog/68019
 $site-bg-img: 'pics/background/gplay.png';
 $site-icon-img: 'pics/icon/corgi01.jpg';
 
@@ -45,6 +44,7 @@ body {
   margin-bottom: 10px;
   span {
     color: $accent-color;
+    font-weight: bold;
     width: 50%;
     margin: 0 20px 0 auto;
   }
