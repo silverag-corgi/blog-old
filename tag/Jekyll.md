@@ -1,5 +1,5 @@
 ---
 layout: tag_index
-title: images
-tag: images
+title: Jekyll
+tag: Jekyll
 ---
