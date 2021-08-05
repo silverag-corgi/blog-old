@@ -58,24 +58,26 @@
                 </div>
                 
                 <div class="post-navi">
-                  {% if page.previous.url %}
-                    <a href="{{ page.previous.url | relative_url }}">&laquo; {{ page.previous.title | slice: 0, site.post_navi_title }}...</a>
-                  {% else %}
-                    {% for i in (0..site.post_navi_title) %}
-                      {% assign notitle = notitle | append: '-' %}
-                    {% endfor %}
-                    <span>{{ notitle }}</span>
-                  {% endif %}
-                  
-                  |
-                  
-                  {% if page.next.url %}
-                    <a href="{{ page.next.url | relative_url }}">{{ page.next.title | slice: 0, site.post_navi_title }}... &raquo;</a>
-                  {% else %}
-                    {% for i in (0..site.post_navi_title) %}
-                      {% assign notitle = notitle | append: '-' %}
-                    {% endfor %}
-                    <span>{{ notitle }}</span>
+                  {% if page.previous.url or page.next.url %}
+                    {% if page.previous.url %}
+                      <a href="{{ page.previous.url | relative_url }}">&laquo; {{ page.previous.title | slice: 0, site.post_navi_title }}...</a>
+                    {% else %}
+                      {% for i in (0..site.post_navi_title) %}
+                        {% assign notitle_prev = notitle_prev | append: '-' %}
+                      {% endfor %}
+                      <span>{{ notitle_prev }}</span>
+                    {% endif %}
+                    
+                    |
+                    
+                    {% if page.next.url %}
+                      <a href="{{ page.next.url | relative_url }}">{{ page.next.title | slice: 0, site.post_navi_title }}... &raquo;</a>
+                    {% else %}
+                      {% for i in (0..site.post_navi_title) %}
+                        {% assign notitle_next = notitle_next | append: '-' %}
+                      {% endfor %}
+                      <span>{{ notitle_next }}</span>
+                    {% endif %}
                   {% endif %}
                 </div>
                 
