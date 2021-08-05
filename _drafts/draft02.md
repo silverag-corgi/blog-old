@@ -3,7 +3,7 @@ layout: post
 title: GitHub使用手順
 # date: 2021/08/01 00:00:00
 # update: 2021/08/02 00:00:00
-description: これは記事のテンプレートです。
+# description: 
 # image: /assets/images/
 toc: true
 share: true
