@@ -58,6 +58,12 @@ recent_posts: 5
 # Popular Tags
 popular_tags: 5
 
+# Content Excerpt Separator
+excerpt_separator: "<!-- more -->"
+
+# Content Excerpt Words
+excerpt_words: 10
+
 # Markdown Rendering Engine
 markdown: kramdown
 kramdown:

@@ -47,7 +47,7 @@ layout: page
 
       <div class="post-desc">
           <p>
-              {{ post.description }}
+              {{ post.excerpt | strip_html | truncatewords:site.excerpt_words }}
           </p>
       </div>
 
