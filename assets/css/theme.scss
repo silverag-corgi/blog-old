@@ -229,48 +229,6 @@ nav.shrink {
 // 記事
 //******************************************************************************
 
-.posts {
-  .post {
-    .post-title {
-      padding-top: 10px;
-    }
-    .post-desc {
-      
-    }
-    .post-image {
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-      height: 200px;
-      margin-bottom: 10px;
-    }
-  }
-}
-
-.fa-ul {
-  margin-left: 1.5em;
-}
-
-.post-meta {
-  border-width: 1px 0;
-  border-color: #666666;
-  border-style: solid;
-  margin: 0 0 20px;
-  
-  .post-time,
-  .post-tag {
-    display: inline;
-    ul {
-      margin: 0;
-      padding: 0;
-    }
-    ul > li {
-      display: inline-block;
-      padding: 0 20px 0 0;
-    }
-  }
-}
-
 .post-card {
   background-color: $background-post-card-color;
   box-shadow: 0 0 0 0, 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -279,12 +237,53 @@ nav.shrink {
   padding: 20px;
   font-size: 16px;
   margin-bottom: 1em;
-
+  
+  .posts {
+    .post {
+      .post-title {
+        padding-top: 10px;
+      }
+      
+      .post-desc {
+        
+      }
+      
+      .post-image {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        height: 200px;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  
+  .post-meta {
+    border-width: 1px 0;
+    border-color: #666666;
+    border-style: solid;
+    margin: 0 0 20px;
+    
+    .post-time,
+    .post-tag {
+      display: inline;
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+      ul > li {
+        display: inline-block;
+        padding: 0 20px 0 0;
+      }
+    }
+  }
+  
   .post-header-img img {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
   }
+  
   .post-content {
     h1,
     h2,
@@ -296,19 +295,33 @@ nav.shrink {
       border-bottom: 1px solid gray;
     }
   }
+  
   .post-content-img img {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
   }
+  
   .post-navi {
-    
+    display: -webkit-box;
+    padding-left: 0;
+    list-style: none;
+    border-radius: .25rem;
+  }
+  
+  .post-navi .page-link,
+  .pagination .page-link {
+    color: $font-color;
+    background-color: $background-body-color;
   }
 }
 
-.page-link {
-  color: $font-color;
-  background-color: $background-body-color;
+//******************************************************************************
+// Font Awesome
+//******************************************************************************
+
+.fa-ul {
+  margin-left: 1.5em;
 }
 
 //******************************************************************************

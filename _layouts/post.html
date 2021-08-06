@@ -64,23 +64,29 @@
                 <div class="post-navi">
                   {% if page.previous.url or page.next.url %}
                     {% if page.previous.url %}
-                      <a href="{{ page.previous.url | relative_url }}">&laquo; {{ page.previous.title | slice: 0, site.post_navi_title }}...</a>
+                      <div class="page-item">
+                        <a class="page-link" href="{{ page.previous.url | relative_url }}">&laquo; {{ page.previous.title | slice: 0, site.post_navi_title }}...</a>
+                      </div>
                     {% else %}
                       {% for i in (0..site.post_navi_title) %}
                         {% assign notitle_prev = notitle_prev | append: '-' %}
                       {% endfor %}
-                      <span>{{ notitle_prev }}</span>
+                      <div class="page-item">
+                        <a class="page-link">{{ notitle_prev }}</a>
+                      </div>
                     {% endif %}
                     
-                    |
-                    
                     {% if page.next.url %}
-                      <a href="{{ page.next.url | relative_url }}">{{ page.next.title | slice: 0, site.post_navi_title }}... &raquo;</a>
+                      <div class="page-item">
+                        <a class="page-link" href="{{ page.next.url | relative_url }}">{{ page.next.title | slice: 0, site.post_navi_title }}... &raquo;</a>
+                      </div>
                     {% else %}
                       {% for i in (0..site.post_navi_title) %}
                         {% assign notitle_next = notitle_next | append: '-' %}
                       {% endfor %}
-                      <span>{{ notitle_next }}</span>
+                      <div class="page-item">
+                        <a class="page-link">{{ notitle_prev }}</a>
+                      </div>
                     {% endif %}
                   {% endif %}
                 </div>
