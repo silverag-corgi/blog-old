@@ -297,11 +297,11 @@ nav.shrink {
       border-bottom: 1px solid gray;
     }
   }
-  .post-content-img {
+  .post-content-img img {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    height: 400px;
+    max-height: 400px;
   }
   .post-navi {
     
