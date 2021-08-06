@@ -47,7 +47,9 @@
                 
                 <div class="post-content">
                   {% if page.image %}
-                    <div class="post-header-img" style="background-image: url({{ page.image | relative_url }})"></div>
+                    <p class="post-header-img">
+                      <img src="{{ page.image | relative_url }}">
+                    </p>
                   {% endif %}
                   
                   {% if page.toc %}

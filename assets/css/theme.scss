@@ -280,11 +280,10 @@ nav.shrink {
   font-size: 16px;
   margin-bottom: 1em;
 
-  .post-header-img {
+  .post-header-img img {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    height: 400px;
   }
   .post-content {
     h1,
@@ -301,7 +300,6 @@ nav.shrink {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    max-height: 400px;
   }
   .post-navi {
     
