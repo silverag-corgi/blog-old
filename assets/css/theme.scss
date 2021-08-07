@@ -42,12 +42,12 @@
 $font-accent-color:             #75A9FF; // Blue Style
 $font-color:                    #dddddd; // Gray Style
 
-$background-body-color:         #292929; // Black Style
+$background-body-color:         #555555; // Black Style
 $background-navi-color:         #222222; // Black Style
 $background-site-card-color:    #39393a; // Black Style
 $background-post-card-color:    #39393a; // Black Style
 $background-sidebar-card-color: #39393a; // Black Style
-$background-footer-color:       #292929; // Black Style
+$background-footer-color:       #555555; // Black Style
 
 $note-color:                    #87CEFA; // Light Sky Blue
 $warning-color:                 #ffff00; // Yellow
@@ -62,7 +62,7 @@ $site-icon-img:   'pics/icon/corgi01.jpg';
 
 body {
   color: $font-color;
-  background: $background-body-color url($site-bg-img);
+  background: $background-body-color;
 }
 
 h1 { font-size: 2.00em; }
@@ -303,14 +303,11 @@ nav.shrink {
   }
   
   .post-navi {
-    display: -webkit-box;
-    padding-left: 0;
-    list-style: none;
-    border-radius: .25rem;
+    padding: 50px 0 0 0;
   }
   
-  .post-navi .page-link,
-  .pagination .page-link {
+  .pagination .page-link,
+  .post-navi .pagination .page-link {
     color: $font-color;
     background-color: $background-body-color;
   }
@@ -465,7 +462,7 @@ blockquote.warning p {
 //******************************************************************************
 
 .filename {
-  background-color: #292929;
+  background-color: #555555;
   color: lightgrey;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;

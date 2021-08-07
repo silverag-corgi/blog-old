@@ -17,13 +17,13 @@ layout: page
             <ul>
                 <li>
                     <i class="fa fa-calendar-alt"></i>
-                    <span>投稿日：<time datetime='{{ post.date | date: "%Y-%m-%d" }}'>{{ post.date | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
+                    <span><time datetime='{{ post.date | date: "%Y-%m-%d" }}'>{{ post.date | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
                 </li>
                 
                 {% if post.update %}
                 <li>
-                    <i class="fa fa-calendar-alt"></i>
-                    <span>更新日：<time datetime='{{ post.update | date: "%Y-%m-%d" }}'>{{ post.update | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
+                    <i class="fas fa-edit"></i>
+                    <span><time datetime='{{ post.update | date: "%Y-%m-%d" }}'>{{ post.update | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
                 </li>
                 {% endif %}
             </ul>

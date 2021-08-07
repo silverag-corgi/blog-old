@@ -65,7 +65,7 @@ excerpt_separator: "<!-- more -->"
 excerpt_words: 10
 
 # Post Navi Title
-post_navi_title: 15
+post_navi_title: 18
 
 # Markdown Rendering Engine
 markdown: kramdown

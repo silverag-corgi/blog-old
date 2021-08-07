@@ -25,13 +25,13 @@
                         <ul>
                             <li>
                                 <i class="fa fa-calendar-alt"></i>
-                                <span>投稿日：<time datetime='{{ page.date | date: "%Y-%m-%d" }}'>{{ page.date | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
+                                <span><time datetime='{{ page.date | date: "%Y-%m-%d" }}'>{{ page.date | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
                             </li>
                             
                             {% if page.update %}
                             <li>
-                                <i class="fa fa-calendar-alt"></i>
-                                <span>更新日：<time datetime='{{ page.update | date: "%Y-%m-%d" }}'>{{ page.update | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
+                                <i class="fas fa-edit"></i>
+                                <span><time datetime='{{ page.update | date: "%Y-%m-%d" }}'>{{ page.update | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
                             </li>
                             {% endif %}
                         </ul>
@@ -62,33 +62,27 @@
                 </div>
                 
                 <div class="post-navi">
-                  {% if page.previous.url or page.next.url %}
-                    {% if page.previous.url %}
-                      <div class="page-item">
-                        <a class="page-link" href="{{ page.previous.url | relative_url }}">&laquo; {{ page.previous.title | slice: 0, site.post_navi_title }}...</a>
-                      </div>
-                    {% else %}
-                      {% for i in (0..site.post_navi_title) %}
-                        {% assign notitle_prev = notitle_prev | append: '-' %}
-                      {% endfor %}
-                      <div class="page-item">
-                        <a class="page-link">{{ notitle_prev }}</a>
-                      </div>
+                  <div class="pagination justify-content-around">
+                    {% if page.previous.url or page.next.url %}
+                      {% if page.previous.url %}
+                        <div class="page-item col-md-6">
+                          <a class="page-link" href="{{ page.previous.url | relative_url }}">{{ page.previous.title | slice: 0, site.post_navi_title }}...</a>
+                        </div>
+                      {% else %}
+                        <div class="page-item col-md-6">
+                        </div>
+                      {% endif %}
+                      
+                      {% if page.next.url %}
+                        <div class="page-item col-md-6">
+                          <a class="page-link" href="{{ page.next.url | relative_url }}">{{ page.next.title | slice: 0, site.post_navi_title }}...</a>
+                        </div>
+                      {% else %}
+                        <div class="page-item col-md-6">
+                        </div>
+                      {% endif %}
                     {% endif %}
-                    
-                    {% if page.next.url %}
-                      <div class="page-item">
-                        <a class="page-link" href="{{ page.next.url | relative_url }}">{{ page.next.title | slice: 0, site.post_navi_title }}... &raquo;</a>
-                      </div>
-                    {% else %}
-                      {% for i in (0..site.post_navi_title) %}
-                        {% assign notitle_next = notitle_next | append: '-' %}
-                      {% endfor %}
-                      <div class="page-item">
-                        <a class="page-link">{{ notitle_next }}</a>
-                      </div>
-                    {% endif %}
-                  {% endif %}
+                  </div>
                 </div>
                 
                 {% if page.comments %}
