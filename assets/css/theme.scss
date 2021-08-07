@@ -47,7 +47,7 @@ $background-navi-color:         #222222; // Black Style
 $background-site-card-color:    #39393a; // Black Style
 $background-post-card-color:    #39393a; // Black Style
 $background-sidebar-card-color: #39393a; // Black Style
-$background-footer-color:       #555555; // Black Style
+$background-footer-color:       #666666; // Black Style
 
 $note-color:                    #87CEFA; // Light Sky Blue
 $warning-color:                 #ffff00; // Yellow
@@ -117,13 +117,13 @@ table.wide {
 //******************************************************************************
 
 .wrapper {
-  padding-top: 80px;
+  padding: 86px 0 0 0;
   min-height: 100%;
   position: relative;
 }
 
 .content {
-  padding-bottom: 200px;
+  padding: 0 0 125px 0;
 }
 
 //******************************************************************************
@@ -136,8 +136,6 @@ nav {
   font-size: 20px;
   font-family: "Ubuntu", sans-serif;
   padding: 0 10px !important;
-  border-top: 1px #000000 solid;
-  border-bottom: 1px #000000 solid;
   
   .navbar-brand, .nav-link {
     color: #777;
@@ -327,7 +325,8 @@ nav.shrink {
 
 ul.social-media {
   text-align: center;
-  padding: 0 0 10px 0;
+  padding: 0;
+  margin: 0;
   li {
     display: inline-block;
   }
