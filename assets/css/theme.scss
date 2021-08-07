@@ -238,6 +238,8 @@ nav.shrink {
   
   .posts {
     .post {
+      margin-bottom: 16px;
+      
       .post-title {
         padding-top: 10px;
       }
@@ -251,7 +253,6 @@ nav.shrink {
         background-position: center;
         background-size: contain;
         height: 200px;
-        margin-bottom: 10px;
       }
     }
   }
