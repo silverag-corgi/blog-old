@@ -5,22 +5,24 @@
 // HTML構成
 //******************************************************************************
 //
-// 01 | nav
-//    |   .container
-// 02 | .wrapper
-//    |   .content
-//    |     .container
-//    |       .row
-//    |         .col-md-12
-//    |           .site-card
-//    |       .row
-//    |         .col-md-9
-//    |           .post-card
-//    |         .col-md-3
-//    |           .sidebar-card
-//    |           .sidebar-card
-// 03 | .footer
-//    |   .container
+// body
+//     header
+//         nav
+//             .container
+//     .wrapper
+//         .content
+//             .container
+//                 .row
+//                     .col-md-12
+//                         .site-card
+//                 .row
+//                     .col-md-9
+//                         .post-card
+//                     .col-md-3
+//                         .sidebar-card
+//                         .sidebar-card
+//         .footer
+//             .container
 //
 
 //******************************************************************************
@@ -43,7 +45,7 @@ $font-accent-color:             #75A9FF; // Blue Style
 $font-color:                    #dddddd; // Gray Style
 
 $background-body-color:         #555555; // Black Style
-$background-navi-color:         #222222; // Black Style
+$background-navi-color:         #343A40; // Black Style
 $background-site-card-color:    #39393a; // Black Style
 $background-post-card-color:    #39393a; // Black Style
 $background-sidebar-card-color: #39393a; // Black Style
@@ -117,8 +119,8 @@ table.wide {
 //******************************************************************************
 
 .wrapper {
-  padding: 86px 0 0 0;
-  min-height: 100%;
+  margin: 86px 0 0 0;
+  min-height: calc(100% - 86px);
   position: relative;
 }
 
@@ -130,45 +132,46 @@ table.wide {
 // ヘッダ：ナビバーやサイトヘッダ画像のスタイル
 //******************************************************************************
 
-nav {
-  background-color: $background-navi-color;
-  border-color: #080808;
-  font-size: 20px;
-  font-family: "Ubuntu", sans-serif;
-  padding: 0 10px !important;
-  
-  .navbar-brand, .nav-link {
-    color: #777;
-    @include transition(color 0.31s);
-    transition: all .7s ease;
+header {
+  nav {
+    background-color: $background-navi-color;
+    font-size: 20px;
+    font-family: "Ubuntu", sans-serif;
+    padding: 0 10px !important;
+    
+    .navbar-brand,
+    .nav-link {
+      @include transition(color 0.31s);
+      transition: all .7s ease;
+    }
+    .navbar-brand {
+      font-size: 40px;
+    }
+    .navbar-toggler {
+      margin: 15px 15px;
+    }
+    .navbar-nav {
+      margin-left: auto;
+    }
+    .navbar-nav .nav-link {
+      padding-right: 2rem !important;
+      padding-left: 2rem !important;
+    }
+    .nav-link:hover {
+      color: white !important;
+      text-decoration: underline;
+    }
   }
-  .navbar-brand:hover, .nav-link:hover {
-    color: white !important;
-  }
-  .navbar-brand {
-    font-size: 40px;
-    color: #777;
-  }
-  .navbar-nav {
-    margin-left: auto;
-  }
-  .navbar-toggler {
-    margin: 15px 15px;
-  }
-  .navbar-nav .nav-link {
-    padding-right: 2rem !important;
-    padding-left: 2rem !important;
-  }
-}
 
-nav.shrink {
-  min-height: 20px !important;
-  .navbar-brand {
-    font-size: 25px;
-    height: inherit;
-  }
-  .navbar-toggler {
-    margin: 5px 15px;
+  nav.shrink {
+    min-height: 20px !important;
+    
+    .navbar-brand {
+      font-size: 25px;
+    }
+    .navbar-toggler {
+      margin: 5px 15px;
+    }
   }
 }
 
