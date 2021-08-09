@@ -1,32 +1,30 @@
-{% include header.html %}
-    <div class="wrapper">
-      <div class="content">
-        <div class="container">
-          
-          <div class="row">
-            <div class="col-md-12">
-              <div class="site-card">
-                <div class="site-header-img">
-                  <span>{{ site.description }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="row">
-            <div class="col-md-9">
-              <div class="post-card">
-                {{ content }}
-              </div>
-            </div>
-            <div class="col-md-3 hidden-xs">
-              {% include sidebar.html %}
-            </div>
-          </div>
-          
-        </div>
-      </div>
-      {% include footer.html %}
-    </div>
-  </body>
+		{% include header.html %}
+		<main>
+			<div class="container">
+				
+				<div class="row">
+					<div class="col-md-12">
+						<div class="site-card">
+							<div class="site-header-img">
+								<span>{{ site.description }}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-9">
+						<div class="post-card">
+							{{ content }}
+						</div>
+					</div>
+					<div class="col-md-3 hidden-xs">
+						{% include sidebar.html %}
+					</div>
+				</div>
+				
+			</div>
+		</main>
+		{% include footer.html %}
+	</body>
 </html>

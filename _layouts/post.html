@@ -1,107 +1,105 @@
-{% include header.html %}
-    <div class="wrapper">
-      <div class="content">
-        <div class="container">
-          
-          <div class="row">
-            <div class="col-md-12">
-              <div class="site-card">
-                <div class="site-header-img">
-                  <span>{{ site.description }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="row">
-            <div class="col-md-9">
-              <div class="post-card">
-                <h1>
-                    <i class="fas fa-newspaper"></i>{{ page.title }}
-                </h1>
-                
-                <div class="post-meta">
-                    <div class="post-time">
-                        <ul>
-                            <li>
-                                <i class="fa fa-calendar-alt"></i>
-                                <span><time datetime='{{ page.date | date: "%Y-%m-%d" }}'>{{ page.date | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
-                            </li>
-                            
-                            {% if page.update %}
-                            <li>
-                                <i class="fas fa-edit"></i>
-                                <span><time datetime='{{ page.update | date: "%Y-%m-%d" }}'>{{ page.update | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
-                            </li>
-                            {% endif %}
-                        </ul>
-                    </div>
-                    <div class="post-tag">
-                        <ul>
-                            {% for tag in page.tags %}
-                            <li><i class="fas fa-tag"></i><a href="{{'/tag/' | append: tag | relative_url }}">{{ tag }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="post-content">
-                  {% if page.image %}
-                    <p class="post-header-img">
-                      <img src="{{ page.image | relative_url }}">
-                    </p>
-                  {% endif %}
-                  
-                  {% if page.toc %}
-                    {% include toc.html html=content class='toc' %}
-                  {% endif %}
-                  
-                  {{ content }}
-                  
-                  {% include share.html %}
-                </div>
-                
-                <div class="post-navi">
-                  <div class="pagination justify-content-around">
-                    {% if page.previous.url or page.next.url %}
-                      {% if page.previous.url %}
-                        <div class="page-item col-md-6">
-                          <a class="page-link" href="{{ page.previous.url | relative_url }}">{{ page.previous.title | slice: 0, site.post_navi_title }}...</a>
-                        </div>
-                      {% else %}
-                        <div class="page-item col-md-6">
-                        </div>
-                      {% endif %}
-                      
-                      {% if page.next.url %}
-                        <div class="page-item col-md-6">
-                          <a class="page-link" href="{{ page.next.url | relative_url }}">{{ page.next.title | slice: 0, site.post_navi_title }}...</a>
-                        </div>
-                      {% else %}
-                        <div class="page-item col-md-6">
-                        </div>
-                      {% endif %}
-                    {% endif %}
-                  </div>
-                </div>
-                
-                {% if page.comments %}
-                <div id="disqus_thread">
-                  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-                </div>
-                {% endif %}
-              </div>
-            </div>
-            <div class="col-md-3 hidden-xs">
-              {% include sidebar.html %}
-            </div>
-          </div>
-          
-        </div>
-        {% include disqus-comments.html %}
-      </div>
-      {% include footer.html %}
-    </div>
-  </body>
+		{% include header.html %}
+		<main>
+			<div class="container">
+				
+				<div class="row">
+					<div class="col-md-12">
+						<div class="site-card">
+							<div class="site-header-img">
+								<span>{{ site.description }}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-9">
+						<div class="post-card">
+							<h1>
+								<i class="fas fa-newspaper"></i>{{ page.title }}
+							</h1>
+							
+							<div class="post-meta">
+								<div class="post-time">
+									<ul>
+										<li>
+											<i class="fa fa-calendar-alt"></i>
+											<span><time datetime='{{ page.date | date: "%Y-%m-%d" }}'>{{ page.date | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
+										</li>
+										
+										{% if page.update %}
+										<li>
+											<i class="fas fa-edit"></i>
+											<span><time datetime='{{ page.update | date: "%Y-%m-%d" }}'>{{ page.update | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
+										</li>
+										{% endif %}
+									</ul>
+								</div>
+								<div class="post-tag">
+									<ul>
+										{% for tag in page.tags %}
+										<li><i class="fas fa-tag"></i><a href="{{'/tag/' | append: tag | relative_url }}">{{ tag }}</a></li>
+										{% endfor %}
+									</ul>
+								</div>
+							</div>
+							
+							<div class="post-content">
+								{% if page.image %}
+									<p class="post-header-img">
+										<img src="{{ page.image | relative_url }}">
+									</p>
+								{% endif %}
+								
+								{% if page.toc %}
+									{% include toc.html html=content class='toc' %}
+								{% endif %}
+								
+								{{ content }}
+								
+								{% include share.html %}
+							</div>
+							
+							<div class="post-navi">
+								<div class="pagination justify-content-around">
+									{% if page.previous.url or page.next.url %}
+										{% if page.previous.url %}
+											<div class="page-item col-md-6">
+												<a class="page-link" href="{{ page.previous.url | relative_url }}">{{ page.previous.title | slice: 0, site.post_navi_title }}...</a>
+											</div>
+										{% else %}
+											<div class="page-item col-md-6">
+											</div>
+										{% endif %}
+										
+										{% if page.next.url %}
+											<div class="page-item col-md-6">
+												<a class="page-link" href="{{ page.next.url | relative_url }}">{{ page.next.title | slice: 0, site.post_navi_title }}...</a>
+											</div>
+										{% else %}
+											<div class="page-item col-md-6">
+											</div>
+										{% endif %}
+									{% endif %}
+								</div>
+							</div>
+							
+							{% if page.comments %}
+							<div id="disqus_thread">
+								<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+								<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+							</div>
+							{% endif %}
+						</div>
+					</div>
+					<div class="col-md-3 hidden-xs">
+						{% include sidebar.html %}
+					</div>
+				</div>
+				
+			</div>
+			{% include disqus-comments.html %}
+		</main>
+		{% include footer.html %}
+	</body>
 </html>
