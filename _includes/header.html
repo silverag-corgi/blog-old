@@ -1,23 +1,21 @@
-{% if site.tags != "" %}
-{% include collecttags.html %}
-{% endif %}
-
 <!DOCTYPE html>
 <html lang="ja">
 
 <head>
-    <meta charset="UTF-8">
-    <title>{{ site.name }}{% if page.title %} | {{ page.title }} {% endif %}</title>
-    <meta name="theme-color" content="#222"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/popper.min.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/bootstrap4.min.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/header.js' | relative_url }}"></script>
-    <script src="{{ '/assets/css/svg-with-js/js/fontawesome-all.js' | relative_url }}"></script>
-    <link href="{{ '/assets/css/bootstrap4.min.css' | relative_url }}" rel="stylesheet">
-    <link href="{{ '/assets/css/theme.css' | relative_url }}" rel="stylesheet">
-    <link href="{{ '/assets/css/syntax.css' | relative_url }}" rel="stylesheet">
+	<meta charset="UTF-8">
+	<title>{{ site.name }}{% if page.title %} | {{ page.title }} {% endif %}</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
+	<script src="{{ '/assets/js/popper.min.js' | relative_url }}"></script>
+	<script src="{{ '/assets/js/bootstrap4.min.js' | relative_url }}"></script>
+	<script src="{{ '/assets/js/header.js' | relative_url }}"></script>
+	<script src="{{ '/assets/css/svg-with-js/js/fontawesome-all.js' | relative_url }}"></script>
+	
+	<link href="{{ '/assets/css/bootstrap4.min.css' | relative_url }}" rel="stylesheet">
+	<link href="{{ '/assets/css/theme.css' | relative_url }}" rel="stylesheet">
+	<link href="{{ '/assets/css/syntax.css' | relative_url }}" rel="stylesheet">
 </head>
 
 <body>
@@ -25,48 +23,52 @@
 {% include google-analytics.html %}
 {% include yandex-metrica.html %}
 
-<script type="text/javascript">
-    WebFontConfig = {
-        google: {
-            families: ['Ubuntu::latin']
-        }
-    };
-    (function () {
-        var wf = document.createElement('script');
-        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-            '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-        wf.type = 'text/javascript';
-        wf.async = 'true';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(wf, s);
-    })();
+<script>
+	WebFontConfig = {
+		google: {
+			families: ['Ubuntu::latin']
+		}
+	};
+	(function () {
+		var wf = document.createElement('script');
+		wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+				'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+		wf.type = 'text/javascript';
+		wf.async = 'true';
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(wf, s);
+	})();
 </script>
 
 <header class="fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="{{ site.baseurl | append: '/' }}">{{ site.name }}</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ 'navbar/tags' | relative_url }}">タグ一覧</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ 'navbar/archive' | relative_url }}">アーカイブ</a>
-                    </li>
-                    <!-- <li class="nav-item"> -->
-                        <!-- <a class="nav-link" href="{{ 'navbar/stats' | relative_url }}">統計</a> -->
-                    <!-- </li> -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ 'navbar/about' | relative_url }}">プロフィール</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+	<nav class="navbar navbar-expand-lg navbar-dark">
+		<div class="container">
+			<a class="navbar-brand" href="{{ site.baseurl | append: '/' }}">
+				{{ site.name }}
+			</a>
+			
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+					aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+					    <a class="nav-link" href="{{ 'navbar/tags' | relative_url }}">タグ一覧</a>
+					</li>
+					<li class="nav-item">
+					    <a class="nav-link" href="{{ 'navbar/archive' | relative_url }}">アーカイブ</a>
+					</li>
+					<!-- <li class="nav-item"> -->
+					    <!-- <a class="nav-link" href="{{ 'navbar/stats' | relative_url }}">統計</a> -->
+					<!-- </li> -->
+					<li class="nav-item">
+					    <a class="nav-link" href="{{ 'navbar/about' | relative_url }}">プロフィール</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 </header>

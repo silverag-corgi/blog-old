@@ -1,4 +1,4 @@
-		{% include header.html %}
+{% include header.html %}
 		<main>
 			<div class="container">
 				
@@ -52,12 +52,12 @@
 								{% endif %}
 								
 								{% if page.toc %}
-									{% include toc.html html=content class='toc' %}
+{% include toc.html html=content class='toc' %}
 								{% endif %}
 								
 								{{ content }}
 								
-								{% include share.html %}
+{% include share.html %}
 							</div>
 							
 							<div class="post-navi">
@@ -93,13 +93,13 @@
 						</article>
 					</div>
 					<div class="col-md-3 hidden-xs">
-						{% include sidebar.html %}
+{% include sidebar.html %}
 					</div>
 				</div>
 				
 			</div>
-			{% include disqus-comments.html %}
+{% include disqus-comments.html %}
 		</main>
-		{% include footer.html %}
+{% include footer.html %}
 	</body>
 </html>
