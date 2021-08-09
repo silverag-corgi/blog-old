@@ -4,9 +4,9 @@
 				
 				<div class="row">
 					<div class="col-md-12">
-						<div class="site-card">
+						<div class="top-card">
 							<div class="site-header-img">
-								<span>{{ site.description }}</span>
+								<div>{{ site.description }}</div>
 							</div>
 						</div>
 					</div>
@@ -14,7 +14,7 @@
 				
 				<div class="row">
 					<div class="col-md-9">
-						<div class="post-card">
+						<article class="post-card">
 							<h1>
 								<i class="fas fa-newspaper"></i>{{ page.title }}
 							</h1>
@@ -90,7 +90,7 @@
 								<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 							</div>
 							{% endif %}
-						</div>
+						</article>
 					</div>
 					<div class="col-md-3 hidden-xs">
 						{% include sidebar.html %}

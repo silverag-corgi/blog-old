@@ -13,13 +13,14 @@
 //         div.container
 //             div.row
 //                 div.col-md-12
-//                     div.site-card
+//                     div.top-card
 //             div.row
 //                 div.col-md-9
-//                     div.post-card
+//                     article.post-card
+//                     article.related-post-card
 //                 div.col-md-3
-//                     div.sidebar-card
-//                     div.sidebar-card
+//                     aside.recent-posts-card
+//                     aside.popular-tags-card
 //     footer
 //         div.container
 //
@@ -40,22 +41,18 @@
 // 変数
 //******************************************************************************
 
-$font-accent-color:             #75A9FF; // Blue Style
-$font-color:                    #dddddd; // Gray Style
+$font-color:               #dddddd; // Gray Style
+$font-accent-color:        #75A9FF; // Blue Style
+$font-note-color:          #87CEFA; // Light Sky Blue
+$font-warning-color:       #ffff00; // Yellow
 
-$background-body-color:         #555555; // Black Style
-$background-navi-color:         #343A40; // Black Style
-$background-site-card-color:    #39393a; // Black Style
-$background-post-card-color:    #39393a; // Black Style
-$background-sidebar-card-color: #39393a; // Black Style
-$background-footer-color:       #666666; // Black Style
+$background-body-color:    #555555; // Black Style
+$background-navi-color:    #343A40; // Black Style
+$background-card-color:    #39393a; // Black Style
+$background-footer-color:  #666666; // Black Style
 
-$note-color:                    #87CEFA; // Light Sky Blue
-$warning-color:                 #ffff00; // Yellow
-
-$site-header-img: 'pics/site-header/corgi01.png';
-$site-bg-img:     'pics/background/gplay.png';
-$site-icon-img:   'pics/icon/corgi01.jpg';
+$top-img:                  'pics/site-header/corgi01.png';
+$user-img:                 'pics/icon/corgi01.jpg';
 
 //******************************************************************************
 // タグ要素
@@ -114,7 +111,7 @@ table.wide {
 }
 
 //******************************************************************************
-// ヘッダ：ナビバーやサイトヘッダ画像のスタイル
+// ヘッダ：サイト名やナビバーのスタイル
 //******************************************************************************
 
 header {
@@ -160,29 +157,6 @@ header {
   }
 }
 
-.site-card {
-  background-color: $background-site-card-color;
-  box-shadow: 0 0 0 0, 0 8px 16px rgba(0, 0, 0, 0.2);
-  border: 0px;
-  border-radius: 6px;
-  padding: 20px;
-  font-size: 16px;
-  margin-bottom: 1em;
-  
-  .site-header-img {
-    background-image: url($site-header-img);
-//  background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    height: 400px;
-    span {
-      color: $font-accent-color;
-      font-weight: bold;
-      display: block;
-    }
-  }
-}
-
 //******************************************************************************
 // フッタ：著作権情報やSNSアイコンのスタイル
 //******************************************************************************
@@ -196,7 +170,7 @@ footer {
 }
 
 //******************************************************************************
-// メイン：メイン(ヘッタやフッタ以外の中心に配置する要素)のスタイル
+// メイン：ヘッダやフッタ以外の中心に配置する要素のスタイル
 //******************************************************************************
 
 main {
@@ -204,25 +178,38 @@ main {
 }
 
 //******************************************************************************
-// サイドバー
+// トップカード
 //******************************************************************************
 
-.sidebar-card {
-  background-color: $background-sidebar-card-color;
+main div.top-card {
+  background-color: $background-card-color;
   box-shadow: 0 0 0 0, 0 8px 16px rgba(0, 0, 0, 0.2);
   border: 0px;
   border-radius: 6px;
   padding: 20px;
   font-size: 16px;
   margin-bottom: 1em;
+  
+  .site-header-img {
+    background-image: url($top-img);
+//  background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 400px;
+    span {
+      color: $font-accent-color;
+      font-weight: bold;
+      display: block;
+    }
+  }
 }
 
 //******************************************************************************
-// 記事
+// 記事．記事カード
 //******************************************************************************
 
-.post-card {
-  background-color: $background-post-card-color;
+main article.post-card {
+  background-color: $background-card-color;
   box-shadow: 0 0 0 0, 0 8px 16px rgba(0, 0, 0, 0.2);
   border: 0px;
   border-radius: 6px;
@@ -304,6 +291,32 @@ main {
     color: $font-color;
     background-color: $background-body-color;
   }
+}
+
+//******************************************************************************
+// 記事．関連記事カード
+//******************************************************************************
+
+main article.related-post-card {
+
+}
+
+//******************************************************************************
+// アサイド．最近の記事
+// アサイド．人気のタグ
+// アサイド．検索バー
+//******************************************************************************
+
+main aside.recent-posts-card,
+main aside.popular-tags-card,
+main aside.search-bar-card {
+  background-color: $background-card-color;
+  box-shadow: 0 0 0 0, 0 8px 16px rgba(0, 0, 0, 0.2);
+  border: 0px;
+  border-radius: 6px;
+  padding: 20px;
+  font-size: 16px;
+  margin-bottom: 1em;
 }
 
 //******************************************************************************
@@ -413,12 +426,12 @@ ul.share-buttons {
   left: 0;
   position:absolute;
   top: 0;
-  color: $note-color;
+  color: $font-note-color;
 }
 
 .warning:before {
   content: "\f071";
-  color: $warning-color;
+  color: $font-warning-color;
 }
 
 blockquote {
