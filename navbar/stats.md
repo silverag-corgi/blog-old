@@ -7,17 +7,17 @@ title: 統計
 <script src="https://cdnjs.cloudflare.com/ajax/libs/randomcolor/0.5.2/randomColor.min.js"></script>
 
 <h1>統計</h1>
-<p id="total-posts">投稿の総数：</p>
+<p id="total-posts">記事の総数：</p>
 <p id="total-words">文字の総数：</p>
-<p id="words-per-post">１投稿あたりの文字数：</p>
+<p id="words-per-post">記事ごとの文字数：</p>
 
-<h1>月間投稿数</h1>
+<h1>月間記事数</h1>
 <canvas id="postsPerMonth" width="400" height="300"></canvas>
 
 <h1>月間文字数</h1>
 <canvas id="wordsPerMonth" width="400" height="300"></canvas>
 
-<h1>年間投稿数</h1>
+<h1>年間記事数</h1>
 <canvas id="postsPerYear" width="400" height="300"></canvas>
 
 <h1>タグ分布</h1>
