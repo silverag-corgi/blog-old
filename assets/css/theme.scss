@@ -21,6 +21,7 @@
 //                 div.col-md-3
 //                     aside.recent-posts-card
 //                     aside.popular-tags-card
+//                     aside.search-bar-card
 //     footer
 //         div.container
 //
@@ -51,8 +52,8 @@ $background-navi-color:    #343A40; // Black Style
 $background-card-color:    #39393a; // Black Style
 $background-footer-color:  #666666; // Black Style
 
-$top-img:                  'pics/site-header/corgi01.png';
-$user-img:                 'pics/icon/corgi01.jpg';
+$top-img:                  'pics/top/corgi01.png';
+$user-img:                 'pics/user/corgi01.jpg';
 
 //******************************************************************************
 // タグ要素
@@ -190,9 +191,9 @@ main div.top-card {
 	font-size: 16px;
 	margin-bottom: 1em;
 	
-	.site-header-img {
+	.top-img {
 		background-image: url($top-img);
-//  background-repeat: no-repeat;
+//  	background-repeat: no-repeat;
 		background-position: center;
 		background-size: contain;
 		height: 400px;
