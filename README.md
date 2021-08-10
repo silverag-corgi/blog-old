@@ -65,7 +65,7 @@ JekyllCleanDarkはカスタマイズが簡単なJekyllテーマです。
 
 その後、`_config.yml`に自分の名前を追加してください。
 
-コメントは投稿ごとにON/OFFを切り替えられます。
+コメントは記事ごとにON/OFFを切り替えられます。
 有効化するためには`comments: true`と記述してください。
 
 ### Google Analytics (アクセス解析サービス)
