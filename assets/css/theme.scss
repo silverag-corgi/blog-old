@@ -276,19 +276,27 @@ main article.post-card {
 		background-size: contain;
 	}
 	
-	.post-navi {
-		padding: 48px 0px 0px 0px;
-	}
-	
-	.pagination .page-link,
-	.post-navi .pagination .page-link {
-		color: $font-color;
-		background-color: $background-body-color;
-	}
-	
 	.posts-by-date:not(:target),
 	.posts-by-tag:not(:target) {
 		display: none;
+	}
+}
+
+//******************************************************************************
+// 記事．記事ナビカード
+//******************************************************************************
+
+main article.post-navi-card {
+	background-color: $background-card-color;
+	box-shadow: 0px 0px 0px 0px, 0px 8px 16px rgba(0, 0, 0, 0.2);
+	border: 0px;
+	border-radius: 8px;
+	padding: 16px;
+	margin-bottom: 16px;
+	
+	.pagination .page-link {
+		color: $font-color;
+		background-color: $background-body-color;
 	}
 }
 

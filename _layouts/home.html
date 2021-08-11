@@ -1,95 +1,121 @@
----
-layout: page
----
+{% include header.html %}
+		<main>
+			<div class="container">
+				
+				<div class="row">
+					<div class="col-md-12">
+						<div class="top-card">
+							<div class="top-img">
+								<span>{{ site.description }}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-9">
+						<article class="post-card">
+							<div class="posts">
+								{% for post in paginator.posts %}
+									<div class="post">
+										<h2 class="post-title">
+											<a href="{{ post.url | relative_url }}">
+												<i class="fas fa-newspaper"></i>{{ post.title }}
+											</a>
+										</h2>
 
-<!-- Posts -->
-<div class="posts">
-	{% for post in paginator.posts %}
-		<div class="post">
-			<h2 class="post-title">
-				<a href="{{ post.url | relative_url }}">
-					<i class="fas fa-newspaper"></i>{{ post.title }}
-				</a>
-			</h2>
+										<div class="post-meta">
+											<ul class="post-time">
+												<li>
+													<i class="fa fa-calendar-alt"></i>
+													<span><time datetime='{{ post.date | date: "%Y-%m-%d" }}'>{{ post.date | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
+												</li>
+												
+												{% if post.update %}
+												<li>
+													<i class="fas fa-edit"></i>
+													<span><time datetime='{{ post.update | date: "%Y-%m-%d" }}'>{{ post.update | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
+												</li>
+												{% endif %}
+											</ul>
+											<ul class="post-tag">
+												{% for tag in post.tags %}
+												<li>
+													<i class="fas fa-tag"></i>
+													<a href="{{ '/contents/posts-by-tag/#_tag_' | append: tag | relative_url }}">
+														{{ tag }}
+													</a>
+												</li>
+												{% endfor %}
+											</ul>
+										</div>
 
-			<div class="post-meta">
-				<ul class="post-time">
-					<li>
-						<i class="fa fa-calendar-alt"></i>
-						<span><time datetime='{{ post.date | date: "%Y-%m-%d" }}'>{{ post.date | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
-					</li>
-					
-					{% if post.update %}
-					<li>
-						<i class="fas fa-edit"></i>
-						<span><time datetime='{{ post.update | date: "%Y-%m-%d" }}'>{{ post.update | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
-					</li>
-					{% endif %}
-				</ul>
-				<ul class="post-tag">
-					{% for tag in post.tags %}
-					<li>
-						<i class="fas fa-tag"></i>
-						<a href="{{ '/contents/posts-by-tag/#_tag_' | append: tag | relative_url }}">
-							{{ tag }}
-						</a>
-					</li>
-					{% endfor %}
-				</ul>
+										<div class="post-desc">
+											<p>
+												{{ post.excerpt | strip_html | truncatewords:site.excerpt_words }}
+											</p>
+										</div>
+
+										{% if post.image %}
+										<div class="post-image" style="background-image: url({{ post.image | relative_url }})"></div>
+										{% endif %}
+									</div>
+								{% endfor %}
+							</div>
+						</article>
+						
+						{% if paginator.total_pages > 1 %}
+						<article class="post-navi-card">
+							<ul class="pagination">
+								{% if paginator.previous_page %}
+									<li class="page-item">
+										<a class="page-link" href="{{ paginator.previous_page_path | relative_url }}" aria-label="Previous">
+											<span aria-hidden="true">&laquo;</span>
+										</a>
+									</li>
+								{% else %}
+									<li class="page-item">
+										<a class="page-link" href="#" aria-label="Previous">
+											<span aria-hidden="true">&laquo;</span>
+										</a>
+									</li>
+								{% endif %}
+								
+								{% for page in (1..paginator.total_pages) %}
+									{% if page == paginator.page %}
+										<li class="page-item"><a class="page-link" href="#">{{ page }}</a></li>
+									{% elsif page == 1 %}
+										<li class="page-item"><a class="page-link" href="{{ site.baseurl | append: '/' }}">{{ page }}</a></li>
+									{% else %}
+										<li class="page-item"><a class="page-link" href="{{ site.paginate_path | relative_url | replace: ':num', page }}">{{ page }}</a></li>
+									{% endif %}
+								{% endfor %}
+								
+								{% if paginator.next_page %}
+									<li class="page-item">
+										<a class="page-link" href="{{ paginator.next_page_path | relative_url }}" aria-label="Next">
+											<span aria-hidden="true">&raquo;</span>
+										</a>
+									</li>
+								{% else %}
+									<li class="page-item">
+										<a class="page-link" href="#" aria-label="Next">
+											<span aria-hidden="true">&raquo;</span>
+										</a>
+									</li>
+								{% endif %}
+							</ul>
+						</article>
+						{% endif %}
+					</div>
+					<div class="col-md-3 hidden-xs">
+{% include sidebar.html %}
+					</div>
+				</div>
+				
 			</div>
-
-			<div class="post-desc">
-				<p>
-					{{ post.excerpt | strip_html | truncatewords:site.excerpt_words }}
-				</p>
-			</div>
-
-			{% if post.image %}
-			<div class="post-image" style="background-image: url({{ post.image | relative_url }})"></div>
-			{% endif %}
-		</div>
-	{% endfor %}
-</div>
-
-<!-- Post Pagination -->
-{% if paginator.total_pages > 1 %}
-<ul class="pagination">
-	{% if paginator.previous_page %}
-		<li class="page-item">
-			<a class="page-link" href="{{ paginator.previous_page_path | relative_url }}" aria-label="Previous">
-				<span aria-hidden="true">&laquo;</span>
-			</a>
-		</li>
-	{% else %}
-		<li class="page-item">
-			<a class="page-link" href="#" aria-label="Previous">
-				<span aria-hidden="true">&laquo;</span>
-			</a>
-		</li>
-	{% endif %}
-	
-	{% for page in (1..paginator.total_pages) %}
-		{% if page == paginator.page %}
-			<li class="page-item"><a class="page-link" href="#">{{ page }}</a></li>
-		{% elsif page == 1 %}
-			<li class="page-item"><a class="page-link" href="{{ site.baseurl | append: '/' }}">{{ page }}</a></li>
-		{% else %}
-			<li class="page-item"><a class="page-link" href="{{ site.paginate_path | relative_url | replace: ':num', page }}">{{ page }}</a></li>
-		{% endif %}
-	{% endfor %}
-	
-	{% if paginator.next_page %}
-		<li class="page-item">
-			<a class="page-link" href="{{ paginator.next_page_path | relative_url }}" aria-label="Next">
-				<span aria-hidden="true">&raquo;</span>
-			</a>
-		</li>
-	{% else %}
-		<li class="page-item">
-			<a class="page-link" href="#" aria-label="Next">
-				<span aria-hidden="true">&raquo;</span>
-			</a>
-		</li>
-	{% endif %}
-</ul>
-{% endif %}
+{% include disqus-comments.html %}
+		</main>
+{% include footer.html %}
+	</body>
+</html>
