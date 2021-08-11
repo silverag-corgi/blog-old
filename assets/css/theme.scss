@@ -71,6 +71,16 @@ h4 { font-size: 1.12em; }
 h5 { font-size: 0.83em; }
 h6 { font-size: 0.75em; }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0 0 16px 0;
+	border-bottom: 1px solid gray;
+}
+
 img {
 	display: inline-block;
 	margin: 0 auto;
@@ -223,7 +233,7 @@ main article.post-card {
 			margin-bottom: 16px;
 			
 			.post-title {
-				padding-top: 10px;
+				
 			}
 			
 			.post-desc {
@@ -240,21 +250,17 @@ main article.post-card {
 	}
 	
 	.post-meta {
-		border-width: 1px 0;
-		border-color: #666666;
-		border-style: solid;
-		margin: 0 0 20px;
+		margin: 0 0 16px 0;
+		border-bottom: 1px dotted gray;
 		
 		.post-time,
 		.post-tag {
-			display: inline;
-			ul {
-				margin: 0;
-				padding: 0;
-			}
-			ul > li {
+			margin: 0;
+			padding: 0;
+			
+			li {
 				display: inline-block;
-				padding: 0 20px 0 0;
+				padding: 0 16px 0 0;
 			}
 		}
 	}
@@ -266,15 +272,7 @@ main article.post-card {
 	}
 	
 	.post-content {
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		h6 {
-			margin: 25px 0;
-			border-bottom: 1px solid gray;
-		}
+		
 	}
 	
 	.post-content-img img {
