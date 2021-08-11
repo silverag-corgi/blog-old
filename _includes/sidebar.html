@@ -62,11 +62,11 @@
 	{% comment %}
 		件数の降順、タグ名の昇順でソート。
 	{% endcomment %}
-	<ul class="fa-ul" id="popular-tags">
+	<ul class="fa-ul">
 		{% for tag in taglist limit:site.popular_tags %}
 		<li>
 		<span class="fa-li"><i class="fas fa-tag"></i></span>
-		<a href="{{ '/tag/' | append: tag[0] | relative_url }}">
+		<a href="{{ '/contents/posts-by-tag/#_tag_' | append: tag[0] | relative_url }}">
 			{{ tag[0] }} ({{ tag[1] }})
 		</a>
 		</li>

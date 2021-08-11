@@ -38,7 +38,12 @@
 								<div class="post-tag">
 									<ul>
 										{% for tag in page.tags %}
-										<li><i class="fas fa-tag"></i><a href="{{'/tag/' | append: tag | relative_url }}">{{ tag }}</a></li>
+										<li>
+											<i class="fas fa-tag"></i>
+											<a href="{{ '/contents/posts-by-tag/#_tag_' | append: tag | relative_url }}">
+												{{ tag }}
+											</a>
+										</li>
 										{% endfor %}
 									</ul>
 								</div>

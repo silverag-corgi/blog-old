@@ -292,6 +292,11 @@ main article.post-card {
 		color: $font-color;
 		background-color: $background-body-color;
 	}
+	
+	.posts-by-date:not(:target),
+	.posts-by-tag:not(:target) {
+		display: none;
+	}
 }
 
 //******************************************************************************
