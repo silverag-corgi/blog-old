@@ -61,10 +61,7 @@ popular_tags: 5
 excerpt_separator: "<!-- more -->"
 
 # Content Excerpt Words
-excerpt_words: 10
-
-# Post Navi Title
-post_navi_title: 18
+excerpt_words: 5
 
 # Markdown Rendering Engine
 markdown: kramdown

@@ -53,11 +53,13 @@ $font-warning-color:       #ffff00; // Yellow Style
 
 $background-body-color:    #555555; // Black Style
 $background-navi-color:    #343A40; // Black Style
-$background-card-color:    #39393a; // Black Style
+$background-card-color:    #393939; // Black Style
+$background-post-color:    #404040; // Black Style
 $background-footer-color:  #666666; // Black Style
 
-$top-img:                  'pics/top/corgi01.png';
-$user-img:                 'pics/user/corgi01.jpg';
+$top-img:                  './pics/top/corgi01.png';
+$user-img:                 './pics/user/corgi01.jpg';
+$no-img:                   './pics/no-img/no-img.png';
 
 //******************************************************************************
 // 共通
@@ -137,11 +139,10 @@ header {
 		
 		.navbar-nav {
 			font-size: 1.25rem;
-			margin-left: auto;
+			margin: 0px 0px 0px auto;
 			
 			.nav-link {
-				padding-right: 32px !important;
-				padding-left: 32px !important;
+				padding: 0px 32px 0px 32px !important;
 			}
 			
 			.nav-link:hover {
@@ -198,7 +199,7 @@ main div.top-card {
 	border: 0px;
 	border-radius: 8px;
 	padding: 16px;
-	margin-bottom: 16px;
+	margin: 0px 0px 16px 0px;
 	
 	.top-img {
 		background-image: url($top-img);
@@ -221,25 +222,45 @@ main article.post-card {
 	border: 0px;
 	border-radius: 8px;
 	padding: 16px;
-	margin-bottom: 16px;
+	margin: 0px 0px 16px 0px;
 	
 	.posts {
 		.post {
-			margin-bottom: 16px;
+			background-color: $background-post-color;
+			padding: 16px;
 			
-			.post-title {
+			margin: 0px 0px 16px 0px;
+			display: flex;
+			
+			.post-left {
+				min-height: 250px;
+				width: 40%;
+				margin: 0px 16px 0px 0px;
 				
+				.post-image,
+				.post-noimage {
+					height: 100%;
+					background-repeat: no-repeat;
+					background-position: center;
+					background-size: contain;
+				}
+				
+				.post-noimage {
+					background-image: url($no-img);
+				}
 			}
 			
-			.post-desc {
+			.post-right {
+				min-height: 250px;
+				width: 60%;
 				
-			}
-			
-			.post-image {
-				background-repeat: no-repeat;
-				background-position: center;
-				background-size: contain;
-				height: 200px;
+				.post-title {
+					
+				}
+				
+				.post-desc {
+					
+				}
 			}
 		}
 	}
@@ -292,7 +313,7 @@ main article.post-navi-card {
 	border: 0px;
 	border-radius: 8px;
 	padding: 16px;
-	margin-bottom: 16px;
+	margin: 0px 0px 16px 0px;
 	
 	.pagination .page-link {
 		color: $font-color;
@@ -322,7 +343,7 @@ main aside.search-bar-card {
 	border: 0px;
 	border-radius: 8px;
 	padding: 16px;
-	margin-bottom: 16px;
+	margin: 0px 0px 16px 0px;
 }
 
 //******************************************************************************
@@ -330,7 +351,7 @@ main aside.search-bar-card {
 //******************************************************************************
 
 .fa-ul {
-	margin-left: 24px;
+	margin: 0px 0px 0px 24px;
 }
 
 //******************************************************************************
@@ -414,7 +435,7 @@ ul.share-buttons {
 	font-style: normal;
 	position:relative;
 	border: 0px;
-	padding-left: 32px;
+	padding: 0px 0px 0px 32px;
 }
 
 .note:before {
@@ -437,7 +458,7 @@ ul.share-buttons {
 blockquote {
 	color: #bbb;
 	border-left: 1px solid #666;
-	padding-left: 16px;
+	padding: 0px 0px 0px 16px;
 	font-style: italic;
 }
 
