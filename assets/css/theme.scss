@@ -20,9 +20,10 @@
 //                     article.post-navi-card
 //                     article.related-post-card
 //                 div.col-md-3
+//                     aside.search-bar-card
 //                     aside.recent-posts-card
 //                     aside.popular-tags-card
-//                     aside.search-bar-card
+//                     aside.page-top-card
 //     footer
 //         div.container
 //
@@ -344,20 +345,42 @@ main article.related-post-card {
 }
 
 //******************************************************************************
+// アサイド．検索バー
 // アサイド．最近の記事
 // アサイド．人気のタグ
-// アサイド．検索バー
+// アサイド．ページトップ
 //******************************************************************************
 
+main aside.search-bar-card,
 main aside.recent-posts-card,
 main aside.popular-tags-card,
-main aside.search-bar-card {
+main aside.page-top-card {
 	background-color: $background-card-color;
 	box-shadow: 0px 0px 0px 0px, 0px 8px 16px rgba(0, 0, 0, 0.2);
 	border: 0px;
 	border-radius: 8px;
 	padding: 16px;
 	margin: 0px 0px 16px 0px;
+}
+
+//******************************************************************************
+// アサイド．ページトップ
+//******************************************************************************
+
+main aside.page-top-card {
+	padding: 24px;
+	margin: 0px 0px 0px 0px;
+	
+	position: fixed;
+	bottom: 32px;
+	right: 32px;
+	font-size: 1.50rem;
+	
+	a {
+		color: white;
+		text-align: center;
+		text-decoration: none;
+	}
 }
 
 //******************************************************************************
