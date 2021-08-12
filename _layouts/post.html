@@ -16,19 +16,19 @@
 					<div class="col-md-9">
 						<article class="post-card">
 							<h1>
-								<i class="fas fa-newspaper"></i>{{ page.title }}
+								<i class="fas fa-fw fa-newspaper"></i>{{ page.title }}
 							</h1>
 							
 							<div class="post-meta">
 								<ul class="post-time">
 									<li>
-										<i class="fa fa-calendar-alt"></i>
+										<i class="fa fa-fw fa-calendar-alt"></i>
 										<span><time datetime='{{ page.date | date: "%Y-%m-%d" }}'>{{ page.date | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
 									</li>
 									
 									{% if page.update %}
 									<li>
-										<i class="fas fa-edit"></i>
+										<i class="fas fa-fw fa-edit"></i>
 										<span><time datetime='{{ page.update | date: "%Y-%m-%d" }}'>{{ page.update | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
 									</li>
 									{% endif %}
@@ -36,7 +36,7 @@
 								<ul class="post-tag">
 									{% for tag in page.tags %}
 									<li>
-										<i class="fas fa-tag"></i>
+										<i class="fas fa-fw fa-tag"></i>
 										<a href="{{ '/contents/posts-by-tag/#_tag_' | append: tag | relative_url }}">
 											{{ tag }}
 										</a>

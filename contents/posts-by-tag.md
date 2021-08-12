@@ -7,7 +7,7 @@ title: タグ別記事一覧
 	{% for tag in site.tags %}
 		<div id="_tag_{{ tag[0] }}" class="posts posts-by-tag">
 			<h1>
-				タグ別記事一覧 - <i class="fas fa-tag"></i>{{ tag[0] }}
+				タグ別記事一覧 - <i class="fas fa-fw fa-tag"></i>{{ tag[0] }}
 			</h1>
 
 			{% for post in site.posts %}
@@ -28,20 +28,20 @@ title: タグ別記事一覧
 						<div class="post-right">
 							<h2 class="post-title">
 								<a href="{{ post.url | relative_url }}">
-									<i class="fas fa-newspaper"></i>{{ post.title }}
+									<i class="fas fa-fw fa-newspaper"></i>{{ post.title }}
 								</a>
 							</h2>
 
 							<div class="post-meta">
 								<ul class="post-time">
 									<li>
-										<i class="fa fa-calendar-alt"></i>
+										<i class="fa fa-fw fa-calendar-alt"></i>
 										<span><time datetime='{{ post.date | date: "%Y-%m-%d" }}'>{{ post.date | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
 									</li>
 									
 									{% if post.update %}
 									<li>
-										<i class="fas fa-edit"></i>
+										<i class="fas fa-fw fa-edit"></i>
 										<span><time datetime='{{ post.update | date: "%Y-%m-%d" }}'>{{ post.update | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
 									</li>
 									{% endif %}
@@ -49,7 +49,7 @@ title: タグ別記事一覧
 								<ul class="post-tag">
 									{% for tag in post.tags %}
 									<li>
-										<i class="fas fa-tag"></i>
+										<i class="fas fa-fw fa-tag"></i>
 										<a href="{{ '/contents/posts-by-tag/#_tag_' | append: tag | relative_url }}">
 											{{ tag }}
 										</a>

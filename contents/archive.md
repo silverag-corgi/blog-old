@@ -47,7 +47,7 @@ title: アーカイブ
 			
 			{% if forloop.first %}
 				<li>
-					<span class="fa-li"><i class="fa fa-calendar-alt"></i></span>
+					<span class="fa-li"><i class="fa fa-fw fa-calendar-alt"></i></span>
 					<a href="{{ '/contents/archive/#_date_' | append: this_date | relative_url }}">
 						{{ this_date }} ({{ posts_by_date[index_of_posts_by_date][1] }})
 						{% assign index_of_posts_by_date = index_of_posts_by_date | plus: 1 %}
@@ -58,7 +58,7 @@ title: アーカイブ
 			{% endif %}
 			
 			<li>
-				<span class="fa-li"><i class="fas fa-newspaper"></i></span>
+				<span class="fa-li"><i class="fas fa-fw fa-newspaper"></i></span>
 				<time>{{ post.date | date: '%Y/%m/%d %H:%M:%S' }}</time>
 				<a href="{{ post.url | relative_url }}">{{ post.title }}</a>
 			</li>
@@ -70,7 +70,7 @@ title: アーカイブ
 					</ul>
 				</li>
 				<li>
-					<span class="fa-li"><i class="fa fa-calendar-alt"></i></span>
+					<span class="fa-li"><i class="fa fa-fw fa-calendar-alt"></i></span>
 					<a href="{{ '/contents/archive/#_date_' | append: prev_date | relative_url }}">
 						{{ prev_date }} ({{ posts_by_date[index_of_posts_by_date][1] }})
 						{% assign index_of_posts_by_date = index_of_posts_by_date | plus: 1 %}
@@ -87,7 +87,7 @@ title: アーカイブ
 <ul class="fa-ul">
 	{% for tag in site.tags %}
 		<li>
-			<span class="fa-li"><i class="fas fa-tag"></i></span>
+			<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
 			<a href="{{ '/contents/archive/#_tag_' | append: tag[0] | relative_url }}">
 				{{ tag[0] }} ({{ tag[1].size }})
 			</a>
@@ -97,7 +97,7 @@ title: アーカイブ
 				{% for post in site.posts %}
 					{% if post.tags contains tag[0] %}
 						<li>
-							<span class="fa-li"><i class="fas fa-newspaper"></i></span>
+							<span class="fa-li"><i class="fas fa-fw fa-newspaper"></i></span>
 							<time>{{ post.date | date: '%Y/%m/%d %H:%M:%S' }}</time>
 							<a href="{{ post.url | relative_url }}">{{ post.title }}</a>
 						</li>

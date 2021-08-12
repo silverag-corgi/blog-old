@@ -3,7 +3,7 @@
 	<ul class="fa-ul">
 		{% for post in site.posts limit:site.recent_posts %}
 		<li>
-			<span class="fa-li"><i class="fas fa-newspaper"></i></span>
+			<span class="fa-li"><i class="fas fa-fw fa-newspaper"></i></span>
 			<a href="{{ post.url | relative_url }}">{{ post.title }}</a>
 		</li>
 		{% endfor %}
@@ -65,7 +65,7 @@
 	<ul class="fa-ul">
 		{% for tag in taglist limit:site.popular_tags %}
 		<li>
-		<span class="fa-li"><i class="fas fa-tag"></i></span>
+		<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
 		<a href="{{ '/contents/posts-by-tag/#_tag_' | append: tag[0] | relative_url }}">
 			{{ tag[0] }} ({{ tag[1] }})
 		</a>
