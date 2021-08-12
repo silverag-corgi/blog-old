@@ -15,9 +15,13 @@ title: タグ別記事一覧
 					<div class="post">
 						<div class="post-left">
 							{% if post.image %}
-								<div class="post-image" style="background-image: url({{ post.image | relative_url }})"></div>
+								<a class="post-image" href="{{ post.url | relative_url }}">
+									<img src="{{ post.image | relative_url }}">
+								</a>
 							{% else if %}
-								<div class="post-noimage"></div>
+								<a class="post-noimage" href="{{ post.url | relative_url }}">
+									<img src="{{ '/assets/css/pics/no-img/no-img.png' | relative_url }}">
+								</a>
 							{% endif %}
 						</div>
 						
@@ -58,6 +62,10 @@ title: タグ別記事一覧
 								<p>
 									{{ post.excerpt | strip_html | truncatewords:site.excerpt_words }}
 								</p>
+							</div>
+
+							<div class="post-reading">
+								<a class="page-link" href="{{ post.url | relative_url }}">記事を読む</a>
 							</div>
 						</div>
 					</div>
