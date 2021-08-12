@@ -3,7 +3,7 @@
 			<div class="container">
 				
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-lg-12">
 						<div class="top-card">
 							<div class="top-image">
 								<span>{{ site.description }}</span>
@@ -13,7 +13,7 @@
 				</div>
 				
 				<div class="row">
-					<div class="col-md-9">
+					<div class="col-lg-9">
 						<article class="post-card">
 							<h1>
 								<i class="fas fa-fw fa-newspaper"></i>{{ page.title }}
@@ -73,27 +73,27 @@
 							<div class="pagination justify-content-around">
 								{% if page.previous.url or page.next.url %}
 									{% if page.previous.url %}
-										<div class="page-item col-md-6">
+										<div class="page-item col-lg-6">
 											<a class="page-link" href="{{ page.previous.url | relative_url }}">{{ page.previous.title }}</a>
 										</div>
 									{% else %}
-										<div class="page-item col-md-6">
+										<div class="page-item col-lg-6">
 										</div>
 									{% endif %}
 									
 									{% if page.next.url %}
-										<div class="page-item col-md-6">
+										<div class="page-item col-lg-6">
 											<a class="page-link" href="{{ page.next.url | relative_url }}">{{ page.next.title }}</a>
 										</div>
 									{% else %}
-										<div class="page-item col-md-6">
+										<div class="page-item col-lg-6">
 										</div>
 									{% endif %}
 								{% endif %}
 							</div>
 						</article>
 					</div>
-					<div class="col-md-3 hidden-xs">
+					<div class="col-lg-3 hidden-lg">
 {% include sidebar.html %}
 					</div>
 				</div>
