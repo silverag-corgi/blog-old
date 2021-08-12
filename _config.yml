@@ -30,11 +30,11 @@ share:
 social:
   github: silverag-corgi
   twitter: silverag_corgi
+  rss: feed.xml
 #  stackoverflow: ''
 #  linkedin: ''
 #  instagram: ''
 #  lastfm: ''
-#  rss: feed.xml
 
 # Access Analytics Service
 google_analytics_key: 
