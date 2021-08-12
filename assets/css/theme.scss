@@ -308,6 +308,13 @@ main article.post-card {
 	.posts-by-tag:not(:target) {
 		display: none;
 	}
+	
+	.user-image {
+		img {
+			max-height: 200px;
+			max-width: 200px;
+		}
+	}
 }
 
 //******************************************************************************
