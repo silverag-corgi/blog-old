@@ -147,14 +147,18 @@ header {
 		.navbar-nav {
 			font-size: 1.25rem;
 			margin: 0px 0px 0px auto;
+			text-align: right;
+			@include transition(all 700ms 0ms ease);
 			
-			.nav-link {
-				padding: 0px 32px 0px 32px !important;
-			}
-			
-			.nav-link:hover {
-				color: white !important;
-				text-decoration: underline;
+			.nav-item {
+				.nav-link {
+					padding: 0px 32px 0px 32px !important;
+				}
+				
+				.nav-link:hover {
+					color: white !important;
+					text-decoration: underline;
+				}
 			}
 		}
 		
@@ -167,7 +171,11 @@ header {
 		min-height: 32px !important;
 		
 		.navbar-brand {
-			font-size: 1.50rem;
+			font-size: 1.75rem;
+		}
+		
+		.navbar-nav {
+			font-size: 1.00rem;
 		}
 	}
 }

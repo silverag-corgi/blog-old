@@ -1,9 +1,9 @@
 # Jekyll configuration
 
 # Site Name And Description
-name: Rem_ Lab
+name: Rem_Note
 description: >-
-  備忘録や関心事のメモを管理する場所
+  自分がしたことや考えたことなどを備忘録として記録する場所
 
 # The Base Hostname of Site
 url: 'https://silverag-corgi.github.io'
