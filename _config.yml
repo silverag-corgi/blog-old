@@ -30,7 +30,7 @@ share:
 social:
   github: silverag-corgi
   twitter: silverag_corgi
-  rss: feed.xml
+  rss: /contents/feed.xml
 #  stackoverflow: ''
 #  linkedin: ''
 #  instagram: ''
