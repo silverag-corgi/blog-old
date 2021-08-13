@@ -4,7 +4,7 @@ title: タイトル(テンプレート)
 date: 2021/08/01 00:00:00
 # update: 2021/08/02 00:00:00
 # description: 
-image: /assets/images/deer.jpg
+image: /assets/img/post/
 toc: true
 share: true
 comments: false
