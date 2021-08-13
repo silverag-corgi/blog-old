@@ -1,17 +1,17 @@
-# Rem_ Lab
+# Rem_Note
 
 ## 概要
 
 ブログ用のリポジトリ。
 
-何を公開するか決まっていませんが、試しに作成してみました。
+自分がしたことや考えたことなどを備忘録として記録します。
 
 ## リンク
 
   - [公開用リンク](https://silverag-corgi.github.io/)
   - [開発用リンク](http://localhost:4000/silverag-corgi.github.io/)
 
-## Jekyll Clean Dark テーマ
+## JekyllCleanDarkテーマ
 
 ※以降は[JekyllCleanDark](https://github.com/streetturtle/jekyll-clean-dark)のREADMEとテーマ説明用記事の和訳です。
 
@@ -21,10 +21,6 @@ JekyllCleanDarkはカスタマイズが簡単なJekyllテーマです。
   - [デモ](http://pavelmakhov.com/jekyll-clean-dark)を見てください。
   - [テーマ作者のブログ](http://pavelmakhov.com)を見てください。
   - 簡単に[カスタム](http://pavelmakhov.com/jekyll-clean-dark/2016/09/customizations)できます。
-
-<!-- ![preview01](./assets/images/preview/preview01.jpg) -->
-![preview02](./assets/images/preview/preview02.jpg)
-<!-- ![preview03](./assets/images/preview/preview03.jpg) -->
 
 このテーマはTwitterBootstrapの一部を使用しています。
 折りたたみ可能なナビバーを使用したり、サイドバーを隠したりすることで、モバイルデバイスでの見栄えを良くしています。
