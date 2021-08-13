@@ -63,6 +63,9 @@ excerpt_separator: "<!-- more -->"
 # Content Excerpt Words
 excerpt_words: 5
 
+# Change Log URL
+change_log_url: https://github.com/silverag-corgi/silverag-corgi.github.io/commits/master/
+
 # Markdown Rendering Engine
 markdown: kramdown
 kramdown:
