@@ -2,11 +2,11 @@
 	<div class="post-left">
 		{% if post.image %}
 			<a class="post-image" href="{{ post.url | relative_url }}">
-				<img src="{{ post.image | relative_url }}">
+				<img src="{{ post.image | relative_url }}" alt="記事ヘッダ画像">
 			</a>
 		{% else if %}
 			<a class="post-noimage" href="{{ post.url | relative_url }}">
-				<img src="{{ '/assets/css/pics/no-img/no-img.png' | relative_url }}">
+				<img src="{{ '/assets/css/pics/no-img/no-img.png' | relative_url }}" alt="記事ヘッダ画像なし">
 			</a>
 		{% endif %}
 	</div>

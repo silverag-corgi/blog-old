@@ -49,7 +49,8 @@ $font-family:              "Meiryo", "Yu Gothic", "Hiragino Kaku Gothic Pro", sa
 $font-size:                16px;
 
 $font-color:               #dddddd; // Gray Style
-$font-accent-color:        #75A9FF; // Blue Style
+$font-accent-color:        #FFFFFF; // White Style
+$font-link-color:          #75A9FF; // Blue Style
 $font-note-color:          #87CEFA; // Blue Style
 $font-warning-color:       #ffff00; // Yellow Style
 
@@ -103,7 +104,7 @@ img {
 }
 
 a {
-	color: $font-accent-color;
+	color: $font-link-color;
 }
 
 table {
@@ -138,6 +139,10 @@ header {
 		background-color: $background-navi-color;
 		padding: 0px !important;
 		
+		a {
+			color: $font-accent-color !important;
+		}
+		
 		.navbar-brand {
 			font-size: 2.50rem;
 			margin: 0px 16px;
@@ -156,7 +161,6 @@ header {
 				}
 				
 				.nav-link:hover {
-					color: white !important;
 					text-decoration: underline;
 				}
 			}
@@ -185,10 +189,31 @@ header {
 //******************************************************************************
 
 footer {
+	color: $font-accent-color;
 	background-color: $background-footer-color;
 	padding: 16px;
 	text-align: center;
 	width: 100%;
+	
+	ul.social-media {
+		padding: 0px;
+		margin: 0px;
+		
+		li {
+			display: inline-block;
+		}
+		
+		li > a {
+			width: 48px;
+			height: 48px;
+			display: inline-block;
+			color: $font-accent-color;
+			
+			&:hover {
+				color: $font-link-color;
+			}
+		}
+	}
 }
 
 //******************************************************************************
@@ -218,7 +243,7 @@ main div.top-card {
 		background-size: contain;
 		height: 200px;
 		span {
-			color: $font-accent-color;
+			
 		}
 	}
 }
@@ -332,6 +357,15 @@ main article.post-card {
 	}
 	
 	.post-content {
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			margin: 32px 0px 16px 0px;
+		}
+		
 		.post-content-image {
 			img {
 				max-height: 600px;
@@ -406,12 +440,12 @@ main aside.page-top-card {
 	margin: 0px 0px 0px 0px;
 	
 	position: fixed;
-	bottom: 32px;
+	bottom: 16px;
 	right: 32px;
 	font-size: 1.50rem;
 	
 	a {
-		color: white;
+		color: $font-accent-color;
 		text-align: center;
 		text-decoration: none;
 	}
@@ -423,28 +457,6 @@ main aside.page-top-card {
 
 .fa-ul {
 	margin: 0px 0px 16px 24px;
-}
-
-//******************************************************************************
-// SNSアイコン
-//******************************************************************************
-
-ul.social-media {
-	text-align: center;
-	padding: 0px;
-	margin: 0px;
-	li {
-		display: inline-block;
-	}
-	li > a {
-		width: 48px;
-		height: 48px;
-		display: inline-block;
-		color: white;
-		&:hover {
-			color: $font-accent-color;
-		}
-	}
 }
 
 //******************************************************************************
@@ -466,7 +478,7 @@ ul.share-buttons {
 		.fa-linkedin-in,
 		.fa-envelope,
 		.fa-pinterest-p {
-			color: #ffffff
+			color: $font-accent-color;
 		}
 		a {
 			text-decoration: none;
