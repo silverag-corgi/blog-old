@@ -1,9 +1,9 @@
 @echo off
 
 echo Go Home Page
-start chrome.exe "http://localhost:4000/silverag-corgi.github.io/"
+start chrome.exe "http://localhost:4000"
 
 echo Exec Jekyll Server
 cd ..
-bundle exec jekyll serve --baseurl "/silverag-corgi.github.io" --drafts
+bundle exec jekyll serve --drafts
 pause
