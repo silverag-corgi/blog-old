@@ -8,19 +8,17 @@
 	
 	<title>{{ site.name }}{% if page.title %} | {{ page.title }} {% endif %}</title>
 	
-	<link rel="shortcut icon" href="{{ '/assets/img/site/favicon01.ico' | relative_url }}">
+	<link href="{{ '/assets/img/site/favicon01.ico' | relative_url }}" rel="shortcut icon">
+	<link href="{{ site.social.rss | relative_url }}" rel="alternate" type="application/rss+xml">
 	
-	<script src="{{ '/assets/js/jquery.min.js' | relative_url }}"></script>
-	<script src="{{ '/assets/js/popper.min.js' | relative_url }}"></script>
-	<script src="{{ '/assets/js/bootstrap4.min.js' | relative_url }}"></script>
+	<script src="{{ '/assets/lib/jquery-3.6.0/jquery-3.6.0.min.js' | relative_url }}"></script>
+	<script src="{{ '/assets/lib/bootstrap-4.5.3/js/bootstrap.bundle.min.js' | relative_url }}"></script>
+	<script src="{{ '/assets/lib/fontawesome-free-5.15.4/js/all.min.js' | relative_url }}"></script>
 	<script src="{{ '/assets/js/header.js' | relative_url }}"></script>
-	<script src="{{ '/assets/css/svg-with-js/js/fontawesome-all.js' | relative_url }}"></script>
-	
-	<link href="{{ '/assets/css/bootstrap4.min.css' | relative_url }}" rel="stylesheet">
+
+	<link href="{{ '/assets/lib/bootstrap-4.5.3/css/bootstrap.min.css' | relative_url }}" rel="stylesheet">
 	<link href="{{ '/assets/css/theme.css' | relative_url }}" rel="stylesheet">
 	<link href="{{ '/assets/css/syntax.css' | relative_url }}" rel="stylesheet">
-	
-	<link href="{{ site.social.rss | relative_url }}" type="application/rss+xml" rel="alternate">
 </head>
 
 <body>
