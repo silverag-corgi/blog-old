@@ -1,85 +1,78 @@
-# Jekyll configuration
+# 
+# Jekyll Configuration
+# 
+# http://jekyllrb-ja.github.io/docs/configuration/default/
+#
 
-# Site Name And Description
+# Site Info
 name: Rem_Note
 description: >-
   自分がしたことや考えたことなどを備忘録として記録する場所
-
-# The Base Hostname of Site
-url: 'https://silverag-corgi.github.io'
-
-# The Subpath of Site, Repository Name, Project Name
-baseurl: ''
-
-# Timezone
-#timezone: Asia/Tokyo
-
 author: Rem_
 copyright: 2021
 
-# Share Buttons
-share:
-#  twitter: true
-#  facebook: true
-#  gplus: true
-#  linkedin: true
-#  pinterest: true
-#  email: true
+# Handling Reading
+safe: false
+exclude: 
+  - README.md
+  - jekyll-clean-dark.gemspec
+  - LICENSE
 
-# My SNS Accounts
-social:
-  github: silverag-corgi
-  twitter: silverag_corgi
-  rss: /contents/feed.xml
-#  stackoverflow: ''
-#  linkedin: ''
-#  instagram: ''
-#  lastfm: ''
+# Serving
+# url is hostname of site.
+# baseurl is subpath of site and repository name.
+url: 'https://silverag-corgi.github.io'
+baseurl: ''
 
-# Access Analytics Service
-google_analytics_key: 
-yandex_metrica: 
-
-# Comment System
-disqus: 
-comments: false
-
-# URL of Post
+# Outputting
 permalink: '/post/:year:month:day/:title/'
-
-# Pagination
-paginate: 5
 paginate_path: '/pages/:num/'
-
-# Recent Posts
-recent_posts: 5
-
-# Popular Tags
-popular_tags: 5
-
-# Content Excerpt Separator
-excerpt_separator: "<!-- more -->"
-
-# Content Excerpt Words
-excerpt_words: 5
-
-# Change Log URL
-change_log_url: https://github.com/silverag-corgi/silverag-corgi.github.io/commits/master/
-
-# Markdown Rendering Engine
-markdown: kramdown
-kramdown:
-  input: GFM       # Enable GitHub Flavored Markdown (fenced code blocks)
-  hard_wrap: false # New Line
 
 # Plugins
 plugins:
   - jekyll-paginate
 
-# Excluded File
-exclude: 
-  - README.md
-  - Gemfile
-  - Gemfile.lock
-  - jekyll-clean-dark.gemspec
-  - LICENSE
+# Plugins Configuration
+
+## Paginate Per Posts
+paginate: 5
+
+## Content Excerpt Separator
+excerpt_separator: "<!-- more -->"
+
+## Access Analytics Service
+google_analytics_key: 
+
+# Original Configuration
+
+## Share Buttons
+##share:
+##  twitter: true
+##  facebook: true
+##  gplus: true
+##  linkedin: true
+##  pinterest: true
+##  email: true
+
+## Social
+social:
+  github: 'silverag-corgi'
+  twitter: 'silverag_corgi'
+  rss: '/contents/feed.xml'
+##  stackoverflow: ''
+##  linkedin: ''
+##  instagram: ''
+##  lastfm: ''
+
+## Recent Posts
+recent_posts: 5
+
+## Popular Tags
+popular_tags: 5
+
+## Content Excerpt Words
+excerpt_words: 5
+
+## Change Log URL
+change_log_url: 'https://github.com/silverag-corgi/silverag-corgi.github.io/commits/master/'
+
