@@ -1,25 +1,26 @@
 $(function() { // HTML要素読み込み待機
-	
+
 	var index;
 	var docs;
 
-	// 検索データ読み込み(Lunr.js)
+	// 検索データ非同期読み込み(Lunr.js)
 	docs = $.getJSON("/contents/search.json").done(function(docs) {
 		// インデックス作成
 		index = lunr(function(index) {
 			// 項目作成
 //			index.use(lunr.multiLanguage("en", "jp")); // 課題(issues#45)によりマルチ言語は未対応
 			index.use(lunr.ja);
-			index.ref("id");
-			index.field("url");
-			index.field("title", { boost: 10 });
-			index.field("date");
-			index.field("update");
-			index.field("tags");
-			index.field("tagsurl");
-			index.field("image");
-			index.field("noimage");
-			index.field("content");
+			index.ref("id",        { boost:  0 });
+			index.field("url",     { boost:  0 });
+			index.field("title",   { boost: 30 });
+			index.field("date",    { boost:  0 });
+			index.field("update",  { boost:  0 });
+			index.field("tags",    { boost: 20 });
+			index.field("tagsurl", { boost:  0 });
+			index.field("image",   { boost:  0 });
+			index.field("noimage", { boost:  0 });
+			index.field("content", { boost: 10 });
+			index.field("excerpt", { boost:  0 });
 			
 			// 文書登録
 			for(var doc of docs) {
@@ -33,41 +34,42 @@ $(function() { // HTML要素読み込み待機
 	});
 
 	// 送信時の読み込みなし
-	$("#search-form").submit(function(){
+	$("#search-form").submit(function() {
 		event.preventDefault();
 	});
 
 	// 検索(キー入力時)
-	$("#search-form").on('keyup', function(){
+	$("#search-form").keyup(function() {
 		// 検索クエリによる検索
 		var searchQuery = $("#search-query").val();
 		var results = index.search("*"+searchQuery+"*");
+//		console.log(results);
 		
 		// 検索結果表示
-		displaySearchResults(results);
+		var searchResultArea = $(".post-card");
+		searchResultArea.empty();
+		displaySearchResults(searchResultArea, results);
 	});
 
 	// 検索結果表示
-	function displaySearchResults(results) {
-		var searchResults = $("#search-results");
-		
-		searchResults.empty();
-		
-		docs.then(function(docs){
-			if(results.length) {
-				for(var result of results) {
-					var item = docs[result.ref];
-					var searchResult = generateSearchResult(item);
-					searchResults.append(searchResult);
-				}
+	function displaySearchResults(searchResultArea, results) {
+		docs.then(function(docs) {
+			var searchResult = "";
+			searchResult += "<div class=\"posts\">\r\n";
+			searchResult += "    <h1>検索結果</h1>\r\n";
+			
+			if(results.length == 0) {
+				searchResult += generateSearchResult(null);
 			}
 			else {
-				var searchResult = "";
-				searchResult += "<div class=\"post\">";
-				searchResult += "    検索結果なし";
-				searchResult += "</div>";
-				searchResults.append(searchResult);
+				for(var result of results) {
+					var item = docs[result.ref];
+					searchResult += generateSearchResult(item);
+				}
 			}
+			
+			searchResult += "</div>\r\n";
+			searchResultArea.append(searchResult);
 		});
 	}
 	
@@ -75,67 +77,74 @@ $(function() { // HTML要素読み込み待機
 	function generateSearchResult(item) {
 		var searchResult = "";
 		
-		searchResult += "<div class=\"post\">";
-		
-		// 記事左(画像)
-		searchResult += "    <div class=\"post-left\">";
-		if(item.image) {
-		searchResult += "        <a class=\"post-image\" href=\""+item.url+"\">";
-		searchResult += "            <img src=\""+item.image+"\" alt=\"記事ヘッダ画像\">";
-		searchResult += "        </a>";
+		if(item === null) {
+			searchResult += "    <div class=\"post\">\r\n";
+			searchResult += "        検索結果なし\r\n";
+			searchResult += "    </div>\r\n";
 		}
 		else {
-		searchResult += "        <a class=\"post-noimage\" href=\""+item.url+"\">";
-		searchResult += "            <img src=\""+item.noimage+"\" alt=\"記事ヘッダ画像なし\">";
-		searchResult += "        </a>";
+			searchResult += "    <div class=\"post\">\r\n";
+			
+			// 記事左(画像)
+			searchResult += "        <div class=\"post-left\">\r\n";
+			if(item.image) {
+			searchResult += "            <a class=\"post-image\" href=\""+item.url+"\">\r\n";
+			searchResult += "                <img src=\""+item.image+"\" alt=\"記事ヘッダ画像\">\r\n";
+			searchResult += "            </a>\r\n";
+			}
+			else {
+			searchResult += "            <a class=\"post-noimage\" href=\""+item.url+"\">\r\n";
+			searchResult += "                <img src=\""+item.noimage+"\" alt=\"記事ヘッダ画像なし\">\r\n";
+			searchResult += "            </a>\r\n";
+			}
+			searchResult += "        </div>\r\n";
+			
+			// 記事右(タイトル、メタ、説明、など)
+			searchResult += "        <div class=\"post-right\">\r\n";
+			searchResult += "            <h2 class=\"post-title\">\r\n";
+			searchResult += "                <a href=\""+item.url+"\">\r\n";
+			searchResult += "                    <i class=\"fas fa-fw fa-newspaper\"></i>"+item.title+"\r\n";
+			searchResult += "                </a>\r\n";
+			searchResult += "            </h2>\r\n";
+			
+			searchResult += "            <div class=\"post-meta\">\r\n";
+			searchResult += "                <ul class=\"post-time\">\r\n";
+			searchResult += "                    <li>\r\n";
+			searchResult += "                        <i class=\"fa fa-fw fa-calendar-alt\"></i>\r\n";
+			searchResult += "                        <span><time datetime=\""+item.date+"\">"+item.date+"</time></span>\r\n";
+			searchResult += "                    </li>\r\n";
+			if(item.update) {
+			searchResult += "                    <li>\r\n";
+			searchResult += "                        <i class=\"fa fa-fw fa-edit\"></i>\r\n";
+			searchResult += "                        <span><time datetime=\""+item.update+"\">"+item.update+"</time></span>\r\n";
+			searchResult += "                    </li>\r\n";
+			}
+			searchResult += "                </ul>\r\n";
+			searchResult += "                <ul class=\"post-tag\">\r\n";
+			for(var i in item.tags) {
+			searchResult += "                    <li>\r\n";
+			searchResult += "                        <i class=\"fas fa-fw fa-tag\"></i>\r\n";
+			searchResult += "                        <a href=\""+item.tagsurl[i]+"\">\r\n";
+			searchResult += "                            "+item.tags[i]+"";
+			searchResult += "                        </a>\r\n";
+			searchResult += "                    </li>\r\n";
+			}
+			searchResult += "                </ul>\r\n";
+			searchResult += "            </div>\r\n";
+			
+			searchResult += "            <div class=\"post-desc\">\r\n";
+			searchResult += "                <p>\r\n";
+			searchResult += "                    "+item.excerpt+"\r\n";
+			searchResult += "                </p>\r\n";
+			searchResult += "            </div>\r\n";
+			
+			searchResult += "            <div class=\"post-reading\">\r\n";
+			searchResult += "                <a class=\"page-link\" href=\""+item.url+"\">記事を読む</a>\r\n";
+			searchResult += "            </div>\r\n";
+			searchResult += "        </div>\r\n";
+			
+			searchResult += "    </div>\r\n";
 		}
-		searchResult += "    </div>";
-		
-		// 記事右(タイトル、メタ、説明、など)
-		searchResult += "    <div class=\"post-right\">";
-		searchResult += "        <h2 class=\"post-title\">";
-		searchResult += "            <a href=\""+item.url+"\">";
-		searchResult += "                <i class=\"fas fa-fw fa-newspaper\"></i>"+item.title+"";
-		searchResult += "            </a>";
-		searchResult += "        </h2>";
-		
-		searchResult += "        <div class=\"post-meta\">";
-		searchResult += "            <ul class=\"post-time\">";
-		searchResult += "                <li>";
-		searchResult += "                    <i class=\"fa fa-fw fa-calendar-alt\"></i>";
-		searchResult += "                    <span><time datetime=\""+item.date+"\">"+item.date+"</time></span>";
-		searchResult += "                </li>";
-		if(item.update) {
-		searchResult += "                <li>";
-		searchResult += "                    <i class=\"fa fa-fw fa-edit\"></i>";
-		searchResult += "                    <span><time datetime=\""+item.update+"\">"+item.update+"</time></span>";
-		searchResult += "                </li>";
-		}
-		searchResult += "            </ul>";
-		searchResult += "            <ul class=\"post-tag\">";
-		for(var i in item.tags) {
-		searchResult += "                <li>";
-		searchResult += "                    <i class=\"fas fa-fw fa-tag\"></i>";
-		searchResult += "                    <a href=\""+item.tagsurl[i]+"\">";
-		searchResult += "                        "+item.tags[i]+"";
-		searchResult += "                    </a>";
-		searchResult += "                </li>";
-		}
-		searchResult += "            </ul>";
-		searchResult += "        </div>";
-		
-		searchResult += "        <div class=\"post-desc\">";
-		searchResult += "            <p>";
-		searchResult += "                "+item.content+"";
-		searchResult += "            </p>";
-		searchResult += "        </div>";
-		
-		searchResult += "        <div class=\"post-reading\">";
-		searchResult += "            <a class=\"page-link\" href=\""+item.url+"\">記事を読む</a>";
-		searchResult += "        </div>";
-		searchResult += "    </div>";
-		
-		searchResult += "</div>";
 		
 		return searchResult;
 	}

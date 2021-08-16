@@ -1,4 +1,11 @@
-<aside class="recent-posts-card ">
+<aside class="search-bar-card">
+	<h2>記事検索</h2>
+	<form method="get" id="search-form">
+		<input type="search" id="search-query" class="form-control" placeholder="サイト内で記事を検索する">
+	</form>
+</aside>
+
+<aside class="recent-posts-card">
 	<h2>最近の記事</h2>
 	<ul class="fa-ul">
 		{% for post in site.posts limit:site.recent_posts %}
