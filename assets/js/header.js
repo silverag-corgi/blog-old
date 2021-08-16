@@ -9,10 +9,11 @@ $(function() {
 			eleNav.removeClass('shrink');
 		}
 	});
+});
 
-	$(document).ready(function(){
-		$('[data-toggle="tooltip"]').tooltip();
-	});
+// ツールチップ
+$(function() {
+	$('[data-toggle="tooltip"]').tooltip();
 });
 
 // ページトップ
