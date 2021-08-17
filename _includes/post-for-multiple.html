@@ -46,7 +46,7 @@
 
 		<div class="post-desc">
 			<p>
-				{{ post.excerpt | strip_html | truncatewords:site.excerpt_words }}
+				{{ post.excerpt | strip_html | truncate: site.excerpt_chars | strip_newlines }}
 			</p>
 		</div>
 
