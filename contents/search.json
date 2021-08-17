@@ -15,7 +15,7 @@
 		"image"   : "{{ post.image | relative_url }}",
 		"noimage" : "{{ '/assets/img/site/noimg01.png' | relative_url }}",
 		"content": "{{ post.content | strip_html | strip_newlines }}",
-		"excerpt": "{{ post.excerpt | strip_html | truncatewords: site.excerpt_words }}"
+		"excerpt": "{{ post.excerpt | strip_html | truncate: site.excerpt_chars | strip_newlines }}"
 	}
 	{% unless forloop.last %},{% endunless %}
 	{% assign id = id | plus: 1 %}

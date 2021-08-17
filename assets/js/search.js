@@ -45,10 +45,14 @@ $(function() { // HTML要素読み込み待機
 		var results = index.search("*"+searchQuery+"*");
 //		console.log(results);
 		
-		// 検索結果表示
+		// 記事カードへ検索結果表示
 		var searchResultArea = $(".post-card");
 		searchResultArea.empty();
 		displaySearchResults(searchResultArea, results);
+		
+		// 記事ナビカード非表示
+		var disusedArea = $(".post-navi-card");
+		disusedArea.remove();
 	});
 
 	// 検索結果表示
