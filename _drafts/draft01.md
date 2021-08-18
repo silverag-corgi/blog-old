@@ -3,7 +3,7 @@ layout: post
 title: テーマを大改造したので、Lighthouseで評価してみました
 # date: 
 # update: 
-image: /assets/post/00003/Lighthouse.png
+image: /assets/post/00005/Lighthouse.png
 toc: true
 share: true
 comments: false
@@ -15,7 +15,7 @@ tags:
 
 # 初めに
 
-[以前の記事]({% post_url /2021-08-06-001 %})でテーマを適用してから大分改良したので、
+[以前の記事]({% post_url /2021-08-06-00002 %})でテーマを適用してから大分改良したので、
 画面基準でどこに手を加えたのかをわかりやすくするために一覧化しました。
 
 また、どの程度変化したのか定量的に知りたくなったので、
@@ -156,10 +156,10 @@ Google製のWebサイト評価ツールを使えば独自の観点で品質を�
 
 簡単な評価だけ画像で掲載します。
 詳細は
-[こちら]({{ '/assets/post/00003/score_at_the_time_of_application.html' | relative_url }}){: target="_blank" }
+[こちら]({{ '/assets/post/00005/score_at_the_time_of_application.html' | relative_url }}){: target="_blank" }
 になります。
 
-![適用時の評価]({{ '/assets/post/00003/score_at_the_time_of_application.JPG' | relative_url }})
+![適用時の評価]({{ '/assets/post/00005/score_at_the_time_of_application.JPG' | relative_url }})
 
 
 ## 本サイトの改良後の評価
@@ -168,10 +168,10 @@ Google製のWebサイト評価ツールを使えば独自の観点で品質を�
 
 同じく簡単な評価だけ画像で掲載します。
 詳細は
-[こちら]({{ '/assets/post/00003/score_after_improvement.html' | relative_url }}){: target="_blank" }
+[こちら]({{ '/assets/post/00005/score_after_improvement.html' | relative_url }}){: target="_blank" }
 になります。
 
-![改良後の評価]({{ '/assets/post/00003/score_after_improvement.JPG' | relative_url }})
+![改良後の評価]({{ '/assets/post/00005/score_after_improvement.JPG' | relative_url }})
 
 
 # 評価にて感じたこと
