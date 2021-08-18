@@ -6,7 +6,7 @@ title: プロフィール
 # プロフィール
 
 ![ユーザ画像](
-{{ '/assets/img/site/user01.jpg' | relative_url }})
+{{ '/assets/img/user01.jpg' | relative_url }})
 {: .user-image }
 
 コーギーやシーズーが好きなRem_です。
