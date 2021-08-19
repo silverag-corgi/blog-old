@@ -35,6 +35,7 @@ title: アーカイブ
 	年月別記事表示
 {% endcomment %}
 <ul class="fa-ul">
+	{% assign accordion_checkbox = 0 %}
 	{% assign index_of_posts_by_date = 0 %}
 	{% assign this_date = "" %}
 	{% assign prev_date = "" %}
@@ -47,20 +48,22 @@ title: アーカイブ
 		{% if forloop.first %}
 			<li>
 				<span class="fa-li"><i class="fa fa-fw fa-calendar-alt"></i></span>
-				<a href="{{ '/contents/archive/#_date_' | append: this_date | relative_url }}">
+				
+				<input type="checkbox" class="accordion-checkbox" id="accordion-checkbox-{{ accordion_checkbox }}">
+				<label class="accordion-label" for="accordion-checkbox-{{ accordion_checkbox }}">
 					{{ this_date }} ({{ posts_by_date[index_of_posts_by_date][1] }})
-					{% assign index_of_posts_by_date = index_of_posts_by_date | plus: 1 %}
-				</a>
-			</li>
-			<li>
-				<ul id="_date_{{ this_date }}" class="fa-ul posts-by-date">
+				</label>
+				{% assign accordion_checkbox = accordion_checkbox | plus: 1 %}
+				{% assign index_of_posts_by_date = index_of_posts_by_date | plus: 1 %}
+				
+				<ul class="fa-ul accordion-content">
 		{% endif %}
 		
-		<li>
-			<span class="fa-li"><i class="fas fa-fw fa-newspaper"></i></span>
-			<time>{{ post.date | date: '%Y/%m/%d %H:%M:%S' }}</time>
-			<a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-		</li>
+					<li>
+						<span class="fa-li"><i class="fas fa-fw fa-newspaper"></i></span>
+						<time>{{ post.date | date: '%Y/%m/%d %H:%M:%S' }}</time>
+						<a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+					</li>
 		
 		{% if forloop.last %}
 				</ul>
@@ -70,13 +73,15 @@ title: アーカイブ
 			</li>
 			<li>
 				<span class="fa-li"><i class="fa fa-fw fa-calendar-alt"></i></span>
-				<a href="{{ '/contents/archive/#_date_' | append: prev_date | relative_url }}">
+				
+				<input type="checkbox" class="accordion-checkbox" id="accordion-checkbox-{{ accordion_checkbox }}">
+				<label class="accordion-label" for="accordion-checkbox-{{ accordion_checkbox }}">
 					{{ prev_date }} ({{ posts_by_date[index_of_posts_by_date][1] }})
-					{% assign index_of_posts_by_date = index_of_posts_by_date | plus: 1 %}
-				</a>
-			</li>
-			<li>
-				<ul id="_date_{{ prev_date }}" class="fa-ul posts-by-date">
+				</label>
+				{% assign accordion_checkbox = accordion_checkbox | plus: 1 %}
+				{% assign index_of_posts_by_date = index_of_posts_by_date | plus: 1 %}
+				
+				<ul class="fa-ul accordion-content">
 		{% endif %}
 	{% endfor %}
 </ul>
@@ -86,12 +91,14 @@ title: アーカイブ
 	{% for tag in site.tags %}
 		<li>
 			<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
-			<a href="{{ '/contents/archive/#_tag_' | append: tag[0] | relative_url }}">
+			
+			<input type="checkbox" class="accordion-checkbox" id="accordion-checkbox-{{ accordion_checkbox }}">
+			<label class="accordion-label" for="accordion-checkbox-{{ accordion_checkbox }}">
 				{{ tag[0] }} ({{ tag[1].size }})
-			</a>
-		</li>
-		<li>
-			<ul id="_tag_{{ tag[0] }}" class="fa-ul posts-by-tag">
+			</label>
+			{% assign accordion_checkbox = accordion_checkbox | plus: 1 %}
+			
+			<ul class="fa-ul accordion-content">
 				{% for post in site.posts %}
 					{% if post.tags contains tag[0] %}
 						<li>

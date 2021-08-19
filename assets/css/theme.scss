@@ -381,6 +381,28 @@ main article.post-card {
 		display: none;
 	}
 	
+	input.accordion-checkbox {
+		display: none;
+		
+		&:checked + label.accordion-label + .accordion-content {
+			display: block;
+		}
+	}
+	
+	label.accordion-label {
+		cursor: pointer;
+		color: $font-link-color;
+		margin: 0px 0px 0px 0px;
+		
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	
+	*.accordion-content {
+		display: none;
+	}
+	
 	.user-image {
 		img {
 			max-height: 200px;
