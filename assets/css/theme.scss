@@ -115,6 +115,14 @@ table.wide {
 	max-width: 100%;
 }
 
+table.hide-last-col {
+	
+	th:last-child,
+	td:last-child {
+		display:none;
+	}
+}
+
 div.scroll-table {
 	height: 500px;
 	width: 100%;

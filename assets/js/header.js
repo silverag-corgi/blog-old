@@ -38,3 +38,18 @@ $(function() {
 		return false;
 	});
 });
+
+// テーブルの最終列の表示を切り替える
+function toggleLastCol(tableId, className) {
+	var table = $(tableId);
+	
+	if(table.hasClass(className)) {
+		table.removeClass(className);
+	}
+	else {
+		table.addClass(className);
+	}
+	
+	return;
+}
+
