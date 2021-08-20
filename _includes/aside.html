@@ -21,62 +21,74 @@
 	<h2>人気のタグ</h2>
 
 	{% comment %}
-		1.タグ名と件数をセパレータで結合した文字列のリストを作成し、降順でソートする。
+		1.
+		サイトのタグ一覧から
+		「タグ名」「タグ内の記事件数」
+		をセパレータで結合した配列を作成し、降順でソートする。
 	{% endcomment %}
 	{% assign separator = "{85dc62db-1aac-4ab8-bf7b-0956e1cb964d}" %}
-	{% assign taglist_alpha_reversed = "" | split: "" %}
+	{% assign tags_by_tag_name = "" | split: "" %}
 	{% for t in site.tags %}
-		{% capture item %}{{ t[0] }}{{ separator }}{{ t[1].size }}{% endcapture %}
-		{% assign taglist_alpha_reversed = taglist_alpha_reversed | push: item %}
+		{% assign tag_name = t[0] %}
+		{% assign num_of_articles = t[1].size %}
+		{% capture item %}{{ tag_name }}{{ separator }}{{ num_of_articles }}{% endcapture %}
+		{% assign tags_by_tag_name = tags_by_tag_name | push: item %}
 	{% endfor %}
-	{% assign taglist_alpha_reversed = taglist_alpha_reversed | sort | reverse %}
+	{% assign tags_by_tag_name = tags_by_tag_name | sort | reverse %}
 
 	{% comment %}
-		2.作成したリストから、「0詰めされた件数」「0詰めされたタグ名順序」
-			「タグ名」をセパレータで結合したリストを作成し、再度降順でソートする。
+		2.
+		作成したリストから
+		「タグ内の0詰めされた記事件数」「0詰めされたインデックス」「タグ名」
+		をセパレータで結合した配列を作成し、再度降順でソートする。
 	{% endcomment %}
-	{% assign taglist_prepend_count = "" | split: "" %}
+	{% assign tags_by_num_of_articles = "" | split: "" %}
 	{% assign index = 0 %}
-	{% for t in taglist_alpha_reversed %}
+	{% for t in tags_by_tag_name %}
 		{% assign _t = t | split: separator %}
+		{% assign tag_name = _t[0] %}
+		{% assign num_of_articles = _t[1] %}
 
 		{% comment %} 0詰め {% endcomment %}
-		{% assign padded_count = _t[1] | prepend: "00000" | slice: -5, 5 %}
-		{% assign padded_index = index | prepend: "00000" | slice: -5, 5 %}
+		{% assign padded_noa   = num_of_articles | prepend: "00000" | slice: -5, 5 %}
+		{% assign padded_index = index           | prepend: "00000" | slice: -5, 5 %}
 
-		{% assign item = padded_count | append: separator | append: padded_index | append: separator | append: _t[0] %}
+		{% assign item = "" %}
+		{% assign item = item | append: padded_noa   | append: separator %}
+		{% assign item = item | append: padded_index | append: separator %}
+		{% assign item = item | append: tag_name %}
 
-		{% assign taglist_prepend_count = taglist_prepend_count | push: item %}
+		{% assign tags_by_num_of_articles = tags_by_num_of_articles | push: item %}
 
 		{% assign index = index | plus: 1 %}
 	{% endfor %}
-	{% assign taglist_prepend_count = taglist_prepend_count | sort | reverse %}
+	{% assign tags_by_num_of_articles = tags_by_num_of_articles | sort | reverse %}
 
 	{% comment %}
-		3.タグ名と件数のリストを作成する。
+		3.
+		「タグ名」「タグ内の記事件数」の配列を作成する。
 	{% endcomment %}
-	{% assign taglist = "" | split: "" %}
-	{% for t in taglist_prepend_count %}
+	{% assign popular_tags = "" | split: "" %}
+	{% for t in tags_by_num_of_articles %}
 		{% assign _t = t | split: separator %}
+		{% assign tag_name = _t[2] %}
+		{% assign padded_noa = _t[0] %}
 
 		{% comment %} 0詰め文字列を数値に戻す {% endcomment %}
-		{% assign count = _t[0] | plus: 0 %}
+		{% assign num_of_articles = padded_noa | plus: 0 %}
 
-		{% assign item = "" | split: "" | push: _t[2] | push: count %}
-		{% assign taglist = taglist | push: item %}
+		{% assign item = "" | split: "" | push: tag_name | push: num_of_articles %}
+		{% assign popular_tags = popular_tags | push: item %}
 	{% endfor %}
 
-	{% comment %}
-		件数の降順、タグ名の昇順でソート。
-	{% endcomment %}
 	<ul class="fa-ul">
-		{% for tag in taglist limit:site.popular_tags %}
-		<li>
-		<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
-		<a href="{{ '/contents/posts-by-tag/#_tag_' | append: tag[0] | relative_url }}">
-			{{ tag[0] }} ({{ tag[1] }})
-		</a>
-		</li>
+		{% for tag in popular_tags limit:site.popular_tags %}
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="{{ '/contents/posts-by-tag/#_tag_' | append: tag[0] | relative_url }}">
+					{{ tag[0] }} ({{ tag[1] }})
+				</a>
+			</li>
 		{% endfor %}
 	</ul>
 </aside>
