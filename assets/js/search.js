@@ -1,12 +1,12 @@
 $(function() { // HTML要素読み込み待機
-
-	var index;
-	var docs;
+	// 検索クエリ取得
+	var searchQuery = getSearchQuery();
+	$("#search-query").val(searchQuery);
 
 	// 検索データ非同期読み込み(Lunr.js)
-	docs = $.getJSON("/contents/search.json").done(function(docs) {
+	$.getJSON("/contents/search.json").done(function(docs) {
 		// インデックス作成
-		index = lunr(function(index) {
+		var index = lunr(function(index) {
 			// 項目作成
 //			index.use(lunr.multiLanguage("en", "jp")); // 課題(issues#45)によりマルチ言語は未対応
 			index.use(lunr.ja);
@@ -27,56 +27,73 @@ $(function() { // HTML要素読み込み待機
 				index.add(doc);
 			}
 		});
+		
+		// 検索クエリ取得済みの場合
+		if(searchQuery != "") {
+			// 検索実行
+			var results = index.search("*"+searchQuery+"*");
+			
+			// 検索結果表示
+			var searchResultsArea = $("#search-results");
+			searchResultsArea.empty();
+			displaySearchResults(docs, searchResultsArea, results);
+		}
 	})
 	.fail((jqxhr, textStatus, error) => {
-		var err = textStatus + ", " + error;
-		console.error("検索データ読み込み失敗：", err);
+		console.error(textStatus + ", " + error);
 	});
 
-	// 送信時の読み込みなし
-	$("#search-form").submit(function() {
-		event.preventDefault();
-	});
-
-	// 検索(キー入力時)
-	$("#search-form").keyup(function() {
-		// 検索クエリによる検索
-		var searchQuery = $("#search-query").val();
-		var results = index.search("*"+searchQuery+"*");
-//		console.log(results);
+	// 検索クエリ取得
+	function getSearchQuery() {
+		var searchQuery = "";
 		
-		// 記事カードへ検索結果表示
-		var searchResultArea = $(".post-card");
-		searchResultArea.empty();
-		displaySearchResults(searchResultArea, results);
+		// URLのパラメータを"?"を除外して取得
+		var paramsStr = location.search.substring(1);
 		
-		// 記事ナビカード非表示
-		var disusedArea = $(".post-navi-card");
-		disusedArea.remove();
-	});
-
-	// 検索結果表示
-	function displaySearchResults(searchResultArea, results) {
-		docs.then(function(docs) {
-			var searchResult = "";
-			searchResult += "<div class=\"posts\">\r\n";
-			searchResult += "    <h1>検索結果</h1>\r\n";
+		// パラメータが空文字でない場合
+		if(paramsStr != "") {
+			// パラメータを区切り文字"&"で分割
+			var params = paramsStr.split("&");
 			
-			if(results.length == 0) {
-				searchResult += generateSearchResult(null);
-			}
-			else {
-				for(var result of results) {
-					var item = docs[result.ref];
-					searchResult += generateSearchResult(item);
+			// パラメータごとの処理
+			for(var paramExpStr of params) {
+				var paramExp = paramExpStr.split("=");
+				var paramName = paramExp[0];
+				var paramValue = paramExp[1];
+				
+				// パラメタ名が検索クエリの場合
+				if(paramName == "search-query") {
+					// 検索クエリ取得
+					var decodedParamValue = decodeURIComponent(paramValue);
+					var replacedParamValue = decodedParamValue.replace(/　/g, "\+").replace(/\++/g, " ");
+					searchQuery = replacedParamValue;
+					break;
 				}
 			}
-			
-			searchResult += "</div>\r\n";
-			searchResultArea.append(searchResult);
-		});
+		}
+		
+		return searchQuery;
 	}
-	
+
+	// 検索結果表示
+	function displaySearchResults(docs, searchResultsArea, results) {
+		var searchResult = "";
+		searchResult += "<div class=\"posts\">\r\n";
+		
+		if(results.length == 0) {
+			searchResult += generateSearchResult(null);
+		}
+		else {
+			for(var result of results) {
+				var item = docs[result.ref];
+				searchResult += generateSearchResult(item);
+			}
+		}
+		
+		searchResult += "</div>\r\n";
+		searchResultsArea.append(searchResult);
+	}
+
 	// 結果文字列生成(post-for-multiple.html参考)
 	function generateSearchResult(item) {
 		var searchResult = "";

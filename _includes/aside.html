@@ -1,7 +1,7 @@
 <aside class="search-bar-card">
 	<h2>記事検索</h2>
-	<form method="get" id="search-form">
-		<input type="search" id="search-query" class="form-control" placeholder="サイト内で記事を検索する">
+	<form method="get" id="search-form" action="{{ '/contents/search' | relative_url }}">
+		<input type="search" id="search-query" name="search-query" class="form-control" placeholder="サイト内で記事を検索する">
 	</form>
 </aside>
 
