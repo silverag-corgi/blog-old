@@ -5,8 +5,6 @@ title: 下書き01
 # update: 
 # image: /assets/post/00000/
 toc: true
-share: true
-comments: false
 tags:
   - 
 ---
