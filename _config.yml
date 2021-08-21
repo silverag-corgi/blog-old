@@ -1,15 +1,25 @@
+################################################################################
 # 
 # Jekyll Configuration
 # 
 # http://jekyllrb-ja.github.io/docs/configuration/default/
 #
+################################################################################
 
-# Site Info
-name: Rem_Note
+# Basic Info
+title: Rem_Note
 description: >-
   自分がしたことや考えたことなどを備忘録として記録する場所
-author: Rem_
-copyright: 2021
+
+# Author
+author:
+  name: Rem_
+  email: ""
+  copyright: 2021 Rem_
+  github: "silverag-corgi"
+  twitter: "silverag_corgi"
+
+################################################################################
 
 # Handling Reading
 safe: false
@@ -21,12 +31,12 @@ exclude:
 # Serving
 # url is hostname of site.
 # baseurl is subpath of site and repository name.
-url: 'https://silverag-corgi.github.io'
-baseurl: ''
+url: "https://silverag-corgi.github.io"
+baseurl: ""
 
 # Outputting
-permalink: '/post/:year:month:day/:title/'
-paginate_path: '/pages/:num/'
+permalink: "/post/:year:month:day/:title/"
+paginate_path: "/pages/:num/"
 
 # Plugins
 plugins:
@@ -43,26 +53,20 @@ excerpt_separator: "<!-- more -->"
 ## Access Analytics Service
 google_analytics_key: 
 
+################################################################################
+
 # Original Configuration
 
-## Share Buttons
-##share:
-##  twitter: true
-##  facebook: true
-##  gplus: true
-##  linkedin: true
-##  pinterest: true
-##  email: true
+## Favicon
+favicon: "/assets/img/favicon01.ico"
 
-## Social
-social:
-  github: 'silverag-corgi'
-  twitter: 'silverag_corgi'
-  rss: '/contents/feed.xml'
-##  stackoverflow: ''
-##  linkedin: ''
-##  instagram: ''
-##  lastfm: ''
+## RSS
+rss: "/contents/feed.xml"
+
+## Share Buttons
+share:
+  twitter: true
+  facebook: false
 
 ## Recent Posts
 recent_posts: 5
@@ -74,5 +78,5 @@ popular_tags: 5
 excerpt_chars: 130
 
 ## Change Log URL
-change_log_url: 'https://github.com/silverag-corgi/silverag-corgi.github.io/commits/master/'
+change_log_url: "https://github.com/silverag-corgi/silverag-corgi.github.io/commits/master/"
 
