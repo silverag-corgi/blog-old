@@ -94,7 +94,7 @@ $(function() { // HTML要素読み込み待機
 		searchResultsArea.append(searchResult);
 	}
 
-	// 結果文字列生成(post-for-multiple.html参考)
+	// 結果文字列生成(post-for-posts.html参考)
 	function generateSearchResult(item) {
 		var searchResult = "";
 		

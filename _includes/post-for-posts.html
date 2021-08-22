@@ -18,31 +18,7 @@
 			</a>
 		</h2>
 
-		<div class="post-meta">
-			<ul class="post-time">
-				<li>
-					<i class="fa fa-fw fa-calendar-alt"></i>
-					<span><time datetime='{{ post.date | date: "%Y-%m-%d" }}'>{{ post.date | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
-				</li>
-				
-				{% if post.update %}
-				<li>
-					<i class="fas fa-fw fa-edit"></i>
-					<span><time datetime='{{ post.update | date: "%Y-%m-%d" }}'>{{ post.update | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
-				</li>
-				{% endif %}
-			</ul>
-			<ul class="post-tag">
-				{% for tag in post.tags %}
-				<li>
-					<i class="fas fa-fw fa-tag"></i>
-					<a href="{{ '/contents/posts-by-tag/#_tag_' | append: tag | relative_url }}">
-						{{ tag }}
-					</a>
-				</li>
-				{% endfor %}
-			</ul>
-		</div>
+{% include post-meta.html layout-post=false %}
 
 		<div class="post-desc">
 			<p>

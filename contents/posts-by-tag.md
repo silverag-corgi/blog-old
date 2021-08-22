@@ -12,7 +12,7 @@ title: タグ別記事一覧
 
 			{% for post in site.posts %}
 				{% if post.tags contains tag[0] %}
-{% include post-for-multiple.html %}
+{% include post-for-posts.html %}
 				{% endif %}
 			{% endfor %}
 		</div>

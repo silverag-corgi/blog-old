@@ -1,0 +1,54 @@
+{% if include.layout-post == true %}
+	{% comment %}
+		・_layouts/post.html
+	{% endcomment %}
+	{% assign date = page.date %}
+	{% assign update = page.update %}
+	{% assign path = page.path %}
+	{% assign tags = page.tags %}
+{% else %}
+	{% comment %}
+		・_includes/post-for-posts.html <= _layouts/home.html
+		・_includes/post-for-posts.html <= contents/posts-by-tag.md
+	{% endcomment %}
+	{% assign date = post.date %}
+	{% assign update = post.update %}
+	{% assign path = post.path %}
+	{% assign tags = post.tags %}
+{% endif %}
+
+<div class="post-meta">
+	<ul class="post-time">
+		<li>
+			<i class="fa fa-fw fa-calendar-alt"></i>
+			<span><time datetime="{{ date | date: '%Y/%m/%d %H:%M:%S' }}">{{ date | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
+		</li>
+		
+		{% if update %}
+		<li>
+			<i class="fas fa-fw fa-edit"></i>
+			<span><time datetime="{{ update | date: '%Y/%m/%d %H:%M:%S' }}">{{ update | date: '%Y/%m/%d %H:%M:%S' }}</time></span>
+		</li>
+		{% endif %}
+	</ul>
+	
+	{% if include.layout-post == true %}
+	<ul class="post-log">
+		<li>
+			<i class="fas fa-fw fa-history"></i>
+			<a href="{{ site.change_log_url }}{{ path }}" target="_blank" rel="noopener">変更履歴 on GitHub</a>
+		</li>
+	</ul>
+	{% endif %}
+	
+	<ul class="post-tag">
+		{% for tag in tags %}
+		<li>
+			<i class="fas fa-fw fa-tag"></i>
+			<a href="{{ '/contents/posts-by-tag/#_tag_' | append: tag | relative_url }}">
+				{{ tag }}
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
