@@ -1,74 +1,51 @@
-{% include header.html %}
-		<main>
-			<div class="container">
-				
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="top-card">
-							<div class="top-image">
-								<span>{{ site.description }}</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-lg-9">
-						<article class="post-card">
-							<h1>
-								<i class="fas fa-fw fa-newspaper"></i>{{ page.title }}
-							</h1>
-							
+---
+layout: base
+---
+
+<article class="post-card">
+	<h1>
+		<i class="fas fa-fw fa-newspaper"></i>{{ page.title }}
+	</h1>
+	
 {% include post-meta.html layout-post=true %}
-							
-							<div class="post-content">
-								{% if page.image %}
-									<p class="post-header-image">
-										<img src="{{ page.image | relative_url }}" alt="記事ヘッダ画像">
-									</p>
-								{% endif %}
-								
-								{% if page.toc %}
-{% include toc.html html=content class='toc' %}
-								{% endif %}
-								
+	
+	<div class="post-content">
+		{% if page.image %}
+			<p class="post-header-image">
+				<img src="{{ page.image | relative_url }}" alt="記事ヘッダ画像">
+			</p>
+		{% endif %}
+		
+		{% if page.toc %}
+{% include toc.html html=content class="toc" %}
+		{% endif %}
+		
 {{ content | strip_newlines }}
-								
+		
 {% include share.html %}
-							</div>
-						</article>
-						
-						<article class="post-navi-card">
-							<div class="pagination justify-content-around">
-								{% if page.previous.url or page.next.url %}
-									{% if page.previous.url %}
-										<div class="page-item col-lg-6">
-											<a class="page-link" href="{{ page.previous.url | relative_url }}">{{ page.previous.title }}</a>
-										</div>
-									{% else %}
-										<div class="page-item col-lg-6">
-										</div>
-									{% endif %}
-									
-									{% if page.next.url %}
-										<div class="page-item col-lg-6">
-											<a class="page-link" href="{{ page.next.url | relative_url }}">{{ page.next.title }}</a>
-										</div>
-									{% else %}
-										<div class="page-item col-lg-6">
-										</div>
-									{% endif %}
-								{% endif %}
-							</div>
-						</article>
-					</div>
-					<div class="col-lg-3">
-{% include aside.html %}
-					</div>
+	</div>
+</article>
+
+<article class="post-navi-card">
+	<div class="pagination justify-content-around">
+		{% if page.previous.url or page.next.url %}
+			{% if page.previous.url %}
+				<div class="page-item col-lg-6">
+					<a class="page-link" href="{{ page.previous.url | relative_url }}">{{ page.previous.title }}</a>
 				</div>
-				
-			</div>
-		</main>
-{% include footer.html %}
-	</body>
-</html>
+			{% else %}
+				<div class="page-item col-lg-6">
+				</div>
+			{% endif %}
+			
+			{% if page.next.url %}
+				<div class="page-item col-lg-6">
+					<a class="page-link" href="{{ page.next.url | relative_url }}">{{ page.next.title }}</a>
+				</div>
+			{% else %}
+				<div class="page-item col-lg-6">
+				</div>
+			{% endif %}
+		{% endif %}
+	</div>
+</article>
