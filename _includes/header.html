@@ -4,9 +4,14 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="{{ site.description }}">
 	
-	<title>{{ site.title }}{% if page.title %} | {{ page.title }} {% endif %}</title>
+	{% if page.title %}
+	<title>{{ page.title }} | {{ site.title }}</title>
+	<meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: site.excerpt_chars }}">
+	{% else %}
+	<title>{{ site.title }}</title>
+	<meta name="description" content="{{ site.description }}">
+	{% endif %}
 	
 	<link href="{{ site.favicon | relative_url }}" rel="shortcut icon">
 	<link href="{{ site.rss | relative_url }}" rel="alternate" type="application/rss+xml">

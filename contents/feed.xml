@@ -12,11 +12,9 @@
 			<item>
 				<title>{{ post.title }}</title>
 				
-				{% if post.excerpt %}
-					<description>{{ post.excerpt | xml_escape }}</description>
-				{% else %}
-					<description>{{ post.content | xml_escape }}</description>
-				{% endif %}
+				<description>
+					{{ post.excerpt | strip_html | strip_newlines }}
+				</description>
 				
 				<pubDate>{{ post.date | date: "%Y/%m/%d %H:%M:%S" }}</pubDate>
 				

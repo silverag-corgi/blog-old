@@ -22,7 +22,7 @@
 
 		<div class="post-desc">
 			<p>
-				{{ post.excerpt | strip_html | truncate: site.excerpt_chars | strip_newlines }}
+				{{ post.excerpt | strip_html | strip_newlines | truncate: site.excerpt_chars }}
 			</p>
 		</div>
 

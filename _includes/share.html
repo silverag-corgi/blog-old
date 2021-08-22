@@ -4,7 +4,7 @@
 			
 			{% if site.share.twitter %}
 			<li class="share-twitter">
-				<a href="https://twitter.com/intent/tweet?url={{ site.url | append: page.url }}&text={{page.title}}" target="_blank" rel="noopener" title="Tweet">
+				<a href="https://twitter.com/intent/tweet?text={{ page.title | append: ' | ' | url_encode | append: site.title }}%0a{{ site.url | append: page.url }}" target="_blank" rel="noopener" title="Tweet">
 					<span class="fa-layers fa-fw fa-2x">
 						<i class="far fa-circle"></i>
 						<i class="fab fa-twitter" data-fa-transform="shrink-8"></i>
