@@ -1,7 +1,7 @@
 <aside class="search-bar-card">
 	<h2>記事検索</h2>
 	<form method="get" id="search-form" action="{{ '/contents/search' | relative_url }}">
-		<input type="search" id="search-query" name="search-query" class="form-control" placeholder="サイト内で記事を検索する">
+		<input type="search" id="search-query" name="search-query" class="form-control" placeholder="ブログ内で記事を検索する">
 	</form>
 </aside>
 
@@ -22,7 +22,7 @@
 
 	{% comment %}
 		1.
-		サイトのタグ一覧から
+		ブログのタグ一覧から
 		「タグ名」「タグ内の記事件数」
 		をセパレータで結合した配列を作成し、降順でソートする。
 	{% endcomment %}
