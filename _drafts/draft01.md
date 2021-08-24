@@ -48,14 +48,14 @@ GitHubで言語統計を表示する機能は、**RubyGems**の**github-linguist
 
 | Git属性                    | 定義ファイル        | ファイルでの効果                                             |
 | -------------------------- | ------------------- | ------------------------------------------------------------ |
-| `linguist-detectable`      | `languages.yml`     | 言語の種類がdataやproseであっても統計に含まれる              |
+| `linguist-detectable`      | `languages.yml`     | 言語の種類がdataやproseであっても統計に包含される            |
+| `linguist-language`=*name* | `languages.yml`     | 指定された言語としてハイライトされ、分類される               |
 | `linguist-documentation`   | `documentation.yml` | ドキュメントとして統計から除外される                         |
 | `linguist-generated`       | `generated.rb`      | 生成されたファイルとして統計からは除外され、diffでは隠される |
-| `linguist-language`=*name* | `languages.yml`     | 指定された言語としてハイライトされ、分類される               |
 | `linguist-vendored`        | `vendor.yml`        | ベンダーから提供されたファイルとして統計から除外される       |
 
 
-### ベンダーから提供されたコード(Vendored code)
+### ベンダーから提供されたファイル
 
 JavaScriptライブラリなど、自分が書いていないコードをリポジトリにチェックすることはよくあることだが、
 これはよくプロジェクトの言語統計を膨らませ、
@@ -69,19 +69,18 @@ JavaScriptライブラリなど、自分が書いていないコードをリポ�
 .gitattributes
 {:.filename}
 {% highlight git %}
-# ディレクトリ内のすべてのファイルにオーバーライドを適用する
+# フォルダ内のすべてのファイルにオーバーライドを適用する
 special-vendored-path/* linguist-vendored
 # 特定のファイルにオーバーライドを適用する
 jquery.js -linguist-vendored
-# ディレクトリ内のすべてのファイルとディレクトリにオーバーライドを適用する
+# フォルダ内のすべてのフォルダとファイルにオーバーライドを適用する
 ano-dir/** linguist-vendored
 {% endhighlight %}
 
 
-# 外部ライブラリを除外する設定ファイルの作成
+# 設定ファイルの作成
 
-gitattributesファイルを作成することにより、
-外部ライブラリや記事で紹介したツールの成果物を集計から除外できることがわかった。
+gitattributesファイルを作成することにより、任意のファイルを集計から除外できることがわかった。
 
 実際に作成したファイルを以下に示す。
 
@@ -95,6 +94,26 @@ assets/post/** linguist-documentation
 
 自分のリポジトリの構成上、資産フォルダ配下のライブラリと記事添付ファイルは除外したかった。
 また、それぞれvendoredとdocumentationに分類されるため、上記のような設定となった。
+
+
+# 設定ファイルの適用結果
+
+設定ファイル適用前
+
+![言語統計_設定前]({{ '/assets/post/00006/lang_stats_bef_setting.JPG' | relative_url }})
+
+設定ファイル適用後
+
+![言語統計_設定後]({{ '/assets/post/00006/lang_stats_aft_setting.JPG' | relative_url }})
+
+上記画像により言語統計から外部ライブラリや記事で紹介したツールの成果物を除外できたことがわかる。
+
+
+# 最後に
+
+`.gitattributes`ファイルを作成し、ファイルに対して特殊な属性を設定することにより、
+言語統計から包含・除外できることがわかった。
+今回は外部ライブラリを除外する方法をまとめた。
 
 
 # 参考サイト
