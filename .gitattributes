@@ -1,0 +1,11 @@
+################################################################################
+# 
+# リポジトリの言語情報で除外する資産を指定する。
+# 
+# https://github.com/github/linguist/blob/master/docs/overrides.md
+#
+################################################################################
+
+# Excluded from stats
+assets/lib/**  linguist-vendored
+assets/post/** linguist-documentation
