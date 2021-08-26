@@ -39,17 +39,16 @@ $(function() {
 	});
 });
 
-// テーブルの最終列の表示を切り替える
-function toggleLastCol(tableId, className) {
-	var table = $(tableId);
+// CSSクラス切り替え
+function toggleCssClass(elementId, cssClassName) {
+	var element = $(elementId);
 	
-	if(table.hasClass(className)) {
-		table.removeClass(className);
+	if(element.hasClass(cssClassName)) {
+		element.removeClass(cssClassName);
 	}
 	else {
-		table.addClass(className);
+		element.addClass(cssClassName);
 	}
 	
 	return;
 }
-
