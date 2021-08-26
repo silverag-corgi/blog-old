@@ -1,38 +1,48 @@
 // ナビ
-$(function() {
-	var eleNav = $('nav');
+$(function () {
+	var headerObj = $("header");
+	var heightOfHeader = headerObj.innerHeight();
+	var startPosition = 0;
 	
-	$(window).scroll(function() {
-		if ($(document).scrollTop() > 50) {
-			eleNav.addClass('shrink');
+	$(window).on("scroll", function () {
+		var currentPosition = $(this).scrollTop();
+		
+		if (currentPosition <= startPosition) {
+			// 上にスクロールした場合、ヘッダーを表示する
+			headerObj.css({ "top": 0 });
 		} else {
-			eleNav.removeClass('shrink');
+			// 下にスクロールした場合、ヘッダーを非表示する
+			headerObj.css({ "top": "-" + heightOfHeader + "px" });
 		}
+		
+		startPosition = currentPosition;
 	});
+	
+	$(window).trigger("scroll");
 });
 
 // ツールチップ
 $(function() {
-	$('[data-toggle="tooltip"]').tooltip();
+	$("[data-toggle='tooltip']").tooltip();
 });
 
 // ページトップ
 $(function() {
-	var eleBtn = $('#page-top-card');
+	var buttonObj = $("#page-top-card");
 	
 	// ボタン表示(スクロール50px以上)
-	eleBtn.hide();
+	buttonObj.hide();
 	$(window).scroll(function () {
 		if ($(this).scrollTop() > 50) {
-			eleBtn.fadeIn();
+			buttonObj.fadeIn();
 		} else {
-			eleBtn.fadeOut();
+			buttonObj.fadeOut();
 		}
 	});
 	
 	// ページトップへスクロール(1000ms)
-	eleBtn.click(function () {
-		$('body,html').animate({
+	buttonObj.click(function () {
+		$("body,html").animate({
 			scrollTop: 0
 		}, 1000);
 		return false;
@@ -41,13 +51,13 @@ $(function() {
 
 // CSSクラス切り替え
 function toggleCssClass(elementId, cssClassName) {
-	var element = $(elementId);
+	var elementObj = $(elementId);
 	
-	if(element.hasClass(cssClassName)) {
-		element.removeClass(cssClassName);
+	if(elementObj.hasClass(cssClassName)) {
+		elementObj.removeClass(cssClassName);
 	}
 	else {
-		element.addClass(cssClassName);
+		elementObj.addClass(cssClassName);
 	}
 	
 	return;
