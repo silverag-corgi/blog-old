@@ -1,44 +1,49 @@
-// ナビ
-$(function () {
-	var headerObj = $("header");
-	var heightOfHeader = headerObj.innerHeight();
-	var startPosition = 0;
-	
-	$(window).on("scroll", function () {
-		var currentPosition = $(this).scrollTop();
-		
-		if (currentPosition <= startPosition) {
-			// 上にスクロールした場合、ヘッダーを表示する
-			headerObj.css({ "top": 0 });
-		} else {
-			// 下にスクロールした場合、ヘッダーを非表示する
-			headerObj.css({ "top": "-" + heightOfHeader + "px" });
-		}
-		
-		startPosition = currentPosition;
-	});
-	
-	$(window).trigger("scroll");
-});
-
-// ツールチップ
+// ナビ(トップ、ボトム)表示切替
 $(function() {
-	$("[data-toggle='tooltip']").tooltip();
+	// ナビトップ
+	toggleNav(".fixed-top", true);
+	
+	// ナビボトム
+	toggleNav(".fixed-bottom", false);
+	
+	// ナビ表示切替
+	function toggleNav(className, isTop) {
+		var navObj = $(className);
+		var heightOfNav = navObj.innerHeight();
+		var startPosition = 0;
+		
+		$(window).on("scroll", function () {
+			var currentPosition = $(this).scrollTop();
+			
+			if(isTop == true) {
+				if (currentPosition <= startPosition) {
+					// 上にスクロールした場合、ナビを表示する
+					navObj.css({ "top": 0 });
+				} else {
+					// 下にスクロールした場合、ナビを非表示する
+					navObj.css({ "top": "-" + heightOfNav + "px" });
+				}
+			}
+			else {
+				if (currentPosition <= startPosition) {
+					// 上にスクロールした場合、ナビを表示する
+					navObj.css({ "bottom": 0 });
+				} else {
+					// 下にスクロールした場合、ナビを非表示する
+					navObj.css({ "bottom": "-" + heightOfNav + "px" });
+				}
+			}
+			
+			startPosition = currentPosition;
+		});
+		
+		$(window).trigger("scroll");
+	}
 });
 
 // ページトップ
 $(function() {
-	var buttonObj = $("#page-top-card");
-	
-	// ボタン表示(スクロール50px以上)
-	buttonObj.hide();
-	$(window).scroll(function () {
-		if ($(this).scrollTop() > 50) {
-			buttonObj.fadeIn();
-		} else {
-			buttonObj.fadeOut();
-		}
-	});
+	var buttonObj = $(".page-top");
 	
 	// ページトップへスクロール(1000ms)
 	buttonObj.click(function () {
@@ -49,15 +54,15 @@ $(function() {
 	});
 });
 
-// CSSクラス切り替え
-function toggleCssClass(elementId, cssClassName) {
+// CSSクラス適用切替
+function toggleCssClass(elementId, className) {
 	var elementObj = $(elementId);
 	
-	if(elementObj.hasClass(cssClassName)) {
-		elementObj.removeClass(cssClassName);
+	if(elementObj.hasClass(className)) {
+		elementObj.removeClass(className);
 	}
 	else {
-		elementObj.addClass(cssClassName);
+		elementObj.addClass(className);
 	}
 	
 	return;

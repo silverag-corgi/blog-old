@@ -7,8 +7,9 @@
 //
 // body
 //     header
-//         nav
+//         div.nav-top
 //             div.container
+//                 nav
 //     main
 //         div.container
 //             div.row
@@ -23,9 +24,12 @@
 //                     aside.search-bar-card
 //                     aside.recent-posts-card
 //                     aside.popular-tags-card
-//                     aside.page-top-card
 //     footer
-//         div.container
+//         div.author
+//             div.container
+//         div.nav-bottom
+//             div.container
+//                 nav
 //
 
 //******************************************************************************
@@ -54,9 +58,13 @@ $background-color-footer:   #393939; // Dark Gray
 $background-color-card:     #393939; // Dark Gray
 $background-color-data:     #404040; // Dark Gray
 
-// その他
+// トップ画像
 $top-image:                 '../img/top01.png';
-$media-max-width:           992px; // Bootstrapグリッドオプション：Large (lg)
+
+// 画面サイズ(https://getbootstrap.jp/docs/4.5/layout/overview/)
+$pc-min-width:              992px; // Bootstrapグリッドオプション：Large (lg)
+$sp-min-width:              0px;
+$sp-max-width:              991px;
 
 //******************************************************************************
 // 共通
@@ -111,13 +119,13 @@ table {
 		background-color: $background-color-data;
 		text-align: center;
 		padding: 8px 12px;
-		border: 1px solid #5e5e5e;
+		border: 1px solid #5E5E5E;
 	}
 	
 	td {
 		background-color: $background-color-data;
 		padding: 8px;
-		border: 1px solid #5e5e5e;
+		border: 1px solid #5E5E5E;
 	}
 }
 
@@ -153,49 +161,97 @@ div.scroll-table {
 }
 
 //******************************************************************************
-// ヘッダ：ブログ名やナビバーのスタイル
+// レスポンシブ対応
+//******************************************************************************
+
+// PC画面
+@media screen and (min-width: $pc-min-width) {
+	// ヘッダ
+	header {
+		div.nav-top {
+			
+		}
+	}
+	
+	// フッタ
+	footer {
+		div.page-top.position-fixed {
+			
+		}
+		div.nav-bottom {
+			display: none !important;
+		}
+	}
+}
+
+// スマホ画面
+@media screen and (min-width: $sp-min-width) and (max-width: $sp-max-width) {
+	// ヘッダ
+	header {
+		div.nav-top {
+			
+		}
+	}
+	
+	// フッタ
+	footer {
+		div.page-top.position-fixed {
+			display: none !important;
+		}
+		div.nav-bottom {
+			
+		}
+	}
+}
+
+//******************************************************************************
+// ヘッダ
 //******************************************************************************
 
 header {
-	background-color: $background-color-header;
 	transition: all 700ms 0ms ease;
 	
-	nav {
-		padding: 0px !important;
+	// ナビトップ(PC画面の上部)
+	div.nav-top {
+		background-color: $background-color-header;
 		
-		a {
-			color: $font-color-accent !important;
-		}
-		
-		a.navbar-brand {
-			font-size: 2.50rem;
-			margin: 0px 16px;
-		}
-		
-		button.navbar-toggler {
-			margin: 4px 16px;
-		}
-		
-		ul.navbar-nav {
-			font-size: 1.25rem;
-			margin: 0px 0px 0px auto;
-			text-align: right;
+		nav {
+			padding: 0px !important;
 			
-			li.nav-item {
-				a.nav-link {
-					padding: 0px 32px 0px 32px !important;
-				}
+			a {
+				color: $font-color-accent !important;
+			}
+			
+			a.navbar-brand {
+				font-size: 2.50rem;
+				margin: 0px 0px 0px 0px;
+			}
+			
+			button.navbar-toggler {
+				margin: 4px 0px 4px 0px;
+			}
+			
+			ul.navbar-nav {
+				font-size: 1.25rem;
+				margin: 0px 0px 0px auto;
+				text-align: right;
 				
-				a.nav-link:hover {
-					text-decoration: underline;
+				li.nav-item {
+					a.nav-link {
+						padding: 0px 32px 0px 32px !important;
+					}
+					
+					a.nav-link:hover {
+						text-decoration: underline;
+					}
 				}
 			}
-		}
-		
-		div.show {
-			li.nav-item {
-				a.nav-link {
-					padding: 16px 32px 16px 32px !important;
+			
+			div.show {
+				li.nav-item {
+					a.nav-link {
+						padding: 16px 16px 16px 16px !important;
+					}
 				}
 			}
 		}
@@ -203,31 +259,73 @@ header {
 }
 
 //******************************************************************************
-// フッタ：著作権情報やSNSアイコンのスタイル
+// フッタ
 //******************************************************************************
 
 footer {
-	color: $font-color-accent;
-	background-color: $background-color-footer;
-	padding: 16px;
-	text-align: center;
-	width: 100%;
-	
-	ul.social-media {
-		padding: 0px;
-		margin: 0px;
+	div.author {
+		color: $font-color-accent;
+		background-color: $background-color-footer;
+		padding: 16px;
+		text-align: center;
+		width: 100%;
 		
-		li {
-			display: inline-block;
+		ul.social-media {
+			padding: 0px;
+			margin: 0px;
 			
-			a {
-				width: 48px;
-				height: 48px;
+			li {
 				display: inline-block;
-				color: $font-color-accent;
 				
-				&:hover {
-					color: $font-color-link;
+				a {
+					width: 48px;
+					height: 48px;
+					display: inline-block;
+					color: $font-color-accent;
+					
+					&:hover {
+						color: $font-color-link;
+					}
+				}
+			}
+		}
+	}
+	
+	div.page-top.position-fixed {
+		background-color: $font-color-accent;
+		box-shadow: 0px 0px 0px 0px, 0px 8px 16px rgba(0, 0, 0, 0.2);
+		
+		border: 0px;
+		border-radius: 8px;
+		padding: 18px 24px 18px 24px;
+		
+		cursor: pointer;
+		z-index: 10;
+		
+		bottom: 16px;
+		right: 16px;
+		
+		font-size: 2.00rem;
+		color: $background-color-card;
+	}
+	
+	// ナビボトム(スマホ画面の下部)
+	div.nav-bottom {
+		background-color: $background-color-header;
+		transition: all 700ms 0ms ease;
+		
+		div.row {
+			padding: 8px 0px 8px 0px;
+			
+			div.nav-bottom-icon {
+				font-size: 1.50rem;
+				
+				a {
+					color: $font-color-accent !important;
+				}
+				
+				div.page-top {
+					
 				}
 			}
 		}
@@ -235,16 +333,17 @@ footer {
 }
 
 //******************************************************************************
-// メイン：ヘッダやフッタ以外の中心に配置する要素のスタイル
+// メイン
 //******************************************************************************
 
 main {
 	margin: 86px 0px 0px 0px;
-	// 内70pxはブログ名(navbar-brand)のフォントサイズに依存する。
+	// 16px + 70px
+	// 70pxはブログ名(navbar-brand)のフォントサイズに依存する。
 }
 
 //******************************************************************************
-// トップカード
+// メイン．DIV．トップカード
 //******************************************************************************
 
 main div.top-card {
@@ -267,7 +366,7 @@ main div.top-card {
 }
 
 //******************************************************************************
-// 記事．記事カード
+// メイン．記事．記事カード
 //******************************************************************************
 
 main article.post-card {
@@ -322,7 +421,8 @@ main article.post-card {
 			}
 		}
 		
-		@media all and (max-width: $media-max-width) {
+		// スマホ画面
+		@media screen and (min-width: $sp-min-width) and (max-width: $sp-max-width) {
 		
 		.post {
 			display: inline-block;
@@ -426,7 +526,7 @@ main article.post-card {
 }
 
 //******************************************************************************
-// 記事．記事ナビカード
+// メイン．記事．記事ナビカード
 //******************************************************************************
 
 main article.post-navi-card {
@@ -444,7 +544,7 @@ main article.post-navi-card {
 }
 
 //******************************************************************************
-// 記事．関連記事カード
+// メイン．記事．関連記事カード
 //******************************************************************************
 
 main article.related-post-card {
@@ -452,42 +552,20 @@ main article.related-post-card {
 }
 
 //******************************************************************************
-// アサイド．検索バー
-// アサイド．最近の記事
-// アサイド．人気のタグ
-// アサイド．ページトップ
+// メイン．アサイド．検索バー
+// メイン．アサイド．最近の記事
+// メイン．アサイド．人気のタグ
 //******************************************************************************
 
 main aside.search-bar-card,
 main aside.recent-posts-card,
-main aside.popular-tags-card,
-main aside.page-top-card {
+main aside.popular-tags-card {
 	background-color: $background-color-card;
 	box-shadow: 0px 0px 0px 0px, 0px 8px 16px rgba(0, 0, 0, 0.2);
 	border: 0px;
 	border-radius: 8px;
 	padding: 16px;
 	margin: 0px 0px 16px 0px;
-}
-
-//******************************************************************************
-// アサイド．ページトップ
-//******************************************************************************
-
-main aside.page-top-card {
-	padding: 24px;
-	margin: 0px 0px 0px 0px;
-	
-	position: fixed;
-	bottom: 16px;
-	right: 32px;
-	font-size: 1.50rem;
-	
-	a {
-		color: $font-color-accent;
-		text-align: center;
-		text-decoration: none;
-	}
 }
 
 //******************************************************************************
@@ -572,7 +650,7 @@ blockquote.warning p {
 }
 
 //******************************************************************************
-// キー：ショートカットキーなどのスタイル
+// キー
 //******************************************************************************
 
 .key {

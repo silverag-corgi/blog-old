@@ -1,32 +1,34 @@
 <header class="fixed-top">
-	<nav class="navbar navbar-expand-lg navbar-dark">
+	<div class="nav-top">
 		<div class="container">
-			<a class="navbar-brand" href="{{ site.baseurl | append: '/' }}">
-				{{ site.title }}
-			</a>
-			
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-					aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			
-			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-				<ul class="navbar-nav">
-					<li class="nav-item">
-					    <a class="nav-link" href="{{ '/contents/tags' | relative_url }}">タグ一覧</a>
-					</li>
-					<li class="nav-item">
-					    <a class="nav-link" href="{{ '/contents/archive' | relative_url }}">アーカイブ</a>
-					</li>
-					<!-- <li class="nav-item"> -->
-					    <!-- <a class="nav-link" href="{{ '/contents/stats' | relative_url }}">統計</a> -->
-					<!-- </li> -->
-					<li class="nav-item">
-					    <a class="nav-link" href="{{ '/contents/about' | relative_url }}">プロフィール</a>
-					</li>
-				</ul>
-			</div>
+			<nav class="navbar navbar-expand-lg navbar-dark">
+				<a class="navbar-brand" href="{{ site.baseurl | append: '/' }}">
+					{{ site.title }}
+				</a>
+				
+				<div class="collapse navbar-collapse">
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link" href="{{ '/contents/tags' | relative_url }}">
+								<i class="fas fa-fw fa-tag"></i>
+								タグ一覧
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ '/contents/archive' | relative_url }}">
+								<i class="fas fa-fw fa-book"></i>
+								アーカイブ
+							</a>
+						</li>
+						<li class="nav-item">
+						    <a class="nav-link" href="{{ '/contents/about' | relative_url }}">
+								<i class="fas fa-user"></i>
+								プロフィール
+							</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
 		</div>
-	</nav>
+	</div>
 </header>
