@@ -21,7 +21,6 @@
 //                     article.post-navi-card
 //                     article.related-post-card
 //                 div.col-md-3
-//                     aside.search-bar-card
 //                     aside.recent-posts-card
 //                     aside.popular-tags-card
 //     footer
@@ -234,23 +233,16 @@ header {
 			ul.navbar-nav {
 				font-size: 1.25rem;
 				margin: 0px 0px 0px auto;
-				text-align: right;
 				
 				li.nav-item {
+					padding: 0px 8px 0px 8px;
+					
 					a.nav-link {
-						padding: 0px 32px 0px 32px !important;
+						padding: 0px 0px 0px 0px;
 					}
 					
 					a.nav-link:hover {
 						text-decoration: underline;
-					}
-				}
-			}
-			
-			div.show {
-				li.nav-item {
-					a.nav-link {
-						padding: 16px 16px 16px 16px !important;
 					}
 				}
 			}
@@ -315,7 +307,7 @@ footer {
 		transition: all 700ms 0ms ease;
 		
 		div.row {
-			padding: 8px 0px 8px 0px;
+			padding: 8px 0px 24px 0px;
 			
 			div.nav-bottom-icon {
 				font-size: 2.00rem;
@@ -552,12 +544,10 @@ main article.related-post-card {
 }
 
 //******************************************************************************
-// メイン．アサイド．検索バー
 // メイン．アサイド．最近の記事
 // メイン．アサイド．人気のタグ
 //******************************************************************************
 
-main aside.search-bar-card,
 main aside.recent-posts-card,
 main aside.popular-tags-card {
 	background-color: $background-color-card;
