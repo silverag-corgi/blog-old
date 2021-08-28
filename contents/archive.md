@@ -88,7 +88,8 @@ title: アーカイブ
 
 <h1>アーカイブ(タグ別)</h1>
 <ul class="fa-ul">
-	{% for tag in site.tags %}
+	{% assign tags = site.tags | sort %}
+	{% for tag in tags %}
 		<li>
 			<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
 			
