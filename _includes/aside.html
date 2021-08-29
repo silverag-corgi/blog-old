@@ -11,7 +11,7 @@
 </aside>
 
 <aside class="popular-tags-card">
-	<h2>人気のタグ</h2>
+	<h2>タグ(記事数降順)</h2>
 
 	{% comment %}
 		1.
@@ -75,7 +75,7 @@
 	{% endfor %}
 
 	<ul class="fa-ul">
-		{% for tag in popular_tags limit:site.popular_tags %}
+		{% for tag in popular_tags %}
 			<li>
 				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
 				<a href="{{ '/contents/posts-by-tag/#_tag_' | append: tag[0] | relative_url }}">

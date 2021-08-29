@@ -3,7 +3,7 @@ layout: page
 title: アーカイブ
 ---
 
-<h1>アーカイブ(年月別)</h1>
+<h1>アーカイブ(年月降順)</h1>
 
 {% comment %}
 	年月別記事数カウント
@@ -86,7 +86,7 @@ title: アーカイブ
 	{% endfor %}
 </ul>
 
-<h1>アーカイブ(タグ別)</h1>
+<h1>アーカイブ(タグ名昇順)</h1>
 <ul class="fa-ul">
 	{% assign tags = site.tags | sort %}
 	{% for tag in tags %}
