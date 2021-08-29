@@ -61,15 +61,13 @@ $background-color-data:     #404040; // Dark Gray
 $top-image:                 '../img/top01.png';
 
 // 画面サイズ(https://getbootstrap.jp/docs/4.5/layout/overview/)
-$pc-min-width:              992px; // PC画面 最小幅
-$mb-max-width:              991px; // モバイル画面 最大幅
-
 $mb-md-min-width:           375px; // モバイル画面 M 最小幅
 $mb-md-max-width:           424px; // モバイル画面 M 最大幅
 $mb-lg-min-width:           425px; // モバイル画面 L 最小幅
 $mb-lg-max-width:           767px; // モバイル画面 L 最大幅
 $mb-xl-min-width:           768px; // モバイル画面 XL 最小幅
 $mb-xl-max-width:           991px; // モバイル画面 XL 最大幅
+$pc-min-width:              992px; // PC画面 最小幅
 
 //******************************************************************************
 // 共通
@@ -166,74 +164,6 @@ div.scroll-table {
 }
 
 //******************************************************************************
-// レスポンシブ対応
-//******************************************************************************
-
-// PC画面
-@media screen and (min-width: $pc-min-width) {
-	// ヘッダ
-	header {
-		div.nav-top {
-			nav {
-				ul.navbar-nav {
-					li.nav-item {
-						.form-control {
-							width: 200px;
-						}
-					}
-				}
-			}
-		}
-	}
-	
-	// フッタ
-	footer {
-		div.page-top.position-fixed {
-			
-		}
-		div.nav-bottom {
-			display: none !important;
-		}
-	}
-}
-
-// モバイル画面
-@media screen and (max-width: $mb-max-width) {
-	// ヘッダ
-	header {
-		div.nav-top {
-			nav {
-				ul.navbar-nav {
-					li.nav-item {
-						.form-control {
-							@media screen and (min-width: $mb-md-min-width) and (max-width: $mb-md-max-width) {
-								width: 110px;
-							}
-							@media screen and (min-width: $mb-lg-min-width) and (max-width: $mb-lg-max-width) {
-								width: 160px;
-							}
-							@media screen and (min-width: $mb-xl-min-width) and (max-width: $mb-xl-max-width) {
-								width: 200px;
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-	
-	// フッタ
-	footer {
-		div.page-top.position-fixed {
-			display: none !important;
-		}
-		div.nav-bottom {
-			
-		}
-	}
-}
-
-//******************************************************************************
 // ヘッダ
 //******************************************************************************
 
@@ -275,7 +205,20 @@ header {
 					}
 					
 					.form-control {
-						
+						// モバイル画面
+						@media screen and (min-width: $mb-md-min-width) and (max-width: $mb-md-max-width) {
+							width: 110px;
+						}
+						@media screen and (min-width: $mb-lg-min-width) and (max-width: $mb-lg-max-width) {
+							width: 160px;
+						}
+						@media screen and (min-width: $mb-xl-min-width) and (max-width: $mb-xl-max-width) {
+							width: 200px;
+						}
+						// PC画面
+						@media screen and (min-width: $pc-min-width) {
+							width: 200px;
+						}
 					}
 				}
 			}
@@ -288,6 +231,7 @@ header {
 //******************************************************************************
 
 footer {
+	// 著作情報
 	div.author {
 		color: $font-color-accent;
 		background-color: $background-color-footer;
@@ -316,7 +260,17 @@ footer {
 		}
 	}
 	
+	// ページトップ
 	div.page-top.position-fixed {
+		// モバイル画面
+		@media screen and (max-width: $mb-xl-max-width) {
+			display: none !important;
+		}
+		// PC画面
+		@media screen and (min-width: $pc-min-width) {
+			
+		}
+		
 		background-color: $font-color-accent;
 		box-shadow: 0px 0px 0px 0px, 0px 8px 16px rgba(0, 0, 0, 0.2);
 		
@@ -336,6 +290,15 @@ footer {
 	
 	// ナビボトム(モバイル画面の下部)
 	div.nav-bottom {
+		// モバイル画面
+		@media screen and (max-width: $mb-xl-max-width) {
+			
+		}
+		// PC画面
+		@media screen and (min-width: $pc-min-width) {
+			display: none;
+		}
+		
 		background-color: $background-color-header;
 		transition: all 700ms 0ms ease;
 		
@@ -447,7 +410,7 @@ main article.post-card {
 		}
 		
 		// モバイル画面
-		@media screen and (max-width: $mb-max-width) {
+		@media screen and (max-width: $mb-xl-max-width) {
 		
 		.post {
 			display: inline-block;
