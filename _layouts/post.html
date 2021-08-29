@@ -9,12 +9,13 @@ layout: base
 	
 {% include post-meta.html layout-post=true %}
 	
+	{% if page.image %}
+		<p class="post-header-image">
+			<img src="{{ page.image | relative_url }}" alt="記事ヘッダ画像">
+		</p>
+	{% endif %}
+	
 	<div class="post-content">
-		{% if page.image %}
-			<p class="post-header-image">
-				<img src="{{ page.image | relative_url }}" alt="記事ヘッダ画像">
-			</p>
-		{% endif %}
 		
 		{% if page.toc %}
 {% include toc.html html=content class="toc" %}

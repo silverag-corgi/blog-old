@@ -204,7 +204,7 @@ header {
 						text-decoration: underline;
 					}
 					
-					.form-control {
+					input.form-control {
 						// モバイル画面
 						@media screen and (min-width: $mb-md-min-width) and (max-width: $mb-md-max-width) {
 							width: 110px;
@@ -231,7 +231,7 @@ header {
 //******************************************************************************
 
 footer {
-	// 著作情報
+	// 著者情報
 	div.author {
 		color: $font-color-accent;
 		background-color: $background-color-footer;
@@ -342,7 +342,7 @@ main div.top-card {
 	padding: 16px;
 	margin: 0px 0px 16px 0px;
 	
-	.top-image {
+	div.top-image {
 		background-image: url($top-image);
 		background-position: center;
 		background-size: contain;
@@ -365,42 +365,33 @@ main article.post-card {
 	padding: 16px;
 	margin: 0px 0px 16px 0px;
 	
-	.posts {
-		.post {
+	div.posts {
+		div.post {
 			background-color: $background-color-data;
 			padding: 16px;
-			
 			margin: 0px 0px 16px 0px;
-			display: flex;
 			
-			.post-left {
-				width: 40%;
-				margin: 0px 16px 0px 0px;
-				
-				.post-image,
-				.post-noimage {
+			div.post-left {
+				a.post-image,
+				a.post-noimage {
 					img {
 						object-fit: contain;
-						height: 100%;
+						
 						border-radius: 0px;
 						box-shadow: none;
 					}
 				}
 			}
 			
-			.post-right {
-				width: 60%;
-				
-				.post-title {
+			div.post-right {
+				h2.post-title {
 					
 				}
-				
-				.post-desc {
+				div.post-desc {
 					
 				}
-				
-				.post-reading {
-					.page-link {
+				div.post-reading {
+					a.page-link {
 						text-align: center;
 						color: $font-color-default;
 						background-color: $background-color-default;
@@ -411,40 +402,59 @@ main article.post-card {
 		
 		// モバイル画面
 		@media screen and (max-width: $mb-xl-max-width) {
-		
-		.post {
-			display: inline-block;
-			
-			.post-left {
+			div.post {
+				display: inline-block;
 				width: 100%;
-				margin: 0px 0px 16px 0px;
 				
-				.post-image,
-				.post-noimage {
-					margin: 0 auto;
+				div.post-left {
+					width: 100%;
+					margin: 0px 0px 16px 0px;
 					
-					img {
-						display: block;
-						height: 200px;
+					a.post-image,
+					a.post-noimage {
+						img {
+							height: 200px;
+						}
 					}
 				}
-			}
-			
-			.post-right {
-				width: 100%;
+				
+				div.post-right {
+					width: 100%;
+				}
 			}
 		}
 		
+		// PC画面
+		@media screen and (min-width: $pc-min-width) {
+			div.post {
+				display: flex;
+				
+				div.post-left {
+					width: 40%;
+					margin: 0px 16px 0px 0px;
+					
+					a.post-image,
+					a.post-noimage {
+						img {
+							height: 100%;
+						}
+					}
+				}
+				
+				div.post-right {
+					width: 60%;
+				}
+			}
 		}
 	}
 	
-	.post-meta {
+	div.post-meta {
 		margin: 0px 0px 16px 0px;
 		border-bottom: 1px dotted gray;
 		
-		.post-time,
-		.post-log,
-		.post-tag {
+		ul.post-time,
+		ul.post-log,
+		ul.post-tag {
 			margin: 0px;
 			padding: 0px;
 			
@@ -455,13 +465,13 @@ main article.post-card {
 		}
 	}
 	
-	.post-header-image {
+	p.post-header-image {
 		img {
 			max-height: 600px;
 		}
 	}
 	
-	.post-content {
+	div.post-content {
 		h1,
 		h2,
 		h3,
@@ -471,15 +481,14 @@ main article.post-card {
 			margin: 32px 0px 16px 0px;
 		}
 		
-		.post-content-image {
+		p.post-content-image {
 			img {
 				max-height: 600px;
 			}
 		}
 	}
 	
-	.posts-by-date:not(:target),
-	.posts-by-tag:not(:target) {
+	div.posts-by-tag:not(:target) {
 		display: none;
 	}
 	
@@ -505,7 +514,7 @@ main article.post-card {
 		display: none;
 	}
 	
-	.user-image {
+	p.user-image {
 		img {
 			max-height: 200px;
 			max-width: 200px;
@@ -525,9 +534,12 @@ main article.post-navi-card {
 	padding: 16px;
 	margin: 0px 0px 16px 0px;
 	
-	.pagination .page-link {
-		color: $font-color-default;
-		background-color: $background-color-default;
+	ul.pagination,
+	div.pagination {
+		a.page-link {
+			color: $font-color-default;
+			background-color: $background-color-default;
+		}
 	}
 }
 
@@ -558,7 +570,7 @@ main aside.popular-tags-card {
 // Font Awesome
 //******************************************************************************
 
-.fa-ul {
+ul.fa-ul {
 	margin: 0px 0px 16px 24px;
 }
 
@@ -566,59 +578,35 @@ main aside.popular-tags-card {
 // SNS共有
 //******************************************************************************
 
-.share-bar{
+div.share-bar{
 	text-align: right;
-}
-
-ul.share-buttons {
-	list-style: none;
-	padding: 0px;
 	
-	li {
-		display: inline-block;
+	ul.share-buttons {
+		list-style: none;
+		padding: 0px;
 		
-		.fa-facebook-f,
-		.fa-twitter {
-			color: $font-color-accent;
+		li {
+			display: inline-block;
+			
+			svg.fa-facebook-f,
+			svg.fa-twitter {
+				color: $font-color-accent;
+			}
+			
+			a {
+				text-decoration: none;
+			}
 		}
 		
-		a {
-			text-decoration: none;
+		li:hover {
+			transform: scale(1.3,1.3);
 		}
-	}
-	
-	li:hover {
-		transform: scale(1.3,1.3);
 	}
 }
 
 //******************************************************************************
-// ノート、警告、引用文
+// 引用文
 //******************************************************************************
-
-.note {
-	font-style: normal;
-	position:relative;
-	border: 0px;
-	padding: 0px 0px 0px 32px;
-}
-
-.note:before {
-	font-style: normal;
-	content: "\f06a";
-	font-size: 2.00rem;
-//	font-family: "Font Awesome 5 Free";
-	font-weight: 900;
-	left: 0px;
-	position:absolute;
-	top: 0px;
-	color: $font-color-note;
-}
-
-.warning:before {
-	content: "\f071";
-	color: $font-color-warning;
-}
 
 blockquote {
 	color: $font-color-blockquote;
@@ -627,19 +615,11 @@ blockquote {
 	font-style: italic;
 }
 
-blockquote.note p,
-blockquote.warning p {
-	height: 48px;
-	vertical-align: middle;
-	padding: 8px;
-	font-style: normal;
-}
-
 //******************************************************************************
 // キー
 //******************************************************************************
 
-.key {
+code.key {
 	box-shadow: 1px 0px 1px 0px #555, 0px 1px 0px 1px #888, 0px 1px 0px 1px #777;
 	border-radius: 4px;
 	margin: 1px;
@@ -650,7 +630,7 @@ blockquote.warning p {
 // ファイル名
 //******************************************************************************
 
-.filename {
+p.filename {
 	background-color: $background-color-default;
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
