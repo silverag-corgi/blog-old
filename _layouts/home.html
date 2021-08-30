@@ -3,6 +3,10 @@ layout: base
 ---
 
 <article class="post-card">
+	{% if content.size > 0 %}
+		{{ content }}
+	{% endif %}
+	
 	<div class="posts">
 		{% for post in paginator.posts %}
 {% include post-for-posts.html %}
@@ -27,15 +31,13 @@ layout: base
 			</li>
 		{% endif %}
 		
-		{% for page in (1..paginator.total_pages) %}
-			{% if page == paginator.page %}
-				<li class="page-item"><a class="page-link" href="#">{{ page }}</a></li>
-			{% elsif page == 1 %}
-				<li class="page-item"><a class="page-link" href="{{ site.baseurl | append: '/' }}">{{ page }}</a></li>
-			{% else %}
-				<li class="page-item"><a class="page-link" href="{{ site.paginate_path | relative_url | replace: ':num', page }}">{{ page }}</a></li>
-			{% endif %}
-		{% endfor %}
+		{% if paginator.page_trail %}
+			{% for trail in paginator.page_trail %}
+				<li class="page-item {% if page.url == trail.path %}selected{% endif %}">
+					<a class="page-link" href="{{ trail.path | replace: 'index.html', '' }}" title="{{trail.title}}">{{ trail.num }}</a>
+				</li>
+			{% endfor %}
+		{% endif %}
 		
 		{% if paginator.next_page %}
 			<li class="page-item">

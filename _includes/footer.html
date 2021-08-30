@@ -12,28 +12,43 @@
 	
 	<div class="nav-bottom fixed-bottom">
 		<div class="container">
-			<div class="row">
-				<div class="nav-bottom-icon col-3 d-flex align-items-center justify-content-center">
-					<a href="{{ site.baseurl | append: '/' }}">
+			<div class="d-flex justify-content-between">
+				<div class="nav-bottom-icon d-table-cell text-center align-middle">
+					<a href="/">
 						<i class="fas fa-fw fa-home"></i>
+						<div>ホーム</div>
 					</a>
 				</div>
-				<div class="nav-bottom-icon col-2 d-flex align-items-center justify-content-center">
-					
-				</div>
-				<div class="nav-bottom-icon col-2 d-flex align-items-center justify-content-center">
-					<a href="{{ '/contents/archive' | relative_url }}">
+				<!--
+				<div class="nav-bottom-icon d-table-cell text-center align-middle">
+					<a href="{{ '/contents/category/tech-diary' | relative_url }}">
 						<i class="fas fa-fw fa-book"></i>
+						<div>技術日記</div>
 					</a>
 				</div>
-				<div class="nav-bottom-icon col-2 d-flex align-items-center justify-content-center">
+				<div class="nav-bottom-icon d-table-cell text-center align-middle">
+					<a href="{{ '/contents/category/tech-memo' | relative_url }}">
+						<i class="fas fa-fw fa-book"></i>
+						<div>技術メモ</div>
+					</a>
+				</div>
+				-->
+				<div class="nav-bottom-icon d-table-cell text-center align-middle">
+					<a href="{{ '/contents/archive' | relative_url }}">
+						<i class="fas fa-fw fa-archive"></i>
+						<div>アーカイブ</div>
+					</a>
+				</div>
+				<div class="nav-bottom-icon d-table-cell text-center align-middle">
 					<a href="{{ '/contents/about' | relative_url }}">
 						<i class="fas fa-fw fa-user"></i>
+						<div>プロフ</div>
 					</a>
 				</div>
-				<div class="nav-bottom-icon col-3 d-flex align-items-center justify-content-center">
+				<div class="nav-bottom-icon d-table-cell text-center align-middle">
 					<div class="page-top">
 						<i class="fas fa-fw fa-arrow-up"></i>
+						<div>トップ</div>
 					</div>
 				</div>
 			</div>

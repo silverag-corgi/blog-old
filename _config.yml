@@ -36,16 +36,24 @@ baseurl: ""
 
 # Outputting
 permalink: "/post/:year:month:day/:title/"
-paginate_path: "/pages/:num/"
 
 # Plugins
 plugins:
-  - jekyll-paginate
+  - jekyll-paginate-v2
 
 # Plugins Configuration
 
-## Paginate Per Posts
-paginate: 5
+## Paginate
+pagination:
+  enabled: true
+  per_page: 5
+  permalink: "/page/:num/"
+  sort_reverse: true
+  sort_field: "date"
+  title: ":title - :num/:max"
+  trail:
+    before: 3
+    after: 3
 
 ## Content Excerpt Separator
 excerpt_separator: "<!-- more -->"

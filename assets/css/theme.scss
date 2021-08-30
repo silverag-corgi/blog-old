@@ -302,18 +302,21 @@ footer {
 		background-color: $background-color-header;
 		transition: all 700ms 0ms ease;
 		
-		div.row {
-			padding: 8px 0px 24px 0px;
+		div.d-flex.justify-content-between {
+			padding: 16px 0px 32px 0px;
 			
 			div.nav-bottom-icon {
-				font-size: 2.00rem;
-				
-				a {
-					color: $font-color-accent !important;
-				}
-				
+				a,
 				div.page-top {
+					color: $font-color-accent !important;
 					
+					svg {
+						font-size: 2.00rem;
+					}
+					div {
+						font-size: 10px;
+						white-space: nowrap;
+					}
 				}
 			}
 		}
@@ -534,11 +537,26 @@ main article.post-navi-card {
 	padding: 16px;
 	margin: 0px 0px 16px 0px;
 	
-	ul.pagination,
 	div.pagination {
 		a.page-link {
 			color: $font-color-default;
 			background-color: $background-color-default;
+		}
+	}
+	
+	ul.pagination {
+		li.page-item {
+			a.page-link {
+				color: $font-color-default;
+				background-color: $background-color-default;
+			}
+		}
+		
+		li.selected {
+			a.page-link {
+				color: $background-color-default;
+				background-color: $font-color-default;
+			}
 		}
 	}
 }
