@@ -25,7 +25,7 @@ author:
 safe: false
 exclude: 
   - README.md
-  - jekyll-clean-dark.gemspec
+  - JekyllCleanDarkTheme.md
   - LICENSE
 
 # Serving
