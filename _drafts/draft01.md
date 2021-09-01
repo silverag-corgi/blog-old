@@ -3,63 +3,67 @@ layout: post
 title:  下書き01
 #date:   
 #update: 
-#image: /assets/post/00000/
+image: /assets/post/00007/GitHubActions.jpg
 toc:    true
 tags:
-  - 
+  - ブログ構築
+  - Jekyll
+  - GitHubPages
+  - GitHubActions
 ---
 
 # 初めに
 
-今までは**GitHubPages**でサポートされているプラグインのみを使用していたため、
-**GitHub**にプッシュするだけでサイトが公開されていた。
-サポートされていないプラグインを使用するためには、
-**GitHubPages**に組み込まれた**Jekyll**のビルドを使用せずに事前にビルドし、
-その生成物をプッシュする必要がある。
+このブログはJekyllで静的ページを生成し、GitHubPagesで公開している。
+Jekyllのプラグインは、サポートされているプラグインのみを使用している。
 
-しかし、資産と生成物の変更履歴が一緒になり汚くなる上、
-資産を編集する度に資産と生成物の両方をプッシュするのは手間になる。
-そのため、CI/CDツールである**GitHubActions**を用いてビルドやデプロイを自動化する環境を構築した。
+サポートされているプラグインを使用する場合はJekyllはセーフモードONで十分であり、
+ビルド前の資産をプッシュするだけで勝手にビルドされサイトが公開される。
 
+しかし、サポートされていないプラグインを使用する場合はJekyllをセーフモードOFFにする必要があり、
+事前にビルドしてその生成物をプッシュする必要がある。
+問題点として、資産と生成物の変更履歴が一緒になり汚くなる上、
+資産を編集する度に資産と生成物の両方をプッシュするのは手間になることである。
+
+そのため、CI/CDツールであるGitHubActionsを用いてビルドやプッシュを自動化する環境を構築した。
 今回はその構築手順をまとめる。
 
 
 # ワークフロー
 
-まず、ユーザがプッシュした後の**GitHub**視点のワークフローをまとめる。
+まず、ユーザがプッシュした後のGitHub視点のワークフローをまとめる。
 
 
-## 変更前(GitHubPages組み込みJekyllによるビルド)
+## 変更前(セーフモードON：サポートされているプラグインのみ使用)
 
-  1. **GitHub**が**master**ブランチへのプッシュを検知する
-  1. **GitHub**が組み込まれた**Jekyll**でビルドする
-  1. **GitHub**が生成物を**GitHubPages**にデプロイする
-  1. **GitHubPages**がサイトを公開する
-
-
-## 変更後(GitHubActionsを用いたJekyllによるビルド)
-
-  1. **GitHubActions**が**master**ブランチへのプッシュを検知する
-  1. **GitHubActions**がリポジトリをチェックアウトする(*)
-  1. **GitHubActions**が**Ruby**をセットアップする(*)
-  1. **GitHubActions**が**Gem**をインストールする(*)
-  1. **GitHubActions**が**Jekyll**でビルドする
-  1. **GitHubActions**が**gh-pages**ブランチへ生成物をプッシュする(*)
-  1. **GitHubActions**が生成物を**GitHubPages**にデプロイする
-  1. **GitHubPages**がサイトを公開する
-
-(*)主語を除いて判断した時の差分ありの箇所。
+  1. GitHubがmasterブランチへのプッシュを検知する
+  1. GitHubがGitHubPagesに組み込まれたJekyll(セーフモードON)でビルドする
+  1. GitHubがGitHubPagesに生成物をデプロイする
+  1. GitHubPagesがサイトを公開する
 
 
-# GitHubPagesの公開用ブランチ(gh-pages)の作成
+## 変更後(セーフモードOFF：サポートされていないプラグイン使用)
 
-資産と生成物の変更履歴を分けるため、
-開発用ブランチ(master)と公開用ブランチ(gh-pages)で別々に管理する。
-前者は既にあるので、後者を新たに作成する。
+  1. GitHubActionsがmasterブランチへのプッシュを検知する
+  1. GitHubActionsがリポジトリをチェックアウトする
+  1. GitHubActionsがRubyをセットアップする
+  1. GitHubActionsがGemをインストールする
+  1. GitHubActionsがJekyll(セーフモードOFF)でビルドする
+  1. GitHubActionsがgh-pagesブランチへ生成物をプッシュする
+  1. GitHubがGitHubPagesに生成物をデプロイする
+  1. GitHubPagesがサイトを公開する
 
-また、自分の環境での注意事項であるが、
-普段使用している**TortoiseGit**は親のないブランチを作成する機能(orphan)は提供していないらしい。
-そのため**GitCmd**で作成する必要がある。
+
+# 公開用ブランチ(gh-pages)の作成
+
+資産と生成物の変更履歴を分けるため、開発用ブランチ(master)と公開用ブランチ(gh-pages)で別々に管理する。
+
+開発用ブランチは既にあるので、公開用ブランチを新たに作成する。
+作成時に基点となるブランチから資産や変更履歴を引き継ぎたくないため、親のないブランチとして作成する。
+
+しかし、自分の環境での注意事項であるが、
+普段使用しているTortoiseGitには親のないブランチを作成する機能(orphan)は提供していないらしい。
+そのためGitCmdで作成する。
 
 公開用ブランチを作成した時のコマンドを示す。
 
@@ -78,7 +82,8 @@ $ git push origin gh-pages         # プッシュする
 {% endhighlight %}
 
 因みにorphanとは孤児のことらしい。
-更に孤児は両親・親戚等の保護者のいない未成年者という意味で、親のないブランチってことらしい。
+更に孤児は両親・親戚等の保護者のいない未成年者という意味から、
+親のないブランチでorphanということらしい。
 
 
 ## 参考サイト
@@ -90,67 +95,66 @@ $ git push origin gh-pages         # プッシュする
 # GitHubActionsによる自動化の設定
 
 資産を編集する度に資産と生成物の両方をプッシュするのは手間になるため、
-CI/CDツールである**GitHubActions**を用いてビルドやデプロイを自動化する。
+CI/CDツールであるGitHubActionsを用いてビルドやプッシュを自動化する。
 
-以下のワークフローファイルを作成し、**master**ブランチにプッシュした。
+以下のワークフローファイルを作成し、開発用ブランチ(master)にプッシュした。
 
-これにより、**master**ブランチに資産をプッシュすると、
-今までのセーフモードONのGitHubPages組み込みJekyllによるビルドではなく、
-セーフモードOFFのJekyllによるビルドから**GitHubPages**によるサイト公開までが自動で実行される。
+これにより開発用ブランチ(master)に資産をプッシュすると、
+リポジトリのチェックアウト、ビルド環境の構築、セーフモードOFFのJekyllによるビルド、
+公開用ブランチ(gh-pages)への生成物のプッシュなどが自動で実行される。
 
 .github/workflows/deploy-to-gh-pages.yml
 {: .filename }
 {% highlight yml %}
 {% raw %}
 # ワークフロー名
-name: Deploy To GitHub Pages
+name: Push To gh-pages Branch
 
 # ジョブが実行されるトリガー
 on:
   push:
     branches:
-      - master # 1.GitHubActionsがmasterブランチへのプッシュを検知する
+      - master # 1. GitHubActionsがmasterブランチへのプッシュを検知する
 
 # 実行されるジョブ一覧
 jobs:
   deploy: # ジョブ名
-    runs-on: ubuntu-20.04 # 実行環境
+    runs-on: windows-2019 # 実行環境
     
     concurrency: # 並行処理(同じグループのジョブは処理待ち)
-      group: ${{ github.workflow }}-${{ github.ref }}
+      group: ${{ github.workflow }} - ${{ github.ref }}
       # [ワークフロー名]-[ワークフローの実行をトリガーしたブランチ名]
-      # Deploy GitHub Pages-refs/heads/master
+      # Deploy GitHub Pages - refs/heads/master
     
     steps: # ジョブで実行されるステップ一覧
-      # 2.GitHubActionsがリポジトリをチェックアウトする
+      # 2. GitHubActionsがリポジトリをチェックアウトする
       - name: Checkout Repository
         uses: actions/checkout@v2
       
-      # 3.GitHubActionsがRubyをセットアップする
+      # 3. GitHubActionsがRubyをセットアップする
       - name: Setup Ruby
         uses: actions/setup-ruby@v1
         with:
           ruby-version: 2.7
       
-      # 4.GitHubActionsがGemをインストールする
+      # 4. GitHubActionsがGemをインストールする
       - name: Bundle Install According to Gemfile
         run: |
           bundle install
       
-      # 5.GitHubActionsがJekyllでビルドする
+      # 5. GitHubActionsがJekyll(セーフモードOFF)でビルドする
       - name: Jekyll Build
         run: |
           bundle exec jekyll build
       
-      # 6.GitHubActionsがgh-pagesブランチへ生成物をプッシュする
-      # 7.GitHubActionsが生成物をGitHubPagesにデプロイする
-      - name: Deploy to GitHub Pages
+      # 6. GitHubActionsがgh-pagesブランチへ生成物をプッシュする
+      - name: Push to gh-pages Branch
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: ./_site
-          force_orphan: true
+          force_orphan: true # コミット件数は必ず1件(最新のコミットのみ)
           user_name: "github-actions[bot]"
           user_email: "github-actions[bot]@users.noreply.github.com"
 {% endraw %}
@@ -167,21 +171,40 @@ jobs:
      ](https://docs.github.com/ja/actions/guides/building-and-testing-ruby)
 
 
-# GitHubActionsの実行ログ
+# GitHubActionsによる自動化の実行結果
 
-GitHubActionsが実行された時のログを示す。
+以下のコミットメッセージで開発用ブランチ(master)にプッシュした際の実行結果をワークフロー順に示す。
 
-![GitHubActions実行ログ](
+  - [c_add] ワークフローファイル(gh-pagesブランチ)作成
+
+
+## 開発用ブランチ(master)の資産状態
+
+![GitHubActions_gh-pages](
+{{ '/assets/post/00007/branch_master.JPG' | relative_url }})
+
+
+## 実行ログ
+
+[上記で作成したワークフローファイル](#githubactionsによる自動化の設定)
+が実行され、1分54秒で完了している。
+
+![GitHubActions_log](
 {{ '/assets/post/00007/GitHubActions_log.JPG' | relative_url }})
 
-ワークフローファイルで定義した通りに実行されている。
 
-気になる箇所は上から4つ目のBundleInstallである。
-Gemをインストールするだけにも関わらず、3分も消費している。
-今後、なにが問題か調べる。
+## 公開用ブランチ(gh-pages)の資産状態
+
+![GitHubActions_gh-pages](
+{{ '/assets/post/00007/branch_gh-pages.JPG' | relative_url }})
 
 
 # 最後に
 
+今回はセーフモードOFFのJekyllによるビルドを含めたワークフローの一部を
+GitHubActionsにより自動化した。
 
+これでサポートされていないプラグインだからと使用を見送っていた、沢山のプラグインを使用できる。
+しかし元々はサポートされているプラグインのみを使用する想定で実装していたいため、
+移植する箇所が結構ありそう。大変そうではあるが今から楽しみ。
 
