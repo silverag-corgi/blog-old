@@ -29,21 +29,23 @@ Jekyllのプラグインは、サポートされているプラグインのみ�
 今回はその構築手順をまとめる。
 
 
-# ワークフロー
+# ブログ公開までのワークフロー
 
-まず、ユーザがプッシュした後のGitHub視点のワークフローをまとめる。
+まず、このブログが公開されるまでのワークフローをまとめる。
 
 
 ## 変更前(セーフモードON：サポートされているプラグインのみ使用)
 
+  1. ユーザがmasterブランチへ資産をプッシュする
   1. GitHubがmasterブランチへのプッシュを検知する
   1. GitHubがGitHubPagesに組み込まれたJekyll(セーフモードON)でビルドする
   1. GitHubがGitHubPagesに生成物をデプロイする
-  1. GitHubPagesがサイトを公開する
+  1. GitHubPagesがブログを公開する
 
 
 ## 変更後(セーフモードOFF：サポートされていないプラグイン使用)
 
+  1. ユーザがmasterブランチへ資産をプッシュする
   1. GitHubActionsがmasterブランチへのプッシュを検知する
   1. GitHubActionsがリポジトリをチェックアウトする
   1. GitHubActionsがRubyをセットアップする
@@ -51,7 +53,7 @@ Jekyllのプラグインは、サポートされているプラグインのみ�
   1. GitHubActionsがJekyll(セーフモードOFF)でビルドする
   1. GitHubActionsがgh-pagesブランチへ生成物をプッシュする
   1. GitHubがGitHubPagesに生成物をデプロイする
-  1. GitHubPagesがサイトを公開する
+  1. GitHubPagesがブログを公開する
 
 
 # 公開用ブランチ(gh-pages)の作成
@@ -95,13 +97,15 @@ $ git push origin gh-pages         # プッシュする
 # GitHubActionsによる自動化の設定
 
 資産を編集する度に資産と生成物の両方をプッシュするのは手間になるため、
-CI/CDツールであるGitHubActionsを用いてビルドやプッシュを自動化する。
-
-以下のワークフローファイルを作成し、開発用ブランチ(master)にプッシュした。
+CI/CDツールであるGitHubActionsを用いて
+[ワークフロー](#ワークフロー)
+の2.～7.を自動化する。
 
 これにより開発用ブランチ(master)に資産をプッシュすると、
 リポジトリのチェックアウト、ビルド環境の構築、セーフモードOFFのJekyllによるビルド、
 公開用ブランチ(gh-pages)への生成物のプッシュなどが自動で実行される。
+
+以下のワークフローファイルを作成し、開発用ブランチ(master)にプッシュした。
 
 .github/workflows/deploy-to-gh-pages.yml
 {: .filename }
@@ -114,7 +118,7 @@ name: Push To gh-pages Branch
 on:
   push:
     branches:
-      - master # 1. GitHubActionsがmasterブランチへのプッシュを検知する
+      - master # 2. GitHubActionsがmasterブランチへのプッシュを検知する
 
 # 実行されるジョブ一覧
 jobs:
@@ -127,27 +131,27 @@ jobs:
       # Deploy GitHub Pages - refs/heads/master
     
     steps: # ジョブで実行されるステップ一覧
-      # 2. GitHubActionsがリポジトリをチェックアウトする
+      # 3. GitHubActionsがリポジトリをチェックアウトする
       - name: Checkout Repository
         uses: actions/checkout@v2
       
-      # 3. GitHubActionsがRubyをセットアップする
+      # 4. GitHubActionsがRubyをセットアップする
       - name: Setup Ruby
         uses: actions/setup-ruby@v1
         with:
           ruby-version: 2.7
       
-      # 4. GitHubActionsがGemをインストールする
+      # 5. GitHubActionsがGemをインストールする
       - name: Bundle Install According to Gemfile
         run: |
           bundle install
       
-      # 5. GitHubActionsがJekyll(セーフモードOFF)でビルドする
+      # 6. GitHubActionsがJekyll(セーフモードOFF)でビルドする
       - name: Jekyll Build
         run: |
           bundle exec jekyll build
       
-      # 6. GitHubActionsがgh-pagesブランチへ生成物をプッシュする
+      # 7. GitHubActionsがgh-pagesブランチへ生成物をプッシュする
       - name: Push to gh-pages Branch
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -186,7 +190,8 @@ jobs:
 
 ## 実行ログ
 
-[上記で作成したワークフローファイル](#githubactionsによる自動化の設定)
+上記で作成した
+[ワークフローファイル](#githubactionsによる自動化の設定)
 が実行され、1分54秒で完了している。
 
 ![GitHubActions_log](
