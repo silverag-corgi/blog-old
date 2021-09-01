@@ -1,0 +1,40 @@
+name: Push To gh-pages Branch
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: windows-2019
+    
+    concurrency:
+      group: ${{ github.workflow }} - ${{ github.ref }}
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.7
+      
+      - name: Bundle Install According to Gemfile
+        run: |
+          bundle install
+      
+      - name: Jekyll Build
+        run: |
+          bundle exec jekyll build
+      
+      - name: Push to gh-pages Branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./_site
+          force_orphan: true
+          user_name: "github-actions[bot]"
+          user_email: "github-actions[bot]@users.noreply.github.com"
