@@ -13,6 +13,11 @@ jobs:
       group: ${{ github.workflow }} - ${{ github.ref }}
     
     steps:
+      - name: Set Timezone
+        uses: szenius/set-timezone@v1.0
+        with:
+          timezoneWindows: "Tokyo Standard Time"
+      
       - name: Checkout Repository
         uses: actions/checkout@v2
       
