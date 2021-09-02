@@ -8,8 +8,7 @@
 
 # Basic Info
 title: Rem_Note
-description: >-
-  自分がしたことや考えたことなどを備忘録として記録する場所
+description: 自分がしたことや考えたことなどを備忘録として記録する場所
 
 # Author
 author:
@@ -40,6 +39,11 @@ permalink: "/post/:year:month:day/:title/"
 plugins:
   - jekyll-paginate-v2
 
+# Conversion
+markdown: kramdown
+highlighter: rouge
+excerpt_separator: "<!-- more -->"
+
 # Plugins Configuration
 
 ## Paginate
@@ -53,9 +57,6 @@ pagination:
   trail:
     before: 3
     after: 3
-
-## Content Excerpt Separator
-excerpt_separator: "<!-- more -->"
 
 ## Access Analytics Service
 google_analytics_key: 
