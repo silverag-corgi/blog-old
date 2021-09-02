@@ -25,7 +25,6 @@ author:
 safe: false
 exclude: 
   - README.md
-  - JekyllCleanDarkTheme.md
   - LICENSE
 
 # Serving

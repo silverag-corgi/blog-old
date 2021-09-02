@@ -21,7 +21,7 @@ GitHubPagesで公開している。
   1. GitHubActionsがJekyll(セーフモードOFF)でビルドする
   1. GitHubActionsがgh-pagesブランチへ生成物をプッシュする
   1. GitHubがGitHubPagesに生成物をデプロイする
-  1. GitHubPagesがサイトを公開する
+  1. GitHubPagesがブログを公開する
 
 なお、上記の2.～7.がGitHubActionsにより自動化されている。
 
@@ -30,4 +30,10 @@ GitHubPagesで公開している。
 
   - [公開用リンク](https://silverag-corgi.github.io/)
   - [開発用リンク](http://localhost:4000/)
+
+
+## ライセンス
+
+MITライセンスの下で公開している。
+詳細はLICENSE.txtを確認すること。
 
