@@ -5,6 +5,7 @@ gem "jekyll", "~> 4.2.0"
 group :jekyll_plugins do
 	gem "jekyll-paginate-v2", "~> 3.0.0"
 	gem "webrick", "~> 1.7.0"
+	gem "sassc", "~> 2.1.0"
 end
 
 # TZInfo provides access to time zone data and allows times to be converted using time zone rules.

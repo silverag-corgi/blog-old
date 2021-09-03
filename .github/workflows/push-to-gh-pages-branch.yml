@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: windows-2019
+    runs-on: ubuntu-20.04
     
     concurrency:
       group: ${{ github.workflow }} - ${{ github.ref }}
@@ -16,7 +16,7 @@ jobs:
       - name: Set Timezone
         uses: szenius/set-timezone@v1.0
         with:
-          timezoneWindows: "Tokyo Standard Time"
+          timezoneLinux: "Asia/Tokyo"
       
       - name: Checkout Repository
         uses: actions/checkout@v2
