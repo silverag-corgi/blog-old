@@ -457,13 +457,30 @@ main article.post-card {
 		
 		ul.post-time,
 		ul.post-log,
+		ul.post-category,
 		ul.post-tag {
 			margin: 0px;
 			padding: 0px;
 			
 			li {
 				display: inline-block;
-				padding: 0px 16px 0px 0px;
+				padding: 0px 8px 0px 0px;
+			}
+		}
+		
+		ul.post-category {
+			li:not(:first-child) {
+				svg.fa-folder {
+					display: none;
+				}
+			}
+		}
+		
+		ul.post-tag {
+			li:not(:first-child) {
+				svg.fa-tag {
+					display: none;
+				}
 			}
 		}
 	}

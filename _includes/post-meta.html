@@ -6,6 +6,7 @@
 	{% assign update = page.update %}
 	{% assign path = page.path %}
 	{% assign tags = page.tags %}
+	{% assign categories = page.categories %}
 {% else %}
 	{% comment %}
 		・_includes/post-for-posts.html <= _layouts/home.html
@@ -15,6 +16,7 @@
 	{% assign update = post.update %}
 	{% assign path = post.path %}
 	{% assign tags = post.tags %}
+	{% assign categories = post.categories %}
 {% endif %}
 
 <div class="post-meta">
@@ -40,6 +42,17 @@
 		</li>
 	</ul>
 	{% endif %}
+	
+	<ul class="post-category">
+		{% for category in categories %}
+		<li>
+			<i class="fas fa-fw fa-folder"></i>
+			<a href="{{ '/contents/category/' | append: category | relative_url }}">
+				{{ category }}
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
 	
 	<ul class="post-tag">
 		{% for tag in tags %}
