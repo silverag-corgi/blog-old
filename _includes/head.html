@@ -2,12 +2,20 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-	{% if page.title %}
 	<title>{{ page.title }} | {{ site.title }}</title>
-	<meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: site.excerpt_chars }}">
+	
+	{% if page.layout == 'home' %}
+		{% if page.description %}
+			<meta name="description" content="{{ page.description }}">
+		{% else %}
+			<meta name="description" content="{{ site.description }}">
+		{% endif %}
+	{% else if page.layout == 'page' %}
+		<meta name="description" content="{{ page.description }}">
+	{% else if page.layout == 'post' %}
+		<meta name="description" content="{{ page.excerpt | strip_html | strip_newlines | truncate: site.excerpt_chars }}">
 	{% else %}
-	<title>{{ site.title }}</title>
-	<meta name="description" content="{{ site.description }}">
+		<meta name="description" content="{{ site.description }}">
 	{% endif %}
 	
 	<link href="{{ site.favicon | relative_url }}" rel="shortcut icon">

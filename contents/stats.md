@@ -1,6 +1,7 @@
 ---
 layout: page
 title: 統計
+description: 全ての記事の統計を出力するページ
 ---
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
