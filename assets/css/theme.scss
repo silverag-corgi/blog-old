@@ -168,8 +168,6 @@ div.scroll-table {
 //******************************************************************************
 
 header {
-	transition: all 700ms 0ms ease;
-	
 	// ナビトップ(PC画面の上部)
 	div.nav-top {
 		background-color: $background-color-header;
@@ -300,7 +298,6 @@ footer {
 		}
 		
 		background-color: $background-color-header;
-		transition: all 700ms 0ms ease;
 		
 		div.d-flex.justify-content-between {
 			padding: 16px 0px 32px 0px;

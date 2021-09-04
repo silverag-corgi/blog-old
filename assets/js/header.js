@@ -9,35 +9,22 @@ $(function() {
 	// ナビ表示切替
 	function toggleNav(className, isTop) {
 		var navObj = $(className);
-		var heightOfNav = navObj.innerHeight();
 		var startPosition = 0;
 		
 		$(window).on("scroll", function () {
 			var currentPosition = $(this).scrollTop();
 			
-			if(isTop == true) {
-				if (currentPosition <= startPosition) {
-					// 上にスクロールした場合、ナビを表示する
-					navObj.css({ "top": 0 });
+			 // ナビトップの場合または、ナビボトムかつモバイル画面の場合
+			if(isTop == true || isTop == false && isMobileScreen() == true) {
+				if(currentPosition <= startPosition) {
+					navObj.css({ "display": "block" });
 				} else {
-					// 下にスクロールした場合、ナビを非表示する
-					navObj.css({ "top": "-" + heightOfNav + "px" });
-				}
-			}
-			else {
-				if (currentPosition <= startPosition) {
-					// 上にスクロールした場合、ナビを表示する
-					navObj.css({ "bottom": 0 });
-				} else {
-					// 下にスクロールした場合、ナビを非表示する
-					navObj.css({ "bottom": "-" + heightOfNav + "px" });
+					navObj.css({ "display": "none" });
 				}
 			}
 			
 			startPosition = currentPosition;
 		});
-		
-		$(window).trigger("scroll");
 	}
 });
 
@@ -66,4 +53,13 @@ function toggleCssClass(elementId, className) {
 	}
 	
 	return;
+}
+
+// モバイル画面判定
+function isMobileScreen() {
+	if(window.matchMedia && window.matchMedia("(max-width: 991px)").matches) {
+		return true;
+	} else {
+		return false;
+	}
 }
