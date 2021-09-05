@@ -21,14 +21,25 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
       
+      - name: Cache Gem for Ruby
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+            ${{ runner.os }}-
+      
       - name: Setup Ruby
         uses: actions/setup-ruby@v1
         with:
           ruby-version: 2.7
+          bundler-cache: true
       
       - name: Bundle Install According to Gemfile
         run: |
-          bundle install
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
       
       - name: Jekyll Build
         run: |
