@@ -15,7 +15,7 @@ layout: base
 </article>
 
 {% if paginator.total_pages > 1 %}
-<article class="post-navi-card">
+<aside class="post-navi-card">
 	<ul class="pagination">
 		{% if paginator.previous_page %}
 			<li class="page-item">
@@ -53,5 +53,5 @@ layout: base
 			</li>
 		{% endif %}
 	</ul>
-</article>
+</aside>
 {% endif %}

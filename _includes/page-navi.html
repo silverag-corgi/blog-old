@@ -1,0 +1,55 @@
+<aside class="page-navi-card">
+	<nav class="navbar navbar-expand">
+		<div class="collapse navbar-collapse">
+			<ul class="navbar-nav">
+				{% assign dirs = page.url | replace: 'index.html', '' | split: '/' %}
+				{% assign path = '' %}
+				
+				{% if dirs.size == 0 %}
+					<li class="nav-item">
+						<span class="nav-link">
+							<i class="fas fa-fw fa-chevron-right"></i>
+							home
+						</span>
+					</li>
+				{% endif %}
+				
+				{% for dir in dirs %}
+					{% assign path = path | append: dir | append: '/' | relative_url %}
+					
+					{% if dir == '' %}
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path }}">
+								<i class="fas fa-fw fa-chevron-right"></i>
+								home
+							</a>
+						</li>
+					{% elsif dir == dirs.last %}
+						<li class="nav-item">
+							<span class="nav-link">
+								<i class="fas fa-fw fa-chevron-right"></i>
+								{{ dir | url_decode }}
+							</span>
+						</li>
+					{% elsif dir == 'contents' or dir == 'page' %}
+						<!--
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path }}">
+								<i class="fas fa-fw fa-chevron-right"></i>
+								_{{ dir | url_decode }}_
+							</a>
+						</li>
+						-->
+					{% else %}
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path }}">
+								<i class="fas fa-fw fa-chevron-right"></i>
+								{{ dir | url_decode }}
+							</a>
+						</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+	</nav>
+</aside>

@@ -17,9 +17,10 @@
 //                     div.top-card
 //             div.row
 //                 div.col-md-9
+//                     aside.page-navi-card
 //                     article.post-card
-//                     article.post-navi-card
-//                     article.related-post-card
+//                     aside.post-navi-card
+//                     aside.related-post-card
 //                 div.col-md-3
 //                     aside.recent-posts-card
 //                     aside.popular-tags-card
@@ -175,17 +176,10 @@ header {
 		nav {
 			padding: 0px !important;
 			
-			a {
-				color: $font-color-accent !important;
-			}
-			
 			a.navbar-brand {
+				color: $font-color-accent !important;
 				font-size: 2.50rem;
 				margin: 0px 0px 0px 0px;
-			}
-			
-			button.navbar-toggler {
-				margin: 4px 0px 4px 0px;
 			}
 			
 			ul.navbar-nav {
@@ -195,6 +189,7 @@ header {
 					padding: 0px 8px 0px 8px;
 					
 					a.nav-link {
+						color: $font-color-accent !important;
 						padding: 0px 0px 0px 0px;
 					}
 					
@@ -299,20 +294,31 @@ footer {
 		
 		background-color: $background-color-header;
 		
-		div.d-flex.justify-content-between {
+		nav {
 			padding: 16px 0px 32px 0px;
 			
-			div.nav-bottom-icon {
-				a,
-				div.page-top {
-					color: $font-color-accent !important;
+			ul.navbar-nav {
+				width: 100%;
+				
+				li.nav-item {
+					padding: 0px 0px 0px 0px;
 					
-					svg {
-						font-size: 2.00rem;
+					a.nav-link,
+					div.page-top {
+						color: $font-color-accent !important;
+						padding: 0px 0px 0px 0px;
+						
+						svg {
+							font-size: 2.00rem;
+						}
+						div {
+							font-size: 10px;
+							white-space: nowrap;
+						}
 					}
-					div {
-						font-size: 10px;
-						white-space: nowrap;
+					
+					a.nav-link:hover {
+						text-decoration: underline;
 					}
 				}
 			}
@@ -349,6 +355,38 @@ main div.top-card {
 		height: 200px;
 		span {
 			
+		}
+	}
+}
+
+//******************************************************************************
+// メイン．アサイド．ページナビカード
+//******************************************************************************
+
+main aside.page-navi-card {
+	background-color: $background-color-card;
+	box-shadow: 0px 0px 0px 0px, 0px 8px 16px rgba(0, 0, 0, 0.2);
+	border: 0px;
+	border-radius: 8px;
+	padding: 16px;
+	margin: 0px 0px 16px 0px;
+	
+	nav {
+		padding: 0px !important;
+		
+		ul.navbar-nav {
+			li.nav-item {
+				padding: 0px 8px 0px 0px;
+				
+				span.nav-link,
+				a.nav-link {
+					padding: 0px 0px 0px 0px;
+				}
+				
+				a.nav-link:hover {
+					text-decoration: underline;
+				}
+			}
 		}
 	}
 }
@@ -536,10 +574,10 @@ main article.post-card {
 }
 
 //******************************************************************************
-// メイン．記事．記事ナビカード
+// メイン．アサイド．記事ナビカード
 //******************************************************************************
 
-main article.post-navi-card {
+main aside.post-navi-card {
 	background-color: $background-color-card;
 	box-shadow: 0px 0px 0px 0px, 0px 8px 16px rgba(0, 0, 0, 0.2);
 	border: 0px;
@@ -547,14 +585,9 @@ main article.post-navi-card {
 	padding: 16px;
 	margin: 0px 0px 16px 0px;
 	
-	div.pagination {
-		a.page-link {
-			color: $font-color-default;
-			background-color: $background-color-default;
-		}
-	}
-	
 	ul.pagination {
+		margin: 0px 0px 0px 0px;
+		
 		li.page-item {
 			a.page-link {
 				color: $font-color-default;
@@ -572,10 +605,10 @@ main article.post-navi-card {
 }
 
 //******************************************************************************
-// メイン．記事．関連記事カード
+// メイン．アサイド．関連記事カード
 //******************************************************************************
 
-main article.related-post-card {
+main aside.related-post-card {
 
 }
 

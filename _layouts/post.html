@@ -27,26 +27,26 @@ layout: base
 	</div>
 </article>
 
-<article class="post-navi-card">
-	<div class="pagination justify-content-around">
+<aside class="post-navi-card">
+	<ul class="pagination justify-content-around">
 		{% if page.previous.url or page.next.url %}
 			{% if page.previous.url %}
-				<div class="page-item col-lg-6">
+				<li class="page-item col-lg-6">
 					<a class="page-link" href="{{ page.previous.url | relative_url }}">{{ page.previous.title }}</a>
-				</div>
+				</li>
 			{% else %}
-				<div class="page-item col-lg-6">
-				</div>
+				<li class="page-item col-lg-6">
+				</li>
 			{% endif %}
 			
 			{% if page.next.url %}
-				<div class="page-item col-lg-6">
+				<li class="page-item col-lg-6">
 					<a class="page-link" href="{{ page.next.url | relative_url }}">{{ page.next.title }}</a>
-				</div>
+				</li>
 			{% else %}
-				<div class="page-item col-lg-6">
-				</div>
+				<li class="page-item col-lg-6">
+				</li>
 			{% endif %}
 		{% endif %}
-	</div>
-</article>
+	</ul>
+</aside>

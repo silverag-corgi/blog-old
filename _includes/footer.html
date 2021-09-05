@@ -12,44 +12,48 @@
 	
 	<div class="nav-bottom fixed-bottom">
 		<div class="container">
-			<div class="d-flex justify-content-between">
-				<div class="nav-bottom-icon d-table-cell text-center align-middle">
-					<a href="/">
-						<i class="fas fa-fw fa-home"></i>
-						<div>ホーム</div>
-					</a>
+			<nav class="navbar navbar-expand">
+				<div class="collapse navbar-collapse">
+					<ul class="navbar-nav justify-content-between">
+						<li class="nav-item nav-bottom-icon d-table-cell text-center align-middle">
+							<a class="nav-link" href="/">
+								<i class="fas fa-fw fa-home"></i>
+								<div>ホーム</div>
+							</a>
+						</li>
+						<li class="nav-item nav-bottom-icon d-table-cell text-center align-middle">
+							<a class="nav-link" href="{{ '/contents/category/技術日記' | downcase | relative_url }}">
+								<i class="fas fa-fw fa-folder"></i>
+								<div>技術日記</div>
+							</a>
+						</li>
+						<li class="nav-item nav-bottom-icon d-table-cell text-center align-middle">
+							<a class="nav-link" href="{{ '/contents/category/技術紹介' | downcase | relative_url }}">
+								<i class="fas fa-fw fa-folder"></i>
+								<div>技術紹介</div>
+							</a>
+						</li>
+						<li class="nav-item nav-bottom-icon d-table-cell text-center align-middle">
+							<a class="nav-link" href="{{ '/contents/archive' | relative_url }}">
+								<i class="fas fa-fw fa-book"></i>
+								<div>アーカイブ</div>
+							</a>
+						</li>
+						<li class="nav-item nav-bottom-icon d-table-cell text-center align-middle">
+							<a class="nav-link" href="{{ '/contents/about' | relative_url }}">
+								<i class="fas fa-fw fa-user"></i>
+								<div>プロフ</div>
+							</a>
+						</li>
+						<li class="nav-item nav-bottom-icon d-table-cell text-center align-middle">
+							<div class="page-top">
+								<i class="fas fa-fw fa-arrow-up"></i>
+								<div>トップ</div>
+							</div>
+						</li>
+					</ul>
 				</div>
-				<div class="nav-bottom-icon d-table-cell text-center align-middle">
-					<a href="{{ '/contents/category/技術日記' | downcase | relative_url }}">
-						<i class="fas fa-fw fa-folder"></i>
-						<div>技術日記</div>
-					</a>
-				</div>
-				<div class="nav-bottom-icon d-table-cell text-center align-middle">
-					<a href="{{ '/contents/category/技術紹介' | downcase | relative_url }}">
-						<i class="fas fa-fw fa-folder"></i>
-						<div>技術紹介</div>
-					</a>
-				</div>
-				<div class="nav-bottom-icon d-table-cell text-center align-middle">
-					<a href="{{ '/contents/archive' | relative_url }}">
-						<i class="fas fa-fw fa-book"></i>
-						<div>アーカイブ</div>
-					</a>
-				</div>
-				<div class="nav-bottom-icon d-table-cell text-center align-middle">
-					<a href="{{ '/contents/about' | relative_url }}">
-						<i class="fas fa-fw fa-user"></i>
-						<div>プロフ</div>
-					</a>
-				</div>
-				<div class="nav-bottom-icon d-table-cell text-center align-middle">
-					<div class="page-top">
-						<i class="fas fa-fw fa-arrow-up"></i>
-						<div>トップ</div>
-					</div>
-				</div>
-			</div>
+			</nav>
 		</div>
 	</div>
 </footer>
