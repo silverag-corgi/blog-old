@@ -33,7 +33,7 @@ url: "https://silverag-corgi.github.io"
 baseurl: ""
 
 # Outputting
-permalink: "/post/:year:month:day/:title/"
+permalink: "/contents/post/:title/"
 
 # Plugins
 plugins:
@@ -46,7 +46,8 @@ excerpt_separator: "<!-- more -->"
 
 # Plugins Configuration
 
-## Paginate
+## Pagination
+## https://github.com/sverrirs/jekyll-paginate-v2/blob/master/README-GENERATOR.md
 pagination:
   enabled: true
   per_page: 5
@@ -57,6 +58,33 @@ pagination:
   trail:
     before: 3
     after: 3
+
+## Auto Generating Pages
+## https://github.com/sverrirs/jekyll-paginate-v2/blob/master/README-AUTOPAGES.md
+autopages:
+  enabled: true
+  tags:
+    enabled: true
+    layouts:
+      - "autopage-tag.html"
+    title: "タグ - :tag"
+    permalink: "/contents/tag/:tag"
+    silent: false
+    slugify:
+      mode: "default"
+      case: false
+  categories: 
+    enabled: true
+    layouts:
+      - "autopage-category.html"
+    title: "カテゴリ - :cat"
+    permalink: "/contents/category/:cat"
+    silent: false
+    slugify:
+      mode: "default"
+      case: false
+  collections:
+    enabled: false
 
 ## Access Analytics Service
 google_analytics_key: 

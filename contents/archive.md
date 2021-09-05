@@ -4,7 +4,13 @@ title: アーカイブ
 description: 全ての記事を年月別やタグ別でまとめたページ
 ---
 
-<h1>アーカイブ(年月降順)</h1>
+<h1>
+	<i class="fas fa-fw fa-book"></i>アーカイブ
+</h1>
+
+<h2>
+	<i class="fas fa-fw fa-calendar-alt"></i>年月(降順)
+</h2>
 
 {% comment %}
 	年月別記事数カウント
@@ -87,7 +93,10 @@ description: 全ての記事を年月別やタグ別でまとめたページ
 	{% endfor %}
 </ul>
 
-<h1>アーカイブ(タグ名昇順)</h1>
+<h2>
+	<i class="fas fa-fw fa-tag"></i>タグ名(昇順)
+</h2>
+
 <ul class="fa-ul">
 	{% assign tags = site.tags | sort %}
 	{% for tag in tags %}
