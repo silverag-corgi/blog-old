@@ -33,7 +33,7 @@ url: "https://silverag-corgi.github.io"
 baseurl: ""
 
 # Outputting
-permalink: "/contents/post/:title/"
+permalink: "/contents/posts/:categories/:title/"
 
 # Plugins
 plugins:
@@ -68,7 +68,7 @@ autopages:
     layouts:
       - "autopage-tag.html"
     title: "タグ - :tag"
-    permalink: "/contents/tag/:tag"
+    permalink: "/contents/tags/:tag"
     silent: false
     slugify:
       mode: "default"
@@ -78,7 +78,7 @@ autopages:
     layouts:
       - "autopage-category.html"
     title: "カテゴリ - :cat"
-    permalink: "/contents/category/:cat"
+    permalink: "/contents/posts/:cat"
     silent: false
     slugify:
       mode: "default"

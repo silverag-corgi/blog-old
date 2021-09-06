@@ -2,50 +2,53 @@
 	<nav class="navbar navbar-expand">
 		<div class="collapse navbar-collapse">
 			<ul class="navbar-nav">
-				{% assign dirs = page.url | replace: 'index.html', '' | split: '/' %}
-				{% assign path = '' %}
+				{% comment %}
+					1.URLを"/"ごとに分割し、配列に変換する
+				{% endcomment %}
+				{% assign dirs = page.url | replace: "index.html", "" | replace: ".html", "" | split: "/" %}
+				{% assign path = "" %}
 				
+				{% comment %}
+					2.配列のサイズが0の場合、ホームを表す空白文字を追加する
+				{% endcomment %}
 				{% if dirs.size == 0 %}
-					<li class="nav-item">
-						<span class="nav-link">
-							<i class="fas fa-fw fa-chevron-right"></i>
-							home
-						</span>
-					</li>
+					{% assign dirs = dirs | push: "" %}
 				{% endif %}
 				
+				{% comment %}
+					3.配列の要素ごとにページナビを作成する
+				{% endcomment %}
 				{% for dir in dirs %}
-					{% assign path = path | append: dir | append: '/' | relative_url %}
+					{% assign path = path | append: dir | append: "/" | relative_url %}
 					
-					{% if dir == '' %}
+					{% if dir != "contents" %}
 						<li class="nav-item">
-							<a class="nav-link" href="{{ path }}">
+							{% if forloop.last %}
+								<span class="nav-link">
+							{% else %}
+								<a class="nav-link" href="{{ path }}">
+							{% endif %}
+							
 								<i class="fas fa-fw fa-chevron-right"></i>
-								home
-							</a>
-						</li>
-					{% elsif dir == dirs.last %}
-						<li class="nav-item">
-							<span class="nav-link">
-								<i class="fas fa-fw fa-chevron-right"></i>
-								{{ dir | url_decode }}
-							</span>
-						</li>
-					{% elsif dir == 'contents' or dir == 'page' %}
-						<!--
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path }}">
-								<i class="fas fa-fw fa-chevron-right"></i>
-								_{{ dir | url_decode }}_
-							</a>
-						</li>
-						-->
-					{% else %}
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path }}">
-								<i class="fas fa-fw fa-chevron-right"></i>
-								{{ dir | url_decode }}
-							</a>
+								
+								{% assign temp = "" %}
+								{% for word in site.data.words %}
+									{% if word.eng == dir | url_decode %}
+										{% assign temp = word.jpn %}
+									{% endif %}
+								{% endfor %}
+								
+								{% if temp == "" %}
+									{{ dir | url_decode }}
+								{% else %}
+									{{ temp }}
+								{% endif %}
+							
+							{% if forloop.last %}
+								</span>
+							{% else %}
+								</a>
+							{% endif %}
 						</li>
 					{% endif %}
 				{% endfor %}
