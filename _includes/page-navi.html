@@ -21,7 +21,9 @@
 				{% for dir in dirs %}
 					{% assign path = path | append: dir | append: "/" | relative_url %}
 					
-					{% if dir != "contents" %}
+					{% if dir == "page" %}
+						{% break %}
+					{% elsif dir != "contents" %}
 						<li class="nav-item">
 							{% if forloop.last %}
 								<span class="nav-link">

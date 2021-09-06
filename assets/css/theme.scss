@@ -214,6 +214,21 @@ header {
 						}
 					}
 				}
+				
+				li.nav-item.dropdown:hover {
+					div.dropdown-menu {
+						background-color: $background-color-header;
+						display: block;
+						
+						a.dropdown-item {
+							color: $font-color-accent !important;
+							
+							&:hover {
+								background-color: $background-color-default;
+							}
+						}
+					}
+				}
 			}
 		}
 	}
