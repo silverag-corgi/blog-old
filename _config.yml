@@ -102,7 +102,7 @@ rss: "/contents/feed.xml"
 ## Share Buttons
 share:
   twitter: true
-  facebook: false
+  line: true
 
 ## Recent Posts
 recent_posts: 5
