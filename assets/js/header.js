@@ -15,7 +15,7 @@ $(function() {
 			var currentPosition = $(this).scrollTop();
 			
 			 // ナビトップの場合または、ナビボトムかつモバイル画面の場合
-			if(isTop == true || isTop == false && isMobileScreen() == true) {
+			if(isTop == true && currentPosition >= 86 || isTop == false && isMobileScreen() == true) {
 				if(currentPosition <= startPosition) {
 					navObj.css({ "display": "block" });
 				} else {
