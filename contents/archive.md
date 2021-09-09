@@ -98,7 +98,7 @@ description: 全ての記事を年月別やタグ別でまとめたページ
 </h2>
 
 <ul class="fa-ul">
-	{% assign tags = site.tags | sort %}
+	{% assign tags = site.tags | sort_array_by_name %}
 	{% for tag in tags %}
 		<li>
 			<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>

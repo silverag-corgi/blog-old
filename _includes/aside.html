@@ -2,84 +2,25 @@
 	<h2>最近の記事</h2>
 	<ul class="fa-ul">
 		{% for post in site.posts limit:site.recent_posts %}
-		<li>
-			<span class="fa-li"><i class="fas fa-fw fa-newspaper"></i></span>
-			<a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-		</li>
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-newspaper"></i></span>
+				<a href="{{ post.url | relative_url }}">
+					{{ post.title }}
+				</a>
+			</li>
 		{% endfor %}
 	</ul>
 </aside>
 
 <aside class="popular-tags-card">
 	<h2>タグ(記事数降順)</h2>
-
-	{% comment %}
-		1.
-		ブログのタグ一覧から
-		「タグ名」「タグ内の記事件数」
-		をセパレータで結合した配列を作成し、降順でソートする。
-	{% endcomment %}
-	{% assign separator = "{85dc62db-1aac-4ab8-bf7b-0956e1cb964d}" %}
-	{% assign tags_by_tag_name = "" | split: "" %}
-	{% for t in site.tags %}
-		{% assign tag_name = t[0] %}
-		{% assign num_of_articles = t[1].size %}
-		{% capture item %}{{ tag_name }}{{ separator }}{{ num_of_articles }}{% endcapture %}
-		{% assign tags_by_tag_name = tags_by_tag_name | push: item %}
-	{% endfor %}
-	{% assign tags_by_tag_name = tags_by_tag_name | sort | reverse %}
-
-	{% comment %}
-		2.
-		作成したリストから
-		「タグ内の0詰めされた記事件数」「0詰めされたインデックス」「タグ名」
-		をセパレータで結合した配列を作成し、再度降順でソートする。
-	{% endcomment %}
-	{% assign tags_by_num_of_articles = "" | split: "" %}
-	{% assign index = 0 %}
-	{% for t in tags_by_tag_name %}
-		{% assign _t = t | split: separator %}
-		{% assign tag_name = _t[0] %}
-		{% assign num_of_articles = _t[1] %}
-
-		{% comment %} 0詰め {% endcomment %}
-		{% assign padded_noa   = num_of_articles | prepend: "00000" | slice: -5, 5 %}
-		{% assign padded_index = index           | prepend: "00000" | slice: -5, 5 %}
-
-		{% assign item = "" %}
-		{% assign item = item | append: padded_noa   | append: separator %}
-		{% assign item = item | append: padded_index | append: separator %}
-		{% assign item = item | append: tag_name %}
-
-		{% assign tags_by_num_of_articles = tags_by_num_of_articles | push: item %}
-
-		{% assign index = index | plus: 1 %}
-	{% endfor %}
-	{% assign tags_by_num_of_articles = tags_by_num_of_articles | sort | reverse %}
-
-	{% comment %}
-		3.
-		「タグ名」「タグ内の記事件数」の配列を作成する。
-	{% endcomment %}
-	{% assign popular_tags = "" | split: "" %}
-	{% for t in tags_by_num_of_articles %}
-		{% assign _t = t | split: separator %}
-		{% assign tag_name = _t[2] %}
-		{% assign padded_noa = _t[0] %}
-
-		{% comment %} 0詰め文字列を数値に戻す {% endcomment %}
-		{% assign num_of_articles = padded_noa | plus: 0 %}
-
-		{% assign item = "" | split: "" | push: tag_name | push: num_of_articles %}
-		{% assign popular_tags = popular_tags | push: item %}
-	{% endfor %}
-
 	<ul class="fa-ul">
+		{% assign popular_tags = site.tags | convert_into_popular_tags %}
 		{% for tag in popular_tags %}
 			<li>
 				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
 				<a href="{{ '/contents/tags/' | append: tag[0] | downcase | relative_url }}">
-					{{ tag[0] }} ({{ tag[1] }})
+					{{ tag[0] }} ({{ tag[1].size }})
 				</a>
 			</li>
 		{% endfor %}

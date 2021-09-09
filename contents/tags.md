@@ -9,7 +9,7 @@ description: タグをまとめたページ
 </h1>
 
 <ul class="fa-ul">
-	{% assign tags = site.tags | sort %}
+	{% assign tags = site.tags | sort_array_by_name %}
 	{% for tag in tags %}
 		<li>
 			<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>

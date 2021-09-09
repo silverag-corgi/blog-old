@@ -9,7 +9,7 @@ description: カテゴリをまとめたページ
 </h1>
 
 <ul class="fa-ul">
-	{% assign categories = site.categories | sort %}
+	{% assign categories = site.categories | sort_array_by_name %}
 	{% for category in categories %}
 		<li>
 			<span class="fa-li"><i class="fas fa-fw fa-folder"></i></span>
