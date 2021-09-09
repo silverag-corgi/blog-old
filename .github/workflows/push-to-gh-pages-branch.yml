@@ -31,10 +31,9 @@ jobs:
             ${{ runner.os }}-
       
       - name: Setup Ruby
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.7
-          bundler-cache: true
       
       - name: Bundle Install According to Gemfile
         run: |
