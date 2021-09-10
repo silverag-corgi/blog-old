@@ -390,6 +390,8 @@ main aside.page-navi-card {
 		padding: 0px !important;
 		
 		ul.navbar-nav {
+			flex-wrap: wrap;
+			
 			li.nav-item {
 				padding: 0px 8px 0px 0px;
 				
