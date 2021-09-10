@@ -2,77 +2,22 @@
 	<nav class="navbar navbar-expand">
 		<div class="collapse navbar-collapse">
 			<ul class="navbar-nav">
-				{% comment %}
-					1.URLを"/"ごとに分割し、フォルダ配列に変換する
-				{% endcomment %}
-				{% assign dirs = page.url | replace: "index.html", "" | replace: ".html", "" | split: "/" %}
-				
-				{% comment %}
-					2.フォルダ配列のサイズが0の場合、ホームを表す空白文字を追加する
-				{% endcomment %}
-				{% if dirs.size == 0 %}
-					{% assign dirs = dirs | push: "" %}
-				{% endif %}
-				
-				{% comment %}
-					3.フォルダ配列の要素ごとにページナビを作成する
-				{% endcomment %}
-				{% assign prev_path = "" %}
-				{% assign this_path = "" %}
-				{% assign cat_root_path = "" %}
-				{% for dir in dirs %}
-					{% assign prev_path = this_path %}
-					{% assign this_path = this_path | append: dir | append: '/' | relative_url | url_decode %}
-					{% assign dir_dec = dir | url_decode %}
-					
-					{% if dir == "page" %}
-						{% break %}
-					{% elsif dir != "contents" %}
-						<li class="nav-item">
-							{% comment %}フォルダがカテゴリである場合、初回のみカテゴリルートパスを設定する{% endcomment %}
-							{% for category in page.categories %}
-								{% if dir_dec == category %}
-									{% if cat_root_path == '' %}
-										{% assign cat_root_path = prev_path %}
-									{% endif %}
-									{% break %}
-								{% endif %}
-							{% endfor %}
-							
-							{% if forloop.last %}
-								<span class="nav-link">
-							{% else %}
-								{% if cat_root_path == '' %}
-									<a class="nav-link" href="{{ this_path }}">
-								{% else %}
-									<a class="nav-link" href="{{ cat_root_path | append: dir | append: '/' | relative_url | url_decode }}">
-								{% endif %}
-							{% endif %}
-							
-									<i class="fas fa-fw fa-chevron-right"></i>
-									
-									{% comment %}フォルダが単語帳に登録済みである場合、和名を一時変数に代入する{% endcomment %}
-									{% assign temp = "" %}
-									{% for word in site.data.words %}
-										{% if dir_dec == word.eng %}
-											{% assign temp = word.jpn %}
-										{% endif %}
-									{% endfor %}
-									
-									{% comment %}一時変数が空(単語帳に未登録の単語)の場合、フォルダを出力する{% endcomment %}
-									{% if temp == "" %}
-										{{ dir_dec }}
-									{% else %}
-										{{ temp }}
-									{% endif %}
-							
-							{% if forloop.last %}
-								</span>
-							{% else %}
-								</a>
-							{% endif %}
-						</li>
-					{% endif %}
+				{% assign page_navi_array = 
+					page.url | generate_page_navi: page.categories, site.data.words %}
+				{% for page_navi in page_navi_array %}
+					<li class="nav-item">
+						{% if forloop.last %}
+							<span class="nav-link">
+								<i class="fas fa-fw fa-chevron-right"></i>
+								{{ page_navi[0] }}
+							</span>
+						{% else %}
+							<a class="nav-link" href="{{ page_navi[1] }}">
+								<i class="fas fa-fw fa-chevron-right"></i>
+								{{ page_navi[0] }}
+							</a>
+						{% endif %}
+					</li>
 				{% endfor %}
 			</ul>
 		</div>
