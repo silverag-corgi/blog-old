@@ -12,7 +12,7 @@
 								{{ page_navi[0] }}
 							</span>
 						{% else %}
-							<a class="nav-link" href="{{ page_navi[1] }}">
+							<a class="nav-link" href="{{ page_navi[1] | relative_url }}">
 								<i class="fas fa-fw fa-chevron-right"></i>
 								{{ page_navi[0] }}
 							</a>

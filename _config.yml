@@ -30,7 +30,7 @@ exclude:
 # url is hostname of site.
 # baseurl is subpath of site and repository name.
 url: "https://silverag-corgi.github.io"
-baseurl: ""
+baseurl: "/blog"
 
 # Outputting
 permalink: "/contents/posts/:categories/:title/"
