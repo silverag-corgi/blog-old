@@ -5,7 +5,7 @@
 
 ブログ用のリポジトリ。
 
-このブログはGitHubActionsを介して、セーフモードOFFのJekyllで静的ページを生成し、
+このブログはGitHubActionsにより、セーフモードOFFのJekyllで静的ページを生成し、
 GitHubPagesで公開している。
 
 
@@ -15,7 +15,9 @@ GitHubPagesで公開している。
 
   1. ユーザがmasterブランチへ資産をプッシュする
   1. GitHubActionsがmasterブランチへのプッシュを検知する
+  1. GitHubActionsがタイムゾーンを設定する
   1. GitHubActionsがリポジトリをチェックアウトする
+  1. Gemをキャッシュに保存する
   1. GitHubActionsがRubyをセットアップする
   1. GitHubActionsがGemをインストールする
   1. GitHubActionsがJekyll(セーフモードOFF)でビルドする
@@ -23,13 +25,13 @@ GitHubPagesで公開している。
   1. GitHubがGitHubPagesに生成物をデプロイする
   1. GitHubPagesがブログを公開する
 
-なお、上記の2.～7.がGitHubActionsにより自動化されている。
+なお、上記の2.～9.がGitHubActionsにより自動化されている。
 
 
 ## リンク
 
-  - [公開用リンク](https://silverag-corgi.github.io/)
-  - [開発用リンク](http://localhost:4000/)
+  - [公開用](https://silverag-corgi.github.io/blog/)
+  - [開発用](http://localhost:4000/blog/)
 
 
 ## ライセンス
