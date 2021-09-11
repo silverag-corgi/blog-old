@@ -1,23 +1,9 @@
-{% if include.layout-post == true %}
-	{% comment %}
-		・_layouts/post.html
-	{% endcomment %}
-	{% assign date = page.date %}
-	{% assign update = page.update %}
-	{% assign path = page.path %}
-	{% assign tags = page.tags %}
-	{% assign categories = page.categories %}
-{% else %}
-	{% comment %}
-		・_includes/post-for-posts.html <= _layouts/home.html
-		・_includes/post-for-posts.html <= contents/posts-by-tag.md
-	{% endcomment %}
-	{% assign date = post.date %}
-	{% assign update = post.update %}
-	{% assign path = post.path %}
-	{% assign tags = post.tags %}
-	{% assign categories = post.categories %}
-{% endif %}
+{% assign date = include.post-obj.date %}
+{% assign update = include.post-obj.update %}
+{% assign path = include.post-obj.path %}
+{% assign tags = include.post-obj.tags %}
+{% assign categories = include.post-obj.categories %}
+{% assign isPostScreen = include.post-obj == page %}
 
 <div class="post-meta">
 	<ul class="post-time">
@@ -34,7 +20,7 @@
 		{% endif %}
 	</ul>
 	
-	{% if include.layout-post == true %}
+	{% if isPostScreen %}
 	<ul class="post-log">
 		<li>
 			<i class="fas fa-fw fa-history"></i>
@@ -64,4 +50,13 @@
 		</li>
 		{% endfor %}
 	</ul>
+	
+	{% if isPostScreen %}
+	<ul class="post-reading-time">
+		<li>
+			<i class="fas fa-fw fa-book-reader"></i>
+			{{ include.post-obj.content | strip_html | strip_newlines | replace: "	", "" | xml_escape | get_reading_time }}
+		</li>
+	</ul>
+	{% endif %}
 </div>

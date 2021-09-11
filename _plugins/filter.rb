@@ -127,6 +127,17 @@ module Jekyll
 			return page_navi_array
 		end
 		
+		# 読了時間を取得する
+		# 使用例：{{ include.post-obj.content | strip_html | strip_newlines | replace: "	", "" | xml_escape | get_reading_time }}
+		def get_reading_time(page_content)
+			char_per_min = 400
+			
+			char = page_content.size;
+			minutes = (char/char_per_min).floor
+			
+			return minutes > 0 ? "約#{minutes}分" : "1分未満"
+		end
+		
 	end
 end
 
