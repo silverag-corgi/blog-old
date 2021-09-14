@@ -1,6 +1,7 @@
 module Jekyll
 	module Filter
 		require "uri"
+		require "liquid"
 		
 		# タグ配列を人気のタグ配列に変換する(記事数：降順、タグ名：小文字昇順)
 		# 使用例：{% assign tags = site.tags | convert_into_popular_tags %}
@@ -136,6 +137,13 @@ module Jekyll
 			minutes = (char/char_per_min).floor
 			
 			return minutes > 0 ? "約#{minutes}分" : "1分未満"
+		end
+		
+		# 正規表現で文字列を置換する
+		# 使用例：{% assign str = "Hello <b>maku</b>" | replace_by_regexp: "<(.+?)>", "[\1]" %}
+		def replace_by_regexp(str_target, str_pattern, str_format)
+			result = str_target.gsub(/#{str_pattern}/, str_format)
+			return result
 		end
 		
 	end
