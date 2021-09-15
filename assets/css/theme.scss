@@ -118,6 +118,8 @@ a {
 
 table {
 	margin: 0px auto 16px auto;
+	border-collapse: separate;
+	border-spacing: 0px;
 	
 	th {
 		background-color: $background-color-data;
@@ -133,33 +135,30 @@ table {
 	}
 }
 
-table.wide {
-	width: 100%;
-	max-width: 100%;
-}
-
-table.hide-last-col {
-	
-	th:last-child,
-	td:last-child {
-		display:none;
-	}
-}
-
 div.scroll-table {
-	height: 500px;
+	max-height: 500px;
 	width: 100%;
-	overflow: scroll;
+	overflow: auto;
 	
-	table.sticky-table {
+	table {
 		th {
 			position: sticky;
-			top: 0;
+			top: 0px;
+			white-space: nowrap;
+			
+			&:first-child {
+				left: 0px;
+				z-index: 1;
+			}
 		}
 		
-		th,
 		td {
 			white-space: nowrap;
+			
+			&:first-child {
+				position: sticky;
+				left: 0px;
+			}
 		}
 	}
 }
