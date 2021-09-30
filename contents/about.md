@@ -2,6 +2,7 @@
 layout: page 
 title: プロフィール
 description: ブログ管理者のプロフィール、ブログの運用方針、などをまとめたページ
+permalink: /about/index.html
 ---
 
 # プロフィール

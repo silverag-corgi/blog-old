@@ -33,7 +33,7 @@ url: "https://silverag-corgi.github.io"
 baseurl: "/blog"
 
 # Outputting
-permalink: "/contents/posts/:categories/:title/"
+permalink: "/posts/:categories/:title/"
 
 # Plugins
 plugins:
@@ -70,7 +70,7 @@ autopages:
     layouts:
       - "autopage-tag.html"
     title: "タグ - :tag"
-    permalink: "/contents/tags/:tag"
+    permalink: "/tags/:tag"
     silent: false
     slugify:
       mode: "default"
@@ -80,7 +80,7 @@ autopages:
     layouts:
       - "autopage-category.html"
     title: "カテゴリ - :cat"
-    permalink: "/contents/posts/:cat"
+    permalink: "/posts/:cat"
     silent: false
     slugify:
       mode: "default"
@@ -99,7 +99,7 @@ google_analytics_key:
 favicon: "/assets/img/favicon01.ico"
 
 ## RSS
-rss: "/contents/feed.xml"
+rss: "/feed.xml"
 
 ## Share Buttons
 share:

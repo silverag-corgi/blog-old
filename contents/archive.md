@@ -2,6 +2,7 @@
 layout: page
 title: アーカイブ
 description: 全ての記事を年月別やタグ別でまとめたページ
+permalink: /archive/index.html
 ---
 
 <h1>

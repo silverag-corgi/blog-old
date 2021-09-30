@@ -33,7 +33,7 @@
 		{% for category in categories %}
 		<li>
 			<i class="fas fa-fw fa-folder"></i>
-			<a href="{{ '/contents/posts/' | append: category | downcase | relative_url }}">
+			<a href="{{ '/posts/' | append: category | downcase | relative_url }}">
 				{{ category }}
 			</a>
 		</li>
@@ -44,7 +44,7 @@
 		{% for tag in tags %}
 		<li>
 			<i class="fas fa-fw fa-tag"></i>
-			<a href="{{ '/contents/tags/' | append: tag | downcase | relative_url }}">
+			<a href="{{ '/tags/' | append: tag | downcase | relative_url }}">
 				{{ tag }}
 			</a>
 		</li>

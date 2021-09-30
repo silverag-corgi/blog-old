@@ -2,6 +2,7 @@
 layout: page
 title: タグ一覧
 description: タグをまとめたページ
+permalink: /tags/index.html
 ---
 
 <h1>
@@ -13,7 +14,7 @@ description: タグをまとめたページ
 	{% for tag in tags %}
 		<li>
 			<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
-			<a href="{{ '/contents/tags/' | append: tag[0] | downcase | relative_url }}">
+			<a href="{{ '/tags/' | append: tag[0] | downcase | relative_url }}">
 				{{ tag[0] }} ({{ tag[1].size }})
 			</a>
 		</li>

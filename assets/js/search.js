@@ -7,7 +7,7 @@ $(function() { // HTML要素読み込み待機
 	$("#search-query").val(searchQuery);
 
 	// 検索データ非同期読み込み(Lunr.js)
-	$.getJSON("{{ '/contents/search.json' | relative_url }}").done(function(docs) {
+	$.getJSON("{{ '/search.json' | relative_url }}").done(function(docs) {
 		// インデックス作成
 		var index = lunr(function(index) {
 			// 項目作成

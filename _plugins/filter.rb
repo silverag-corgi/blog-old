@@ -77,8 +77,6 @@ module Jekyll
 				
  				if page == "page"        # ページがpageの場合
 					next
-				elsif page == "contents" # ページがcontentsの場合
-					next
 				else                     # ページが上記以外の場合
 					# 3-1.ページ名(英名)が単語帳に登録済みの場合、和名をページ名(和名)に設定する
 					page_jpn = ""
