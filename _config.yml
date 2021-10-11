@@ -113,5 +113,5 @@ recent_posts: 5
 excerpt_chars: 130
 
 ## Change Log URL
-change_log_url: "https://github.com/silverag-corgi/silverag-corgi.github.io/commits/master/"
+change_log_url: "https://github.com/silverag-corgi/blog/commits/master/"
 
