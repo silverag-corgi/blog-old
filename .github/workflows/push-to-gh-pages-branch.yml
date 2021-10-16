@@ -36,7 +36,6 @@ jobs:
       
       - name: Bundle Install According to Gemfile
         run: |
-          bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
       
       - name: Jekyll Build
