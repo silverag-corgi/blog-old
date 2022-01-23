@@ -17,7 +17,7 @@ GitHubPagesで公開している。
   1. GitHubActionsがmasterブランチへのプッシュを検知する
   1. GitHubActionsがタイムゾーンを設定する
   1. GitHubActionsがリポジトリをチェックアウトする
-  1. Gemをキャッシュに保存する
+  1. GitHubActionsがGemをキャッシュに保存する
   1. GitHubActionsがRubyをセットアップする
   1. GitHubActionsがGemをインストールする
   1. GitHubActionsがJekyll(セーフモードOFF)でビルドする
