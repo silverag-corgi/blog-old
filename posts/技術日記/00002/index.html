@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<title>Jekyllでブログを生成し、GitHubPagesで公開してみました | Rem_Note</title>
+	
+	
+		<meta name="description" content="初めにこのブログは公開するにあたりGitHubPagesとJekyllを利用しています。前回の記事でGitHubPagesで公開していることを伝えましたが、大まかに段階を踏んで公開までの話をしようと思います。サンプルサイト(中身空っぽ)の作成と動作確認ま...">
+	
+	
+	<link href="/blog/assets/img/favicon01.ico" rel="shortcut icon">
+	<link href="/blog/feed.xml" rel="alternate" type="application/rss+xml">
+	
+	<script src="/blog/assets/lib/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+	<script src="/blog/assets/lib/bootstrap-4.5.3/js/bootstrap.bundle.min.js"></script>
+	<script src="/blog/assets/lib/fontawesome-free-5.15.4/js/all.min.js"></script>
+	<script src="/blog/assets/lib/lightbox2-2.11.3/js/lightbox.min.js" defer></script>
+	
+	<script src="/blog/assets/lib/lunr/lunr/lunr-2.3.9.js"></script>
+	<script src="/blog/assets/lib/lunr/lunr-languages/lunr.stemmer.support.js"></script>
+	<script src="/blog/assets/lib/lunr/lunr-languages/tinyseg.js"></script>
+	<script src="/blog/assets/lib/lunr/lunr-languages/lunr.ja.js"></script>
+	<script src="/blog/assets/lib/lunr/lunr-languages/lunr.multi.js"></script>
+	
+	<script src="/blog/assets/js/header.js"></script>
+	<script src="/blog/assets/js/search.js" defer></script>
+
+	<link href="/blog/assets/lib/bootstrap-4.5.3/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/blog/assets/css/theme.css" rel="stylesheet">
+	<link href="/blog/assets/css/syntax-github.css" rel="stylesheet">
+	<link href="/blog/assets/lib/lightbox2-2.11.3/css/lightbox.min.css" rel="stylesheet">
+	
+
+
+</head>
+
+
+<body>
+	
+<header class="fixed-top">
+	<div class="nav-top">
+		<div class="container">
+			<nav class="navbar navbar-expand-lg">
+				<a class="navbar-brand" href="/blog/">
+					Rem_Note
+				</a>
+				
+				<div class="collapse navbar-collapse">
+					<ul class="navbar-nav">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="/blog/posts/"
+								id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<i class="fas fa-fw fa-folder"></i>
+								カテゴリ
+							</a>
+							<div class="dropdown-menu mt-0" aria-labelledby="navbarDropdown">
+								
+								
+									<a class="dropdown-item" href="/blog/posts/%E6%8A%80%E8%A1%93%E6%97%A5%E8%A8%98">
+										技術日記 (3)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/posts/%E6%8A%80%E8%A1%93%E7%B4%B9%E4%BB%8B">
+										技術紹介 (6)
+									</a>
+								
+							</div>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="/blog/tags/"
+								id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<i class="fas fa-fw fa-tag"></i>
+								タグ
+							</a>
+							<div class="dropdown-menu mt-0" aria-labelledby="navbarDropdown">
+								
+								
+									<a class="dropdown-item" href="/blog/tags/commit">
+										commit (1)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/git">
+										Git (2)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/github">
+										GitHub (3)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/githubactions">
+										GitHubActions (2)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/githubpages">
+										GitHubPages (3)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/jekyll">
+										Jekyll (2)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/lighthouse">
+										Lighthouse (1)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/rebase">
+										rebase (1)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/tortoisegit">
+										TortoiseGit (1)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88">
+										コミット (1)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/%E3%83%86%E3%83%BC%E3%83%9E%E6%94%B9%E8%89%AF">
+										テーマ改良 (1)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/%E3%83%96%E3%83%AD%E3%82%B0%E6%A7%8B%E7%AF%89">
+										ブログ構築 (6)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/%E3%83%AA%E3%83%99%E3%83%BC%E3%82%B9">
+										リベース (1)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/%E8%A9%95%E4%BE%A1%E3%83%84%E3%83%BC%E3%83%AB">
+										評価ツール (1)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/%E9%9D%99%E7%9A%84%E3%82%B5%E3%82%A4%E3%83%88%E3%82%B8%E3%82%A7%E3%83%8D%E3%83%AC%E3%83%BC%E3%82%BF%E3%83%BC">
+										静的サイトジェネレーター (1)
+									</a>
+								
+							</div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/blog/archive/">
+								<i class="fas fa-fw fa-book"></i>
+								アーカイブ
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/blog/about/">
+								<i class="fas fa-fw fa-user"></i>
+								プロフィール
+							</a>
+						</li>
+					</ul>
+				</div>
+				
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<form method="get" id="search-form" action="/blog/search/">
+							<input type="search" id="search-query" name="search-query" class="form-control" placeholder="記事検索">
+						</form>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</header>
+
+	
+	<main>
+		<div class="container">
+			
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="top-card">
+						<span>自分がしたことや考えたことなどを備忘録として記録する場所</span>
+						<div class="top-image"></div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-9">
+<aside class="page-navi-card">
+	<nav class="navbar navbar-expand">
+		<div class="collapse navbar-collapse">
+			<ul class="navbar-nav">
+				
+				
+					<li class="nav-item">
+						
+							<a class="nav-link" href="/blog/">
+								<i class="fas fa-fw fa-chevron-right"></i>
+								ホーム
+							</a>
+						
+					</li>
+				
+					<li class="nav-item">
+						
+							<a class="nav-link" href="/blog/posts/">
+								<i class="fas fa-fw fa-chevron-right"></i>
+								カテゴリ
+							</a>
+						
+					</li>
+				
+					<li class="nav-item">
+						
+							<a class="nav-link" href="/blog/posts/%E6%8A%80%E8%A1%93%E6%97%A5%E8%A8%98/">
+								<i class="fas fa-fw fa-chevron-right"></i>
+								技術日記
+							</a>
+						
+					</li>
+				
+					<li class="nav-item">
+						
+							<span class="nav-link">
+								<i class="fas fa-fw fa-chevron-right"></i>
+								00002
+							</span>
+						
+					</li>
+				
+			</ul>
+		</div>
+	</nav>
+</aside>
+
+
+<article class="post-card">
+	<h1>
+		<i class="fas fa-fw fa-newspaper"></i>Jekyllでブログを生成し、GitHubPagesで公開してみました
+	</h1>
+	
+
+
+
+
+
+
+
+<div class="post-meta">
+	<ul class="post-time">
+		<li>
+			<i class="fa fa-fw fa-calendar-alt"></i>
+			<span><time datetime="2021/08/06 13:00:00">2021/08/06 13:00:00</time></span>
+		</li>
+		
+		
+		<li>
+			<i class="fas fa-fw fa-edit"></i>
+			<span><time datetime="2021/08/23 17:30:00">2021/08/23 17:30:00</time></span>
+		</li>
+		
+	</ul>
+	
+	
+	<ul class="post-log">
+		<li>
+			<i class="fas fa-fw fa-history"></i>
+			<a href="https://github.com/silverag-corgi/blog/commits/master/_posts/2021-08-06-00002.md" target="_blank" rel="noopener">変更履歴 on GitHub</a>
+		</li>
+	</ul>
+	
+	
+	<ul class="post-category">
+		
+		<li>
+			<i class="fas fa-fw fa-folder"></i>
+			<a href="/blog/posts/%E6%8A%80%E8%A1%93%E6%97%A5%E8%A8%98">
+				技術日記
+			</a>
+		</li>
+		
+	</ul>
+	
+	<ul class="post-tag">
+		
+		<li>
+			<i class="fas fa-fw fa-tag"></i>
+			<a href="/blog/tags/%E3%83%96%E3%83%AD%E3%82%B0%E6%A7%8B%E7%AF%89">
+				ブログ構築
+			</a>
+		</li>
+		
+		<li>
+			<i class="fas fa-fw fa-tag"></i>
+			<a href="/blog/tags/jekyll">
+				Jekyll
+			</a>
+		</li>
+		
+		<li>
+			<i class="fas fa-fw fa-tag"></i>
+			<a href="/blog/tags/githubpages">
+				GitHubPages
+			</a>
+		</li>
+		
+	</ul>
+	
+	
+	<ul class="post-reading-time">
+		<li>
+			<i class="fas fa-fw fa-book-reader"></i>
+			約5分
+		</li>
+	</ul>
+	
+</div>
+
+	
+	
+		<p class="post-header-image">
+			<img src="/blog/assets/post/00002/github.JPG" alt="記事ヘッダ画像">
+		</p>
+	
+	
+	<div class="post-content">
+		
+		
+<h1>目次</h1>
+
+<ul class="toc"><li><a href="#初めに">初めに</a></li><li><a href="#サンプルサイト中身空っぽの作成と動作確認">サンプルサイト(中身空っぽ)の作成と動作確認</a></li><li><a href="#サンプルサイトブログっぽい何かの作成と動作確認">サンプルサイト(ブログっぽい何か)の作成と動作確認</a></li><li><a href="#カスタムテーマを用いたブログの作成と動作確認">カスタムテーマを用いたブログの作成と動作確認</a></li><li><a href="#ブログ公開">ブログ公開</a></li><li><a href="#最後に">最後に</a></li><li><a href="#付録触った技術">(付録)触った技術</a></li><li><a href="#参考サイト">参考サイト</a></li><li><a href="#出典元">出典元</a></li></ul>
+
+		
+		
+<h1 id="初めに">初めに</h1>
+
+<p>このブログは公開するにあたりGitHubPagesとJekyllを利用しています。
+<a href="/blog/posts/%E6%8A%80%E8%A1%93%E6%97%A5%E8%A8%98/00001/">前回の記事</a>でGitHubPagesで公開していることを伝えましたが、
+大まかに段階を踏んで公開までの話をしようと思います。</p>
+
+<h1 id="サンプルサイト中身空っぽの作成と動作確認">サンプルサイト(中身空っぽ)の作成と動作確認</h1>
+
+<p>まずはGitHubPagesのみで完結するサンプルサイトを作成しました。</p>
+
+<p>GitHubの画面で言われるがままに操作し、殆ど何もないサイトが出来上がりました。
+こんなことができるのかというイメージの確認程度です。</p>
+
+<p class="post-content-image"><img src="/blog/assets/post/00002/sample_site_01.JPG" alt="サンプルサイト01" /></p>
+
+<h1 id="サンプルサイトブログっぽい何かの作成と動作確認">サンプルサイト(ブログっぽい何か)の作成と動作確認</h1>
+
+<p>次にGitHubPagesとJekyllを利用したサンプルサイトを作成しました。</p>
+
+<p>Jekyllで静的なサンプルサイトを生成し、それをGitHubPagesで公開し、
+ブログっぽいそれなりのサイトが出来上がりました。</p>
+
+<p class="post-content-image"><img src="/blog/assets/post/00002/sample_site_02.JPG" alt="サンプルサイト02" /></p>
+
+<p>ただ、使用を検討していたプラグインがGitHubPagesでは動作しないことがわかって残念です。
+便利そうだったのに。。。</p>
+
+<ul>
+  <li>jekyll-last-modified-at</li>
+  <li>jekyll-archives</li>
+</ul>
+
+<p>ローカルサーバでは動作しますが、GitHubPagesではJekyllがセーフモードとやらになってしまうらしく、
+動作しないとのこと。
+GithubActionsなんかでひと手間掛かりそうなので今回は断念しました。
+いつかの機会に代替案でも模索します。</p>
+
+<p>因みに以下のページがサポートしているプラグインです。意外と少ない。</p>
+
+<ul>
+  <li><a href="https://pages.github.com/versions/">Dependency versions - GitHubPages
+</a></li>
+</ul>
+
+<h1 id="カスタムテーマを用いたブログの作成と動作確認">カスタムテーマを用いたブログの作成と動作確認</h1>
+
+<p>次に作成したサイトにカスタムテーマを適用しました。</p>
+
+<p>400個のテーマ(20ページまで)から以下のテーマを適用すると、ブログが出来上がりました。</p>
+
+<ul>
+  <li><a href="http://jekyllthemes.org/themes/jekyll-clean-dark/">Jekyll Clean Dark - Jekyll Themes
+</a></li>
+</ul>
+
+<p>ここまでは意外と簡単でしたが、テーマを編集するとなると意外と大変でした。
+ただ、一旦満足できるレベルのデザインに仕上がったのでよしとします。</p>
+
+<p class="post-content-image"><img src="/blog/assets/post/00002/this_site.JPG" alt="サンプルサイト03" /></p>
+
+<p>なぜ大変だったかというと、自分はJekyll、GitHubPages、Liquidなどを
+今まで触ったことがなかったので、新たに基礎から理解する必要がありました。
+その上でこのテーマがどう作られているかを理解する必要があったからです。</p>
+
+<p>そのために資産が綺麗に管理されてそうで、
+理解の妨げになる余分な資産がなさそうなシンプルなテーマを最終的に選びました。
+もちろん一番最初はデザインで選びました。</p>
+
+<p>中身を詳しく確認すると改善点は沢山ありましたが、思った通りでこのテーマに満足しています。
+自分ならデザインを１から決めてテーマを作成するなんて、センスないので出来ないです。</p>
+
+<p>また、今回限りではなくこれからもテーマの編集は続けていくつもりです。</p>
+
+<h1 id="ブログ公開">ブログ公開</h1>
+
+<p>最後にGitHubPagesでブログを公開します。</p>
+
+<p>予めGitHubで設定しておくとプッシュするだけで、裏でJekyllがページを生成・デプロイしてくれて、
+GitHubPagesが公開してくれるのですごい楽です。</p>
+
+<h1 id="最後に">最後に</h1>
+
+<p>今回はブログを公開した時の流れ、感想、気になったことなどをまとめました。
+いつか見返した時にこんなことやったなーと思い出す材料になると嬉しいです。</p>
+
+<h1 id="付録触った技術">(付録)触った技術</h1>
+
+<p>付録として公開する上で触ったサービス、言語、ライブラリなどの説明をすごく簡単にまとめました。
+(出典元2)</p>
+
+<ul>
+  <li>Jekyll
+    <ul>
+      <li>静的サイトジェネレーター (SSG)</li>
+    </ul>
+  </li>
+  <li>GitHubPages
+    <ul>
+      <li>静的ウェブページのためのウェブホスティングサービス</li>
+      <li>ユーザーのブログやプロジェクトのドキュメント、1冊の本全体を公開するためにも使用できる</li>
+      <li>内部でJekyllを使用できる</li>
+      <li>上記以外を使用したい場合は、GithubActionsなどのCI/CDツールと連携が必要になる</li>
+    </ul>
+  </li>
+  <li>Liquid
+    <ul>
+      <li>テンプレート言語</li>
+      <li>別のメインとなる言語(今回はHTMLやJavaScript)に埋め込める言語</li>
+    </ul>
+  </li>
+  <li>FontAwesome
+    <ul>
+      <li>フォントとアイコンのツールキット</li>
+    </ul>
+  </li>
+  <li>Bootstrap
+    <ul>
+      <li>フロントエンドWebアプリケーションフレームワーク</li>
+      <li>HTMLおよびCSSベースのデザインテンプレートとして用意されている</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="参考サイト">参考サイト</h1>
+
+<p>今回公開するにあたり参考にしたサイトです。
+とても助かりました。ありがとうございす。</p>
+
+<ul>
+  <li><a href="https://qiita.com/MahoTakara/items/3800e9dc83b530d0a050">GitHubを使ってMarkdown文書を５ステップでホームページとして公開する方法 - Qiita
+</a></li>
+  <li><a href="https://qiita.com/Shirokuma89/items/7d63627e3e97b030c63a">JekyllとGitHubPagesでブログを作る＠初期設定編 - Qiita
+</a></li>
+  <li><a href="https://qiita.com/Shirokuma89/items/0262b8f8ef7c8b7f69ef">JekyllとGitHubPagesでブログを作る＠テーマ設定編 - Qiita
+</a></li>
+  <li><a href="https://carefree-se.hatenablog.com/entry/2020/07/21/110000">個人用wikiをJekyllに移行したときにやったこと2 [カスタマイズ編] - のんびりSEの議事録
+</a></li>
+  <li><a href="https://carefree-se.hatenablog.com/entry/2020/07/20/110000">個人用wikiをJekyllに移行したときにやったこと1 [Jekyll紹介編] - のんびりSEの議事録
+</a></li>
+  <li><a href="http://jekyllthemes.org/themes/jekyll-clean-dark/">Jekyll Clean Dark - Jekyll Themes
+</a></li>
+</ul>
+
+<h1 id="出典元">出典元</h1>
+
+<ol>
+  <li><a href="https://pages.github.com/">GitHubPages
+    </a>
+    - 記事ヘッダ画像に使用しました</li>
+  <li><a href="https://ja.wikipedia.org/wiki/">ウィキペディア
+    </a></li>
+</ol>
+
+
+		
+
+	<div class="share-bar">
+		<ul class="share-buttons">
+			
+			
+				<li class="share-twitter">
+					<a href="https://twitter.com/intent/tweet?text=Jekyll%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%82%92%E7%94%9F%E6%88%90%E3%81%97%E3%80%81GitHubPages%E3%81%A7%E5%85%AC%E9%96%8B%E3%81%97%E3%81%A6%E3%81%BF%E3%81%BE%E3%81%97%E3%81%9F+%7C+Rem_Note%0ahttps://silverag-corgi.github.io/blog/posts/%E6%8A%80%E8%A1%93%E6%97%A5%E8%A8%98/00002/" target="_blank" rel="noopener" title="Tweet">
+						<i class="fab fa-fw fa-2x fa-twitter-square"></i>
+					</a>
+				</li>
+			
+			
+			
+				<li class="share-line">
+					<a href="https://social-plugins.line.me/lineit/share?url=https://silverag-corgi.github.io/blog/posts/%E6%8A%80%E8%A1%93%E6%97%A5%E8%A8%98/00002/" target="_blank" rel="noopener" title="Tweet">
+						<i class="fab fa-fw fa-2x fa-line"></i>
+					</a>
+				</li>
+			
+			
+		</ul>
+	</div>
+
+
+	</div>
+</article>
+
+<aside class="post-navi-card">
+	<ul class="pagination justify-content-around">
+		
+			
+				<li class="page-item col-lg-6">
+					<a class="page-link" href="/blog/posts/%E6%8A%80%E8%A1%93%E6%97%A5%E8%A8%98/00001/">ブログの構築が一通り終わったので、初の記事です</a>
+				</li>
+			
+			
+			
+				<li class="page-item col-lg-6">
+					<a class="page-link" href="/blog/posts/%E6%8A%80%E8%A1%93%E7%B4%B9%E4%BB%8B/00003/">Gitのコミットメッセージの記入ルール</a>
+				</li>
+			
+		
+	</ul>
+</aside>
+
+				</div>
+				
+				<div class="col-lg-3">
+<aside class="recent-posts-card">
+	<h2>最近の記事</h2>
+	<ul class="fa-ul">
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-newspaper"></i></span>
+				<a href="/blog/posts/%E6%8A%80%E8%A1%93%E7%B4%B9%E4%BB%8B/00009/">
+					GitHubStars上位5件の静的サイトジェネレーターの情報整理
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-newspaper"></i></span>
+				<a href="/blog/posts/%E6%8A%80%E8%A1%93%E7%B4%B9%E4%BB%8B/00008/">
+					GitHubActionsで実行されるGemインストールの高速化手順
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-newspaper"></i></span>
+				<a href="/blog/posts/%E6%8A%80%E8%A1%93%E7%B4%B9%E4%BB%8B/00007/">
+					セーフモードOFFのJekyllをGitHubActionsにより楽に使用する環境の構築手順
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-newspaper"></i></span>
+				<a href="/blog/posts/%E6%8A%80%E8%A1%93%E7%B4%B9%E4%BB%8B/00006/">
+					リポジトリの言語統計から外部ライブラリを除外する方法
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-newspaper"></i></span>
+				<a href="/blog/posts/%E6%8A%80%E8%A1%93%E6%97%A5%E8%A8%98/00005/">
+					ブログテーマを大改造したので、Lighthouseで評価してみました
+				</a>
+			</li>
+		
+	</ul>
+</aside>
+
+<aside class="popular-tags-card">
+	<h2>タグ(記事数降順)</h2>
+	<ul class="fa-ul">
+		
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/%E3%83%96%E3%83%AD%E3%82%B0%E6%A7%8B%E7%AF%89">
+					ブログ構築 (6)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/github">
+					GitHub (3)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/githubpages">
+					GitHubPages (3)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/git">
+					Git (2)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/githubactions">
+					GitHubActions (2)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/jekyll">
+					Jekyll (2)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/commit">
+					commit (1)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/lighthouse">
+					Lighthouse (1)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/rebase">
+					rebase (1)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/tortoisegit">
+					TortoiseGit (1)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88">
+					コミット (1)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/%E3%83%86%E3%83%BC%E3%83%9E%E6%94%B9%E8%89%AF">
+					テーマ改良 (1)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/%E3%83%AA%E3%83%99%E3%83%BC%E3%82%B9">
+					リベース (1)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/%E8%A9%95%E4%BE%A1%E3%83%84%E3%83%BC%E3%83%AB">
+					評価ツール (1)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/%E9%9D%99%E7%9A%84%E3%82%B5%E3%82%A4%E3%83%88%E3%82%B8%E3%82%A7%E3%83%8D%E3%83%AC%E3%83%BC%E3%82%BF%E3%83%BC">
+					静的サイトジェネレーター (1)
+				</a>
+			</li>
+		
+	</ul>
+</aside>
+
+				</div>
+			</div>
+			
+		</div>
+	</main>
+	
+<footer>
+	<div class="author">
+		<div class="container">
+			<p>&copy; 2021 Rem_</p>
+<ul class="social-media">
+	
+	
+		<li>
+			<a title="silverag-corgi on Github" href="https://github.com/silverag-corgi" target="_blank" rel="noopener"><i class="fab fa-github fa-2x"></i></a>
+		</li>
+	
+	
+	
+		<li>
+			<a title="silverag_corgi on Twitter" href="https://twitter.com/silverag_corgi" target="_blank" rel="noopener"><i class="fab fa-twitter fa-2x"></i></a>
+		</li>
+	
+	
+	
+		<li>
+			<a title="/feed.xml RSS" href="/blog/feed.xml" target="_blank" rel="noopener"><i class="fas fa-fw fa-rss fa-2x"></i></a>
+		</li>
+	
+	
+</ul>
+
+		</div>
+	</div>
+	
+	<div class="page-top position-fixed">
+		<i class="fas fa-arrow-up"></i>
+	</div>
+	
+	<div class="nav-bottom fixed-bottom">
+		<div class="container">
+			<nav class="navbar navbar-expand">
+				<div class="collapse navbar-collapse">
+					<ul class="navbar-nav justify-content-between">
+						<li class="nav-item nav-bottom-icon d-table-cell text-center align-middle">
+							<a class="nav-link" href="/blog/">
+								<i class="fas fa-fw fa-home"></i>
+								<div>ホーム</div>
+							</a>
+						</li>
+						<li class="nav-item nav-bottom-icon d-table-cell text-center align-middle">
+							<a class="nav-link" href="/blog/posts/%E6%8A%80%E8%A1%93%E6%97%A5%E8%A8%98/">
+								<i class="fas fa-fw fa-folder"></i>
+								<div>技術日記</div>
+							</a>
+						</li>
+						<li class="nav-item nav-bottom-icon d-table-cell text-center align-middle">
+							<a class="nav-link" href="/blog/posts/%E6%8A%80%E8%A1%93%E7%B4%B9%E4%BB%8B/">
+								<i class="fas fa-fw fa-folder"></i>
+								<div>技術紹介</div>
+							</a>
+						</li>
+						<li class="nav-item nav-bottom-icon d-table-cell text-center align-middle">
+							<a class="nav-link" href="/blog/archive/">
+								<i class="fas fa-fw fa-book"></i>
+								<div>アーカイブ</div>
+							</a>
+						</li>
+						<li class="nav-item nav-bottom-icon d-table-cell text-center align-middle">
+							<a class="nav-link" href="/blog/about/">
+								<i class="fas fa-fw fa-user"></i>
+								<div>プロフ</div>
+							</a>
+						</li>
+						<li class="nav-item nav-bottom-icon d-table-cell text-center align-middle">
+							<div class="page-top">
+								<i class="fas fa-fw fa-arrow-up"></i>
+								<div>トップ</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</div>
+</footer>
+
+	
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+/* Github Theme rougify style github */
+pre { color: inherit; background-color: #404040; padding: 1.00em; border: 1px solid #555555; border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; word-wrap: normal; white-space: pre; margin: 0px 0px 16px 0px; /* Name.Builtin.Pseudo */ /* Comment */ /* Comment.Single */ /*  */ /*  */ /* Comment.Multiline */ /* Comment.Preproc */ /*  */ /* Comment.Special */ /*  */ /* Error */ /*  */ /* Generic.Deleted & Diff Deleted */ /* Generic.Emph */ /* Generic Heading & Diff Header */ /* Generic.Inserted & Diff Inserted */ /*  */ /*  */ /*  */ /* Generic.Strong */ /*  */ /* Generic.Subheading & Diff Unified/Comment? */ /* Keyword */ /* Keyword.Constant */ /* Keyword.Declaration */ /* Keyword.Namespace */ /* Keyword.Pseudo */ /* Keyword.Reserved */ /* Keyword.Type */ /*  */ /* Literal.Number */ /*  */ /* Literal.Number.Float */ /* Literal.Number.Hex */ /* Literal.Number.Integer */ /* Literal.Number.Integer.Long */ /* Literal.Number.Oct */ /*  */ /* Name.Attribute */ /* Name.Builtin */ /* Name.Class */ /* Name.Decorator */ /* Name.Exception */ /* Name.Function */ /* Name.Entity */ /* Name.Label */ /* Name.Namespace */ /* Name.Constant */ /* Name.Tag */ /* Name.Variable */ /* Operator */ /* Operator.Word */ /* Literal.String */ /* Literal.String.Single */ /* Literal.String.Double */ /*  */ /* Literal.String.Backtick */ /* Literal.String.Char */ /* Literal.String.Doc */ /* Literal.String.Escape */ /* Literal.String.Heredoc */ /* Literal.String.Interpol */ /* Literal.String.Regex */ /* Literal.String.Symbol */ /* Literal.String.Other */ /* Name.Variable.Class */ /* Name.Variable.Global */ /* Name.Variable.Instance */ /*  */ /* Text.Whitespace */ }
+
+pre span.bp { color: #999999; }
+
+pre span.c { color: #999988; }
+
+pre span.c1 { color: #999988; }
+
+pre span.cd { color: #999988; }
+
+pre span.ch { color: #999988; }
+
+pre span.cm { color: #999988; }
+
+pre span.cp { color: #999999; font-weight: bold; }
+
+pre span.cpf { color: #999988; }
+
+pre span.cs { color: #999999; font-weight: bold; }
+
+pre span.dl { color: #A5C25C; }
+
+pre span.err { color: #a61717; background-color: #e3d2d2; }
+
+pre span.fm { color: #990000; font-weight: bold; }
+
+pre span.gd { color: #000000; background-color: #ffdddd; }
+
+pre span.ge { color: #000000; font-style: italic; }
+
+pre span.gh { color: #999999; }
+
+pre span.gi { color: #000000; background-color: #ddffdd; }
+
+pre span.go { color: #888888; }
+
+pre span.gp { color: #555555; }
+
+pre span.gr { color: #aa0000; }
+
+pre span.gs { font-weight: bold; }
+
+pre span.gt { color: #aa0000; }
+
+pre span.gu { color: #aaaaaa; }
+
+pre span.k { color: #000000; font-weight: bold; }
+
+pre span.kc { color: #000000; font-weight: bold; }
+
+pre span.kd { color: #000000; font-weight: bold; }
+
+pre span.kn { color: #000000; font-weight: bold; }
+
+pre span.kp { color: #000000; font-weight: bold; }
+
+pre span.kr { color: #000000; font-weight: bold; }
+
+pre span.kt { color: #445588; font-weight: bold; }
+
+pre span.kv { color: #000000; font-weight: bold; }
+
+pre span.m { color: #009999; }
+
+pre span.mb { color: #009999; }
+
+pre span.mf { color: #009999; }
+
+pre span.mh { color: #009999; }
+
+pre span.mi { color: #009999; }
+
+pre span.il { color: #009999; }
+
+pre span.mo { color: #009999; }
+
+pre span.mx { color: #009999; }
+
+pre span.na { color: #A5D6FF; }
+
+pre span.nb { color: #0086B3; }
+
+pre span.nc { color: #445588; font-weight: bold; }
+
+pre span.nd { color: #3c5d5d; font-weight: bold; }
+
+pre span.ne { color: #990000; font-weight: bold; }
+
+pre span.nf { color: #990000; font-weight: bold; }
+
+pre span.ni { color: #800080; }
+
+pre span.nl { color: #990000; font-weight: bold; }
+
+pre span.nn { color: #555555; }
+
+pre span.no { color: #A5D6FF; }
+
+pre span.nt { color: #000080; }
+
+pre span.nv { color: #A5D6FF; }
+
+pre span.o { color: #000000; font-weight: bold; }
+
+pre span.ow { color: #000000; font-weight: bold; }
+
+pre span.s { color: #A5C25C; }
+
+pre span.s1 { color: #A5C25C; }
+
+pre span.s2 { color: #A5C25C; }
+
+pre span.sa { color: #000000; font-weight: bold; }
+
+pre span.sb { color: #A5C25C; }
+
+pre span.sc { color: #A5C25C; }
+
+pre span.sd { color: #A5C25C; }
+
+pre span.se { color: #A5C25C; }
+
+pre span.sh { color: #A5C25C; }
+
+pre span.si { color: #A5C25C; }
+
+pre span.sr { color: #A5C25C; }
+
+pre span.ss { color: #A5C25C; }
+
+pre span.sx { color: #A5C25C; }
+
+pre span.vc { color: #A5D6FF; }
+
+pre span.vg { color: #A5D6FF; }
+
+pre span.vi { color: #A5D6FF; }
+
+pre span.vm { color: #A5D6FF; }
+
+pre span.w { color: #bbbbbb; }
+
+code.highlighter-rouge { padding: 1px 4px; border-radius: 3px; background-color: #555555; }
+
+/*# sourceMappingURL=syntax-github.css.map */

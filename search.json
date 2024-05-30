@@ -1,0 +1,148 @@
+[
+	
+	
+	{
+		"id"      : "0",
+		"url"     : "/blog/posts/%E6%8A%80%E8%A1%93%E7%B4%B9%E4%BB%8B/00009/",
+		"title"   : "GitHubStars上位5件の静的サイトジェネレーターの情報整理",
+		"date"    : "2021/09/20 20:45:00",
+		"update"  : "",
+		"tags"    : [ "ブログ構築", "静的サイトジェネレーター" ],
+		"tagsurl" : [ "/blog/tags/%E3%83%96%E3%83%AD%E3%82%B0%E6%A7%8B%E7%AF%89", "/blog/tags/%E9%9D%99%E7%9A%84%E3%82%B5%E3%82%A4%E3%83%88%E3%82%B8%E3%82%A7%E3%83%8D%E3%83%AC%E3%83%BC%E3%82%BF%E3%83%BC" ],
+		"image"   : "/blog/assets/post/00009/SSG.JPG",
+		"noimage" : "/blog/assets/img/noimg01.png",
+		"content": "初めに前回の記事を書いてから、ブログ環境を振り返ってみた。現状Jekyllを使用しているが、元々の理由からするとJekyllである必要がないように思える。他の静的サイトジェネレーター(以降SSG)へ移行する際の判断材料とするために、SSGの情報を整理する。現状の整理現在使用しているSSGはJekyllだが、当初の選択した理由は以下の通りである。  GithubPagesはJekyllを標準でサポートしているため、サイト公開までの手順が簡易である          ビルド前の資産をプッシュするだけで、組み込まれたJekyllでビルドされサイトが公開される      事前に資産をビルドしてその生成物をプッシュするという手間を削減できる        SSGを触ることが初めてであったため、入門としてGithubPages標準のSSGで学習したいしかし、現在はGitHubActionsを用いてJekyllビルド(セーフモードOFF)やプッシュなどを自動化している。また、テーマを自作して記事を数件投稿したため、入門としての学習はクリアしている。以上のことから、既にJekyllである必要がないように思える。静的サイトジェネレーターの情報整理既にJekyllである必要がないことや他のSSGへ移行する際の判断材料とすることから、SSGの情報を整理する。また、GitHubStars上位5件を対象とする。静的サイトジェネレーターの概要                    No        SSG        開発言語        テンプレート言語        GitHubStars                            1        Next.js        JavaScript        React        73,364                    2        Hugo        Go        Go        54,244                    3        Gatsby        JavaScript        React        51,332                    4        Jekyll        Ruby        Liquid        43,328                    5        Nuxt.js        JavaScript        Vue        37,960            静的サイトジェネレーターの機能・特徴      上記表のPDFファイルはこちら。  SSG_comp.pdf静的サイトジェネレーターのビルド時間SSGごとのビルド時間の差異を示す。なお、記事(mdファイル)の数は1件～1万件である。最後にGitHubStars上位5件のSSGの情報を整理した。しかし、実際に触ってみないと分からないことがあると思う。今後、実際にサンプルを作成してどう感じたかなどを記事にしたい。参考サイト  Static Site Generators - Top Open Source SSGs | Jamstack  Gatsby vs JAMstack frameworks | Gatsby  Comparing Static Site Generator Build Times | CSS-Tricks",
+		"excerpt": "初めに前回の記事を書いてから、ブログ環境を振り返ってみた。現状Jekyllを使用しているが、元々の理由からするとJekyllである必要がないように思える。他の静的サイトジェネレーター(以降SSG)へ移行する際の判断材料とするために、SSGの情報を整理する..."
+	}
+	,
+	
+	
+	{
+		"id"      : "1",
+		"url"     : "/blog/posts/%E6%8A%80%E8%A1%93%E7%B4%B9%E4%BB%8B/00008/",
+		"title"   : "GitHubActionsで実行されるGemインストールの高速化手順",
+		"date"    : "2021/09/11 06:30:00",
+		"update"  : "",
+		"tags"    : [ "ブログ構築", "GitHubActions" ],
+		"tagsurl" : [ "/blog/tags/%E3%83%96%E3%83%AD%E3%82%B0%E6%A7%8B%E7%AF%89", "/blog/tags/githubactions" ],
+		"image"   : "/blog/assets/post/00008/GitHubActions.jpg",
+		"noimage" : "/blog/assets/img/noimg01.png",
+		"content": "初めに前回の記事ではCI/CDツールであるGitHubActionsを用いてビルドやプッシュを自動化する環境を構築した。しかし、Gemをインストールする処理は他のステップに比べて処理時間が約10倍もかかっていた。実行する度に約30個のGemを毎回最初からインストールしていたためである。この問題を解決するためにキャッシュによりGemインストールを高速化した結果、ワークフローの処理時間が約1/2になった。今回はその手順と実行結果をまとめる。ブログ公開までのワークフローまず、このブログが公開されるまでのワークフローをまとめる。★が記載された行が変更箇所である。高速化前  ユーザがmasterブランチへ資産をプッシュする  GitHubActionsがmasterブランチへのプッシュを検知する  GitHubActionsがタイムゾーンを設定する  GitHubActionsがリポジトリをチェックアウトする  GitHubActionsがRubyをセットアップする  GitHubActionsがGemをインストールする  GitHubActionsがJekyll(セーフモードOFF)でビルドする  GitHubActionsがgh-pagesブランチへ生成物をプッシュする  GitHubがGitHubPagesに生成物をデプロイする  GitHubPagesがブログを公開する高速化後  ユーザがmasterブランチへ資産をプッシュする  GitHubActionsがmasterブランチへのプッシュを検知する  GitHubActionsがタイムゾーンを設定する  GitHubActionsがリポジトリをチェックアウトする  (★)Gemをキャッシュに保存する  GitHubActionsがRubyをセットアップする  (★)GitHubActionsがGemをインストールする  GitHubActionsがJekyll(セーフモードOFF)でビルドする  GitHubActionsがgh-pagesブランチへ生成物をプッシュする  GitHubがGitHubPagesに生成物をデプロイする  GitHubPagesがブログを公開するキャッシュによるGemインストールの高速化Gemインストールを高速化するために変更した箇所を以下に示す。また、前回の記事のワークフローをベースにしている。.github/workflows/push-to-gh-pages-branch.ymlname: Push To gh-pages Branchon:  push:    branches:      - master # 2. GitHubActionsがmasterブランチへのプッシュを検知するjobs:  deploy:    runs-on: ubuntu-20.04        concurrency:      group: ${{ github.workflow }} - ${{ github.ref }}        steps:      # 3. GitHubActionsがタイムゾーンを設定する      - name: Set Timezone        uses: szenius/set-timezone@v1.0        with:          timezoneLinux: &quot;Asia/Tokyo&quot;            # 4. GitHubActionsがリポジトリをチェックアウトする      - name: Checkout Repository        uses: actions/checkout@v2      +     # 5. Gemをキャッシュに保存する+     - name: Store Gem to Cache+       uses: actions/cache@v2+       with:+         path: vendor/bundle+         key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}+         restore-keys: |+           ${{ runner.os }}-gem-            # 6. GitHubActionsがRubyをセットアップする      - name: Setup Ruby        uses: ruby/setup-ruby@v1        with:          ruby-version: 2.7            # 7. GitHubActionsがGemをインストールする      - name: Bundle Install According to Gemfile        run: |-         bundle install+         bundle config path vendor/bundle+         bundle install --jobs 4 --retry 3            # 8. GitHubActionsがJekyll(セーフモードOFF)でビルドする      - name: Jekyll Build        run: |          bundle exec jekyll build            # 9. GitHubActionsがgh-pagesブランチへ生成物をプッシュする      - name: Push to gh-pages Branch        uses: peaceiris/actions-gh-pages@v3        with:          github_token: ${{ secrets.GITHUB_TOKEN }}          publish_branch: gh-pages          publish_dir: ./_site          force_orphan: true          user_name: &quot;github-actions[bot]&quot;          user_email: &quot;github-actions[bot]@users.noreply.github.com&quot;参考サイト  actions/cache: Cache dependencies and build outputs in GitHub Actions  GitHub ActionsでCacheを使ってみた | freks blogGitHubActionsによる自動化の実行結果Gemインストールを高速化した前後でワークフローの処理時間の変化を確認する。実行ログ(高速化前)ワークフローの処理時間は31秒であり、Gemインストールは24秒である。  実行ログ(高速化後)ワークフローの処理時間は14秒であり、Gemインストールは2秒である。  処理時間の変化ワークフローの処理時間は高速化前の約1/2になり、大幅に改善した。また、Gemインストールに至っては1/12になった。最後に今回はGitHubActionsのワークフローのGemインストールをキャッシュにより高速化した。これで毎回無駄な処理により時間を浪費せずに済む。",
+		"excerpt": "初めに前回の記事ではCI/CDツールであるGitHubActionsを用いてビルドやプッシュを自動化する環境を構築した。しかし、Gemをインストールする処理は他のステップに比べて処理時間が約10倍もかかっていた。実行する度に約30個のGemを毎回最初から..."
+	}
+	,
+	
+	
+	{
+		"id"      : "2",
+		"url"     : "/blog/posts/%E6%8A%80%E8%A1%93%E7%B4%B9%E4%BB%8B/00007/",
+		"title"   : "セーフモードOFFのJekyllをGitHubActionsにより楽に使用する環境の構築手順",
+		"date"    : "2021/09/02 22:30:00",
+		"update"  : "2021/09/04 07:00:00",
+		"tags"    : [ "ブログ構築", "Jekyll", "GitHubPages", "GitHubActions" ],
+		"tagsurl" : [ "/blog/tags/%E3%83%96%E3%83%AD%E3%82%B0%E6%A7%8B%E7%AF%89", "/blog/tags/jekyll", "/blog/tags/githubpages", "/blog/tags/githubactions" ],
+		"image"   : "/blog/assets/post/00007/GitHubActions.jpg",
+		"noimage" : "/blog/assets/img/noimg01.png",
+		"content": "初めにこのブログはJekyllで静的ページを生成し、GitHubPagesで公開している。Jekyllのプラグインは、サポートされているプラグインのみを使用している。サポートされているプラグインを使用する場合はJekyllはセーフモードONで十分であり、ビルド前の資産をプッシュするだけで勝手にビルドされサイトが公開される。しかし、サポートされていないプラグインを使用する場合はJekyllをセーフモードOFFにする必要があり、事前にビルドしてその生成物をプッシュする必要がある。問題点は、資産と生成物の変更履歴が一緒になり汚くなること、資産を編集する度に資産と生成物の両方をプッシュするのは手間になることである。そのため、CI/CDツールであるGitHubActionsを用いてビルドやプッシュを自動化する環境を構築した。今回はその構築手順をまとめる。ブログ公開までのワークフローまず、このブログが公開されるまでのワークフローをまとめる。★が記載された行が変更箇所である。変更前(セーフモードON：サポートされているプラグインのみ使用)  ユーザがmasterブランチへ資産をプッシュする  GitHubがmasterブランチへのプッシュを検知する  GitHubがGitHubPagesに組み込まれたJekyll(セーフモードON)でビルドする  GitHubがGitHubPagesに生成物をデプロイする  GitHubPagesがブログを公開する変更後(セーフモードOFF：サポートされていないプラグイン使用)  ユーザがmasterブランチへ資産をプッシュする  (★)GitHubActionsがmasterブランチへのプッシュを検知する  (★)GitHubActionsがタイムゾーンを設定する  (★)GitHubActionsがリポジトリをチェックアウトする  (★)GitHubActionsがRubyをセットアップする  (★)GitHubActionsがGemをインストールする  (★)GitHubActionsがJekyll(セーフモードOFF)でビルドする  (★)GitHubActionsがgh-pagesブランチへ生成物をプッシュする  GitHubがGitHubPagesに生成物をデプロイする  GitHubPagesがブログを公開する公開用ブランチ(gh-pages)の作成資産と生成物の変更履歴を分けるため、開発用ブランチ(master)と公開用ブランチ(gh-pages)で別々に管理する。開発用ブランチは既にあるので、公開用ブランチを新たに作成する。作成時に基点となるブランチから資産や変更履歴を引き継ぎたくないため、親のないブランチとして作成する。しかし、自分の環境での注意事項であるが、普段使用しているTortoiseGitには親のないブランチを作成する機能(orphan)は提供していないらしい。そのためGitCmdで作成する。公開用ブランチを作成した時のコマンドを示す。GitCmd$ cd &amp;lt;workspace_path&amp;gt;              # ワークスペースに移動する$ git clone &amp;lt;repo_url&amp;gt; &amp;lt;dir_name&amp;gt;  # ブランチ用のフォルダにリポジトリをクローンする$ cd &amp;lt;dir_name&amp;gt;                    # ブランチ用のフォルダに移動する$ git checkout --orphan gh-pages   # 親のないブランチとしてgh-pagesを作成する$ git reset --hard                 # 既存のリポジトリの内容がステージングされているのでリセットする$ type nul &amp;gt; README.md             # READMEを作成する$ git add README.md                # READMEをステージングする$ git commit -m &quot;Initial commit&quot;   # コミットする$ git push origin gh-pages         # プッシュする因みにorphanとは孤児のことらしい。更に孤児は両親・親戚等の保護者のいない未成年者という意味から、親のないブランチでorphanということらしい。参考サイト  gitで親ブランチのない空ブランチを作成する - 脳汁portalGitHubActionsによる自動化の設定資産を編集する度に資産と生成物の両方をプッシュするのは手間になるため、CI/CDツールであるGitHubActionsを用いてワークフローの2.～8.を自動化する。これにより開発用ブランチ(master)に資産をプッシュすると、リポジトリのチェックアウト、ビルド環境の構築、セーフモードOFFのJekyllによるビルド、公開用ブランチ(gh-pages)への生成物のプッシュなどが自動で実行される。以下のワークフローファイルを作成し、開発用ブランチ(master)にプッシュした。.github/workflows/push-to-gh-pages-branch.yml# ワークフロー名name: Push To gh-pages Branch# ジョブが実行されるトリガーon:  push:    branches:      - master # 2. GitHubActionsがmasterブランチへのプッシュを検知する# 実行されるジョブ一覧jobs:  deploy: # ジョブ名    runs-on: ubuntu-20.04 # 実行環境        concurrency: # 並行処理(同じグループのジョブは処理待ち)      group: ${{ github.workflow }} - ${{ github.ref }}      # [ワークフロー名]-[ワークフローの実行をトリガーしたブランチ名]      # Deploy GitHub Pages - refs/heads/master        steps: # ジョブで実行されるステップ一覧      # 3. GitHubActionsがタイムゾーンを設定する      - name: Set Timezone        uses: szenius/set-timezone@v1.0        with:          timezoneLinux: &quot;Asia/Tokyo&quot;            # 4. GitHubActionsがリポジトリをチェックアウトする      - name: Checkout Repository        uses: actions/checkout@v2            # 5. GitHubActionsがRubyをセットアップする      - name: Setup Ruby        uses: actions/setup-ruby@v1        with:          ruby-version: 2.7            # 6. GitHubActionsがGemをインストールする      - name: Bundle Install According to Gemfile        run: |          bundle install            # 7. GitHubActionsがJekyll(セーフモードOFF)でビルドする      - name: Jekyll Build        run: |          bundle exec jekyll build            # 8. GitHubActionsがgh-pagesブランチへ生成物をプッシュする      - name: Push to gh-pages Branch        uses: peaceiris/actions-gh-pages@v3        with:          github_token: ${{ secrets.GITHUB_TOKEN }}          publish_branch: gh-pages          publish_dir: ./_site          force_orphan: true # コミット件数は必ず1件(最新のコミットのみ)          user_name: &quot;github-actions[bot]&quot;          user_email: &quot;github-actions[bot]@users.noreply.github.com&quot;2021/09/03 追記表示される記事の投稿日時は日本標準時(JST:UTC+0900)で期待した通りであったが、GitHubActionがJekyllでビルドする際に以下のメッセージが出力され、ビルドされない問題が発生した。  Skipping: _posts/2021-09-02-00007.md has a future date  記事の投稿日時が未来であるため、当該記事のビルドをスキップGitHubActionの実行環境のタイムゾーンが協定世界時(WET:UTC+0000)になっていたため、この問題が発生したと思われる。以下の対応を行うことにより解決した。  ワークフローのステップの最初にタイムゾーン設定処理(3.)を追加する2021/09/04 追記GitHubActionがJekyllでビルドする際に以下のメッセージ(一部省略)が出力され、ファイル名(日本語)の文字化けによりビルドが失敗する問題が発生した。  utils.rb:141:in `initialize’: Invalid argument @ rb_sysopen - /contents/category/????.md (Errno::EINVAL)  エラーログはこちらこの問題はWindows用のRubyの課題として挙がっていた。解決策はWindows以外を使用するか、ASCII文字にファイル名を変更するか、どちらかであるとのこと。  This is a known issue with Ruby on Windows.The solution would be to switch to a non-Windows system or rename files with ascii characters.以下の対応を行うことにより解決した。  ワークフローの実行環境をwindows-2019からubuntu-20.04に変更する  ワークフローのステップのタイムゾーン設定処理をLinux用に変更する  Linux環境のsasscはBundleInstallが非常に遅いため2.4.0から2.1.0に変更する参考サイト  GitHub Actions による GitHub Pages への自動デプロイ - Qiita  peaceiris/actions-gh-pages  Rubyでのビルドとテスト - GitHub Docs  Unicode character inside file name makes problems  Ruby on Rails 6のbundle installが重すぎるGitHubActionsによる自動化の実行結果以下のコミットメッセージで開発用ブランチ(master)にプッシュした際の実行結果をワークフロー順に示す。  [d_upd] 記事更新開発用ブランチ(master)の資産状態  実行ログ上記で作成したワークフローファイルが実行され、31秒で完了している。  公開用ブランチ(gh-pages)の資産状態  最後に今回はセーフモードOFFのJekyllによるビルドを含めたワークフローの一部をGitHubActionsにより自動化した。これでサポートされていないプラグインだからと使用を見送っていたプラグインを使用できる。しかし元々はサポートされているプラグインのみを使用する想定で実装していたいため、移植する箇所が結構ありそう。大変そうではあるが今から楽しみ。",
+		"excerpt": "初めにこのブログはJekyllで静的ページを生成し、GitHubPagesで公開している。Jekyllのプラグインは、サポートされているプラグインのみを使用している。サポートされているプラグインを使用する場合はJekyllはセーフモードONで十分であり、..."
+	}
+	,
+	
+	
+	{
+		"id"      : "3",
+		"url"     : "/blog/posts/%E6%8A%80%E8%A1%93%E7%B4%B9%E4%BB%8B/00006/",
+		"title"   : "リポジトリの言語統計から外部ライブラリを除外する方法",
+		"date"    : "2021/08/27 08:30:00",
+		"update"  : "",
+		"tags"    : [ "GitHub" ],
+		"tagsurl" : [ "/blog/tags/github" ],
+		"image"   : "/blog/assets/post/00006/lang_stats_bef_setting.JPG",
+		"noimage" : "/blog/assets/img/noimg01.png",
+		"content": "初めにGitHubのリポジトリページには言語統計(Languages)が表示されている。自分のレポジトリを確認している際、表示されている割合に違和感を覚えたので、調べてみると外部ライブラリや記事で紹介したツールの成果物も集計されていた。今回はそれらを集計から除外する方法をまとめる。言語統計の提供元(github-linguist)GitHubで言語統計を表示する機能は、RubyGemsのgithub-linguistの機能の一部である。github-linguist - RubyGemsの説明を翻訳すると以下のように書いてあるため、「言語のブレークダウングラフの生成」が担っていることがわかる。  私たちは、blob言語の検出、コードのハイライト、バイナリファイルの無視、差分での生成ファイルの抑制、言語のブレークダウングラフの生成を行うために、GitHubではのライブラリを使っています。ドキュメントの確認Linguist - 動作を変更する方法を確認するとドキュメントに解決策が記載されていた。必要そうな箇所のみを和訳し、以下にまとめる。設定ファイルgitattributesプロジェクトに.gitattributesファイルを追加し、下記テーブルの特殊な属性を使い、オーバーライドしたいファイルに対して、.gitignoreのような標準的なgitのパスマッチャーを使用する。このファイルは言語統計を確定するために使われ、構文の強調にも使われる。概要            Git属性      定義ファイル      ファイルでの効果                  linguist-detectable      languages.yml      言語の種類がdataやproseであっても統計に包含される              linguist-language=name      languages.yml      指定された言語としてハイライトされ、分類される              linguist-documentation      documentation.yml      ドキュメントとして統計から除外される              linguist-generated      generated.rb      生成されたファイルとして統計からは除外され、diffでは隠される              linguist-vendored      vendor.yml      ベンダーから提供されたファイルとして統計から除外される      ベンダーから提供されたファイルJavaScriptライブラリなど、自分が書いていないコードをリポジトリにチェックすることはよくあることだが、これはよくプロジェクトの言語統計を膨らませ、さらにはプロジェクトが別の言語としてラベル付けされる原因にもなる。デフォルトではvendor.ymlで定義されたすべてのパスをvendoredとして扱うため、リポジトリの言語統計には含まれない。パスをベンダーまたは非ベンダーにするにはlinguist-vendored属性を使用する。.gitattributes  # フォルダ内のすべてのファイルにオーバーライドを適用するspecial-vendored-path/* linguist-vendored# 特定のファイルにオーバーライドを適用するjquery.js -linguist-vendored# フォルダ内のすべてのフォルダとファイルにオーバーライドを適用するano-dir/** linguist-vendored設定ファイルの作成gitattributesファイルを作成することにより、任意のファイルを集計から除外できることがわかった。実際に作成したファイルを以下に示す。.gitattributes  # Excluded from statsassets/lib/**  linguist-vendoredassets/post/** linguist-documentation自分のリポジトリの構成上、資産フォルダ配下のライブラリと記事添付ファイルは除外したかった。また、それぞれvendoredとdocumentationに分類されるため、上記のような設定となった。設定ファイルの適用結果設定ファイル適用前設定ファイル適用後上記画像により言語統計から外部ライブラリや記事で紹介したツールの成果物を除外できたことがわかる。最後に.gitattributesファイルを作成し、指定したファイルに対して特殊な属性を設定することにより、言語統計から包含・除外できることがわかった。今回は外部ライブラリを除外する方法をまとめた。参考サイト  github-linguist - RubyGems  Linguist - リポジトリ  Linguist - 動作を変更する方法(今回であれば除外ファイル指定)  Linguist - デフォルトで除外するファイルやフォルダを設定するファイル",
+		"excerpt": "初めにGitHubのリポジトリページには言語統計(Languages)が表示されている。自分のレポジトリを確認している際、表示されている割合に違和感を覚えたので、調べてみると外部ライブラリや記事で紹介したツールの成果物も集計されていた。今回はそれらを集計..."
+	}
+	,
+	
+	
+	{
+		"id"      : "4",
+		"url"     : "/blog/posts/%E6%8A%80%E8%A1%93%E6%97%A5%E8%A8%98/00005/",
+		"title"   : "ブログテーマを大改造したので、Lighthouseで評価してみました",
+		"date"    : "2021/08/21 06:30:00",
+		"update"  : "2021/09/15 09:40:00",
+		"tags"    : [ "ブログ構築", "テーマ改良", "評価ツール", "Lighthouse" ],
+		"tagsurl" : [ "/blog/tags/%E3%83%96%E3%83%AD%E3%82%B0%E6%A7%8B%E7%AF%89", "/blog/tags/%E3%83%86%E3%83%BC%E3%83%9E%E6%94%B9%E8%89%AF", "/blog/tags/%E8%A9%95%E4%BE%A1%E3%83%84%E3%83%BC%E3%83%AB", "/blog/tags/lighthouse" ],
+		"image"   : "/blog/assets/post/00005/Lighthouse.png",
+		"noimage" : "/blog/assets/img/noimg01.png",
+		"content": "初めに以前の記事でテーマを適用してから大分改良したので、画面基準でどこに手を加えたのかをわかりやすくするために一覧化しました。また、どの程度変化したのか定量的に知りたくなったので、Webサイトを評価するLighthouseなるツールを使ってみました。ブログ変更概要まずはテーマ適用時と改良後の変更概要です。後述の一覧が意外と長くなってしまったので、概要も作成しました。                    No        実装状況        実装状況凡例        適用時        改良後                            01        実装済み        〇        17        36(=17+6+13)                    02        不十分な実装(要改良)        △        6        0                    03        代替案あり        -        6        0                    04        未実装(実装の発案含む)        ×        13        0            ブログ変更一覧次にテーマ適用時と改良後の変更一覧です。ブログデザインは体感70%ほど踏襲したので大きな変化はありませんが、ソースコード(html,md,scss,js)は見やすいように整理したり、できることを増やしたりなど、大改造したので原型を留めていません。                    No        カテゴリ        画面要素        適用時        改良後        画面要素説明                            01        画面共通        FontAwesomeアイコン        〇        〇        画面上で項目が何を意味するかわかりやすくするため、アイコンを設置する。                    02                 下書き保存        ×        〇        記事を投稿する前に下書きとして一時的に保存する。                    03                 日本語化        ×        〇        コンテンツを日本語で表示する。                    04                 レスポンシブデザイン        〇        〇        デバイスの画面サイズに応じて表示を最適化する。                    05                 ダークテーマ        〇        〇        テーマのデザインがダークである。                    06        画面共通 - ヘッダ        ブログ名        〇        〇        ブログ名を表示する。                    07                 ナビバー        〇        〇        ナビバーを表示する。                    08        画面共通 - トップ        トップ画像        ×        〇        トップ画像を表示する。                    09        画面共通 - サイドバー        記事検索        ×        〇        ブログ内で記事を検索するフォームを表示する。                    10                 最近の記事        〇        〇        最近投稿した記事を表示する。                    11                 タグ        △        -        タグのアルファベットの昇順で表示する。                    12                 ⇒　人気のタグ        -        〇        タグを記事数の降順で表示する。                    13                 トップへ戻るリンク        ×        〇        トップへ戻るリンクを表示する。                    14        画面共通 - フッタ        コピーライト        〇        〇        著作権情報を表示する。                    15                 ソーシャルリンク        〇        〇        ソーシャルアカウントのリンクを表示する。                    16        ホーム画面        記事一覧(簡易)        △        -        記事一覧(簡易)を表示する。                    17                 ⇒　記事一覧(詳細)        -        〇        記事一覧(詳細)を表示する。1記事あたりの情報量を多くし、見やすい形式。                    18                 記事ヘッダ画像        ×        〇        記事の情報を表示する。                    19                 投稿時間        〇        〇        記事の情報を表示する。                    20                 編集時間        ×        〇        記事の情報を表示する。                    21                 タグ        〇        〇        記事の情報を表示する。                    22                 記事説明        △        -        記事の情報を表示する。                    23                 ⇒　記事抜粋        -        〇        記事の情報を表示する。                    24                 記事を読むリンク        ×        〇        記事の情報を表示する。                    25                 記事一覧(詳細)のページ送り        ×        〇        記事一覧(詳細)のページ送りを表示する。                    26        タグ一覧画面        タグ一覧(投稿日昇順)        △        -        タグ一覧を記事の投稿日の昇順で表示する。                    27                 ⇒　タグ一覧(記事数降順)        -        〇        タグ一覧を記事数の降順で表示する。また各項目に記事の件数を表示する。                    28        アーカイブ画面        年別アーカイブ        △        -        年別の記事一覧(簡易)を全て表示する。                    29                 ⇒　年月別、タグ別アーカイブ        -        〇        年月別、タグ別の記事一覧(簡易)を個別に表示する。また各項目に記事の件数を表示する。                    30        タグ別記事一覧画面        タグ別記事一覧(簡易)        △        -        タグ内の記事一覧(簡易)を投稿日の降順で表示する。記事を作成する際に新しいタグを使う場合はタグ専用ファイルを作成する。                    31                 ⇒　タグ別記事一覧(詳細)        -        〇        タグ内の記事一覧(詳細)を投稿日の降順で表示する。タグ専用ファイルは作成しない。                    32        プロフィール画面        紹介文        〇        〇        投稿者やブログの紹介文を表示する。                    33        記事画面        タイトル        〇        〇        記事の情報を表示する。                    34                 投稿時間        〇        〇        記事の情報を表示する。                    35                 編集時間        ×        〇        記事の情報を表示する。                    36                 変更履歴 on GitHub        ×        〇        記事の情報を表示する。                    37                 タグ        〇        〇        記事の情報を表示する。                    38                 記事ヘッダ画像        ×        〇        記事の情報を表示する。                    39                 目次        〇        〇        記事の情報を表示する。                    40                 記事内容        〇        〇        記事の情報を表示する。                    41                 記事内容画像        〇        〇        記事の情報を表示する。                    42                 記事のページ送り        ×        〇        記事のページ送りを表示する。            Lighthouse(Webサイト評価ツール)Google製のWebサイト評価ツールを使えば独自の観点で品質を評価してくれるみたいです。デベロッパーツールから実行できるので手間いらずです。実行前に評価項目や点数の見方を簡単に整理してみました。大体の内容を掴めれば問題ないかと思います。評価項目Lighthouse公式ドキュメント(WEB.DEV)を基に翻訳して情報を整理してみました。  Performance (パフォーマンス)          サイト内の処理速度に関する評価                  ページの読み込み速度          画像の表示速度          ユーザーの操作に対するレスポンス速度          など                      Accessibility (アクセシビリティ)          以下に対して最適な作りになっているか                  サイトの訪問者          検索エンジンのための収集ロボット          など                      Best Practices (ベストプラクティス)          パフォーマンス低下に繋がる事をしていないか                  httpsを使用しているか          キャッシュを利用しているか          画像のアスペクト比が適切あるか          古く脆弱性があるAPIを使っていないか          など                      SEO (検索エンジン最適化)          検索エンジンの結果ランキングでページが最適化されているか                  タイトルタグがあるか          メタタグのディスクリプションがあるか          モバイルフレンドリーになっているか          など                    点数の見方            色      点数      合否                  赤      0～ 49      不合格              オレンジ      50～ 89      要改良              緑      90～100      合格      Lighthouseによる評価JekyllCleanDarkテーマ適用時の評価本当は自分のリポジトリに適用した時点で評価したかったんですが、いろいろな理由(要約するとめんどくさい)でテーマのデモサイトで評価してみました。評価概要を画像で掲載します。詳細はこちらになります。このブログの改良後の評価続いて改良後を評価してみました。評価概要を画像で掲載します。詳細はこちらになります。評価にて感じたことこれでテーマ適用時と改良後の点数が評価ツールによりわかりました。所感では大分良くなったと思っていましたが、点数からも良くなったことが分かりました。後は評価項目以外でも評価できる箇所(各ページの情報の出し方や記事検索など)はあるので、使ってみてどうなるかというところですね。これからも改良は続けていきたいです。余談テーブルの表示に関してです。テーブルにスクロールバーを表示させて見出しを固定させたかったのですが、前者は現状のmd記法(kramdown)では不可能で、独自拡張されたmd記法でないと記述できなさそうです。もしくはmd記法内でhtml記法のテーブルを直接記述しないと実現できないみたいですが、編集が大変そうで手が出せません。なので代替案としてON/OFFボタンを設置しました。2021/09/15 追記現状のmd記法にスクロールバーを表示させる方法があったので、テーブルの表示方法を変更しました。詳細はこのリンクを参照してください。出典元・参考サイト  Lighthouse公式ドキュメント(WEB.DEV)  Jekyll: How to get markdown parsing inside blocks using Kramdown? - Stack Overflow",
+		"excerpt": "初めに以前の記事でテーマを適用してから大分改良したので、画面基準でどこに手を加えたのかをわかりやすくするために一覧化しました。また、どの程度変化したのか定量的に知りたくなったので、Webサイトを評価するLighthouseなるツールを使ってみました。ブロ..."
+	}
+	,
+	
+	
+	{
+		"id"      : "5",
+		"url"     : "/blog/posts/%E6%8A%80%E8%A1%93%E7%B4%B9%E4%BB%8B/00004/",
+		"title"   : "TortoiseGitで過去改変する方法",
+		"date"    : "2021/08/17 10:00:00",
+		"update"  : "2022/03/29 12:30:00",
+		"tags"    : [ "Git", "GitHub", "TortoiseGit", "rebase", "リベース" ],
+		"tagsurl" : [ "/blog/tags/git", "/blog/tags/github", "/blog/tags/tortoisegit", "/blog/tags/rebase", "/blog/tags/%E3%83%AA%E3%83%99%E3%83%BC%E3%82%B9" ],
+		"image"   : "/blog/assets/post/00004/TortoiseGit_logo.png",
+		"noimage" : "/blog/assets/img/noimg01.png",
+		"content": "初めにコミットやプッシュの後に資産やメッセージの編集が必要になることがある。ここでは主にTortoiseGitを用いた、リベースによる過去改変の記事リンクをまとめる。注意事項リベースはプッシュ前のコミットや、作業している人が自身しかいないブランチのコミットに対して実施すること。もし、チームで当該リポジトリを使用していた場合は大変なことになる。例えば、リベース前のリビジョンから誰かがプッシュしようとした場合、プッシュできない旨のエラーが発生する。直前のコミットのやり直し、コミットメッセージの編集  TortoiseGit でコミットメッセージを変更する - へっぽこプログラマーの備忘録  プッシュ済みのコミットを対象とする場合、強制的に以前のコミットを上書きするために把握している変更をチェックしてプッシュする。コミットメッセージの日時の維持  Gitの過去のコミットメッセージを日時を維持しつつ修正（初回コミット分も含めて） - Imaginary West Coast  GitHubで表示される時間はCommitDateであるが、前章を実施するとこの時間が上書きされる。そのため、初めてコミットした時の日時であるAuthorDateで、CommitDateを上書きする必要がある。&amp;gt; git rebase HEAD~1 --committer-date-is-author-date注意事項として初回コミットをリベースする方法はあるがコマンドが必要であるため、GitHubでリポジトリを作成する際、README.md、.gitignore、LICENSEを自動生成した方が後々楽である。また、プッシュ済みのコミットを対象とする場合、強制的に以前のコミットを上書きするために把握している変更をチェックしてプッシュする。コミットの取り消し  【TortoiseGit】コミットを取り消し（なかったことに）したい時の手順 - 絶壁の断崖絶壁  プッシュ済みのコミットを対象とする場合、強制的に以前のコミットを上書きするために把握している変更をチェックしてプッシュする。最後に綺麗なのはいいことだが、一番いいのは最初のコミットで間違いがないこと。参考サイト  TortoiseGit でコミットメッセージを変更する - へっぽこプログラマーの備忘録   Gitの過去のコミットメッセージを日時を維持しつつ修正（初回コミット分も含めて） - Imaginary West Coast   【TortoiseGit】コミットを取り消し（なかったことに）したい時の手順 - 絶壁の断崖絶壁 出典元  TortoiseGit ",
+		"excerpt": "初めにコミットやプッシュの後に資産やメッセージの編集が必要になることがある。ここでは主にTortoiseGitを用いた、リベースによる過去改変の記事リンクをまとめる。注意事項リベースはプッシュ前のコミットや、作業している人が自身しかいないブランチのコミッ..."
+	}
+	,
+	
+	
+	{
+		"id"      : "6",
+		"url"     : "/blog/posts/%E6%8A%80%E8%A1%93%E7%B4%B9%E4%BB%8B/00003/",
+		"title"   : "Gitのコミットメッセージの記入ルール",
+		"date"    : "2021/08/10 18:30:00",
+		"update"  : "2022/04/16 07:00:00",
+		"tags"    : [ "Git", "GitHub", "commit", "コミット" ],
+		"tagsurl" : [ "/blog/tags/git", "/blog/tags/github", "/blog/tags/commit", "/blog/tags/%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88" ],
+		"image"   : "/blog/assets/post/00003/commit_message.JPG",
+		"noimage" : "/blog/assets/img/noimg01.png",
+		"content": "初めに個人的にGitを使う際のコミットメッセージの記入ルールをまとめた。コミットメッセージのフォーマット以下のフォーマットでメッセージを入力する。            n行目      メッセージ                  1行目      [コミット種別] 変更内容のタイトル              2行目      (空行)              3行目以降      変更内容の詳細      コミット種別コミットが大まかにどのような内容なのかを分別する。コミット種別がd_xxxの場合はドキュメントや処理に無関係なファイルが対象で、c_xxxの場合はコードや設定ファイルが対象となる。            コミット種別      意味                  d_add      ドキュメントを追加する              d_upd      ドキュメントを更新する              d_del      ドキュメントを削除する              c_add      機能を追加する              c_mod      コードを変更・改善する              c_fix      コードのバグを修正する              c_rem      コードを削除する      変更内容のタイトルそのコミットで行ったことを簡潔にコミット種別も含めて50文字以内で記入する。また、1つのコミットで2つ以上にならないようにする。変更内容の詳細そのコミットで行ったことを詳細に1行ごとに72文字以内で記入する。また、バグ修正の場合はそのバグが発生した理由を記入する。コミットメッセージの例コミット種別ごとにメッセージの例を示す。[d_add] 参照ライブラリ管理簿を作成[d_upd] README更新[c_add] レート制限表示を実装[c_mod] リファクタリングを実施ロジックを変更  - 条件文の可読性を改善[c_fix] Jekyllビルドが一部スキップされる件を修正ワークフローファイルのステップでタイムゾーン設定を追加投稿日時を未来と認識したため最後に今回はコミットメッセージの記入ルールをまとめた。これで一定のルールに変更履歴を管理できる。参考サイト  Gitのコミットメッセージの書き方 - Qiita  誰にとってもわかりやすいGitのコミットメッセージを考える - Tips Note by TAM",
+		"excerpt": "初めに個人的にGitを使う際のコミットメッセージの記入ルールをまとめた。コミットメッセージのフォーマット以下のフォーマットでメッセージを入力する。            n行目      メッセージ                  1行目      [..."
+	}
+	,
+	
+	
+	{
+		"id"      : "7",
+		"url"     : "/blog/posts/%E6%8A%80%E8%A1%93%E6%97%A5%E8%A8%98/00002/",
+		"title"   : "Jekyllでブログを生成し、GitHubPagesで公開してみました",
+		"date"    : "2021/08/06 13:00:00",
+		"update"  : "2021/08/23 17:30:00",
+		"tags"    : [ "ブログ構築", "Jekyll", "GitHubPages" ],
+		"tagsurl" : [ "/blog/tags/%E3%83%96%E3%83%AD%E3%82%B0%E6%A7%8B%E7%AF%89", "/blog/tags/jekyll", "/blog/tags/githubpages" ],
+		"image"   : "/blog/assets/post/00002/github.JPG",
+		"noimage" : "/blog/assets/img/noimg01.png",
+		"content": "初めにこのブログは公開するにあたりGitHubPagesとJekyllを利用しています。前回の記事でGitHubPagesで公開していることを伝えましたが、大まかに段階を踏んで公開までの話をしようと思います。サンプルサイト(中身空っぽ)の作成と動作確認まずはGitHubPagesのみで完結するサンプルサイトを作成しました。GitHubの画面で言われるがままに操作し、殆ど何もないサイトが出来上がりました。こんなことができるのかというイメージの確認程度です。サンプルサイト(ブログっぽい何か)の作成と動作確認次にGitHubPagesとJekyllを利用したサンプルサイトを作成しました。Jekyllで静的なサンプルサイトを生成し、それをGitHubPagesで公開し、ブログっぽいそれなりのサイトが出来上がりました。ただ、使用を検討していたプラグインがGitHubPagesでは動作しないことがわかって残念です。便利そうだったのに。。。  jekyll-last-modified-at  jekyll-archivesローカルサーバでは動作しますが、GitHubPagesではJekyllがセーフモードとやらになってしまうらしく、動作しないとのこと。GithubActionsなんかでひと手間掛かりそうなので今回は断念しました。いつかの機会に代替案でも模索します。因みに以下のページがサポートしているプラグインです。意外と少ない。  Dependency versions - GitHubPagesカスタムテーマを用いたブログの作成と動作確認次に作成したサイトにカスタムテーマを適用しました。400個のテーマ(20ページまで)から以下のテーマを適用すると、ブログが出来上がりました。  Jekyll Clean Dark - Jekyll Themesここまでは意外と簡単でしたが、テーマを編集するとなると意外と大変でした。ただ、一旦満足できるレベルのデザインに仕上がったのでよしとします。なぜ大変だったかというと、自分はJekyll、GitHubPages、Liquidなどを今まで触ったことがなかったので、新たに基礎から理解する必要がありました。その上でこのテーマがどう作られているかを理解する必要があったからです。そのために資産が綺麗に管理されてそうで、理解の妨げになる余分な資産がなさそうなシンプルなテーマを最終的に選びました。もちろん一番最初はデザインで選びました。中身を詳しく確認すると改善点は沢山ありましたが、思った通りでこのテーマに満足しています。自分ならデザインを１から決めてテーマを作成するなんて、センスないので出来ないです。また、今回限りではなくこれからもテーマの編集は続けていくつもりです。ブログ公開最後にGitHubPagesでブログを公開します。予めGitHubで設定しておくとプッシュするだけで、裏でJekyllがページを生成・デプロイしてくれて、GitHubPagesが公開してくれるのですごい楽です。最後に今回はブログを公開した時の流れ、感想、気になったことなどをまとめました。いつか見返した時にこんなことやったなーと思い出す材料になると嬉しいです。(付録)触った技術付録として公開する上で触ったサービス、言語、ライブラリなどの説明をすごく簡単にまとめました。(出典元2)  Jekyll          静的サイトジェネレーター (SSG)        GitHubPages          静的ウェブページのためのウェブホスティングサービス      ユーザーのブログやプロジェクトのドキュメント、1冊の本全体を公開するためにも使用できる      内部でJekyllを使用できる      上記以外を使用したい場合は、GithubActionsなどのCI/CDツールと連携が必要になる        Liquid          テンプレート言語      別のメインとなる言語(今回はHTMLやJavaScript)に埋め込める言語        FontAwesome          フォントとアイコンのツールキット        Bootstrap          フロントエンドWebアプリケーションフレームワーク      HTMLおよびCSSベースのデザインテンプレートとして用意されている      参考サイト今回公開するにあたり参考にしたサイトです。とても助かりました。ありがとうございす。  GitHubを使ってMarkdown文書を５ステップでホームページとして公開する方法 - Qiita  JekyllとGitHubPagesでブログを作る＠初期設定編 - Qiita  JekyllとGitHubPagesでブログを作る＠テーマ設定編 - Qiita  個人用wikiをJekyllに移行したときにやったこと2 [カスタマイズ編] - のんびりSEの議事録  個人用wikiをJekyllに移行したときにやったこと1 [Jekyll紹介編] - のんびりSEの議事録  Jekyll Clean Dark - Jekyll Themes出典元  GitHubPages        - 記事ヘッダ画像に使用しました  ウィキペディア    ",
+		"excerpt": "初めにこのブログは公開するにあたりGitHubPagesとJekyllを利用しています。前回の記事でGitHubPagesで公開していることを伝えましたが、大まかに段階を踏んで公開までの話をしようと思います。サンプルサイト(中身空っぽ)の作成と動作確認ま..."
+	}
+	,
+	
+	
+	{
+		"id"      : "8",
+		"url"     : "/blog/posts/%E6%8A%80%E8%A1%93%E6%97%A5%E8%A8%98/00001/",
+		"title"   : "ブログの構築が一通り終わったので、初の記事です",
+		"date"    : "2021/08/04 21:00:00",
+		"update"  : "2021/08/23 17:30:00",
+		"tags"    : [ "ブログ構築", "GitHubPages" ],
+		"tagsurl" : [ "/blog/tags/%E3%83%96%E3%83%AD%E3%82%B0%E6%A7%8B%E7%AF%89", "/blog/tags/githubpages" ],
+		"image"   : "/blog/assets/img/top01.png",
+		"noimage" : "/blog/assets/img/noimg01.png",
+		"content": "初の記事遂にブログの構築が一通り終わったので、初の記事です！色々な技術に触れれることができたので、知識欲や実装欲なんかがそこそこ満たされました。このブログは以下の方針で運用する予定です。  自分がしたことや考えたことなどを備忘録として記録する  記事は未来の自分に対して発信し、次点で不特定多数の誰かに発信するまた、このブログはGitHubPagesで公開しています。当初はGitHubPagesってなんだろう？気になるし触ってみるか？という程度だったのですが、折角構築したので少しは投稿していこうと思います。ブログ運用により期待すること今までは技術調査や思考整理などはテキストやエクセルでまとめ、GoogleDriveで管理していました。しかし管理といっても、このサービスではローカルとクラウドで二重でファイルがありますよという程度でした。バックアップの復旧面もおまけ程度のお粗末な機能でした。それに公開設定は一切していなかったので、人に見られることなく、雑に書いていたと思います。今後はこのブログで公開するので、以下の事を期待します。  GitHubによる変更管理により、編集の負荷が軽減されること  自分の文章が人に見られるかも知れないという意識の下、より推敲する癖がつくこと  ブログ運用を通して自分にとって未知の技術に触れること実りのある、楽しいブログ運用になるといいな。出典元  コーギーの白黒モノクロでかっこいい犬の無料イラスト68019 - 素材Good",
+		"excerpt": "初の記事遂にブログの構築が一通り終わったので、初の記事です！色々な技術に触れれることができたので、知識欲や実装欲なんかがそこそこ満たされました。このブログは以下の方針で運用する予定です。  自分がしたことや考えたことなどを備忘録として記録する  記事は未..."
+	}
+	
+	
+	
+]

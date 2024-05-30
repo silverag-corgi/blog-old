@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<title>ブログテーマを大改造したので、Lighthouseで評価してみました | Rem_Note</title>
+	
+	
+		<meta name="description" content="初めに以前の記事でテーマを適用してから大分改良したので、画面基準でどこに手を加えたのかをわかりやすくするために一覧化しました。また、どの程度変化したのか定量的に知りたくなったので、Webサイトを評価するLighthouseなるツールを使ってみました。ブロ...">
+	
+	
+	<link href="/blog/assets/img/favicon01.ico" rel="shortcut icon">
+	<link href="/blog/feed.xml" rel="alternate" type="application/rss+xml">
+	
+	<script src="/blog/assets/lib/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+	<script src="/blog/assets/lib/bootstrap-4.5.3/js/bootstrap.bundle.min.js"></script>
+	<script src="/blog/assets/lib/fontawesome-free-5.15.4/js/all.min.js"></script>
+	<script src="/blog/assets/lib/lightbox2-2.11.3/js/lightbox.min.js" defer></script>
+	
+	<script src="/blog/assets/lib/lunr/lunr/lunr-2.3.9.js"></script>
+	<script src="/blog/assets/lib/lunr/lunr-languages/lunr.stemmer.support.js"></script>
+	<script src="/blog/assets/lib/lunr/lunr-languages/tinyseg.js"></script>
+	<script src="/blog/assets/lib/lunr/lunr-languages/lunr.ja.js"></script>
+	<script src="/blog/assets/lib/lunr/lunr-languages/lunr.multi.js"></script>
+	
+	<script src="/blog/assets/js/header.js"></script>
+	<script src="/blog/assets/js/search.js" defer></script>
+
+	<link href="/blog/assets/lib/bootstrap-4.5.3/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/blog/assets/css/theme.css" rel="stylesheet">
+	<link href="/blog/assets/css/syntax-github.css" rel="stylesheet">
+	<link href="/blog/assets/lib/lightbox2-2.11.3/css/lightbox.min.css" rel="stylesheet">
+	
+
+
+</head>
+
+
+<body>
+	
+<header class="fixed-top">
+	<div class="nav-top">
+		<div class="container">
+			<nav class="navbar navbar-expand-lg">
+				<a class="navbar-brand" href="/blog/">
+					Rem_Note
+				</a>
+				
+				<div class="collapse navbar-collapse">
+					<ul class="navbar-nav">
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="/blog/posts/"
+								id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<i class="fas fa-fw fa-folder"></i>
+								カテゴリ
+							</a>
+							<div class="dropdown-menu mt-0" aria-labelledby="navbarDropdown">
+								
+								
+									<a class="dropdown-item" href="/blog/posts/%E6%8A%80%E8%A1%93%E6%97%A5%E8%A8%98">
+										技術日記 (3)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/posts/%E6%8A%80%E8%A1%93%E7%B4%B9%E4%BB%8B">
+										技術紹介 (6)
+									</a>
+								
+							</div>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="/blog/tags/"
+								id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<i class="fas fa-fw fa-tag"></i>
+								タグ
+							</a>
+							<div class="dropdown-menu mt-0" aria-labelledby="navbarDropdown">
+								
+								
+									<a class="dropdown-item" href="/blog/tags/commit">
+										commit (1)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/git">
+										Git (2)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/github">
+										GitHub (3)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/githubactions">
+										GitHubActions (2)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/githubpages">
+										GitHubPages (3)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/jekyll">
+										Jekyll (2)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/lighthouse">
+										Lighthouse (1)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/rebase">
+										rebase (1)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/tortoisegit">
+										TortoiseGit (1)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88">
+										コミット (1)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/%E3%83%86%E3%83%BC%E3%83%9E%E6%94%B9%E8%89%AF">
+										テーマ改良 (1)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/%E3%83%96%E3%83%AD%E3%82%B0%E6%A7%8B%E7%AF%89">
+										ブログ構築 (6)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/%E3%83%AA%E3%83%99%E3%83%BC%E3%82%B9">
+										リベース (1)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/%E8%A9%95%E4%BE%A1%E3%83%84%E3%83%BC%E3%83%AB">
+										評価ツール (1)
+									</a>
+								
+									<a class="dropdown-item" href="/blog/tags/%E9%9D%99%E7%9A%84%E3%82%B5%E3%82%A4%E3%83%88%E3%82%B8%E3%82%A7%E3%83%8D%E3%83%AC%E3%83%BC%E3%82%BF%E3%83%BC">
+										静的サイトジェネレーター (1)
+									</a>
+								
+							</div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/blog/archive/">
+								<i class="fas fa-fw fa-book"></i>
+								アーカイブ
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/blog/about/">
+								<i class="fas fa-fw fa-user"></i>
+								プロフィール
+							</a>
+						</li>
+					</ul>
+				</div>
+				
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<form method="get" id="search-form" action="/blog/search/">
+							<input type="search" id="search-query" name="search-query" class="form-control" placeholder="記事検索">
+						</form>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</header>
+
+	
+	<main>
+		<div class="container">
+			
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="top-card">
+						<span>自分がしたことや考えたことなどを備忘録として記録する場所</span>
+						<div class="top-image"></div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-9">
+<aside class="page-navi-card">
+	<nav class="navbar navbar-expand">
+		<div class="collapse navbar-collapse">
+			<ul class="navbar-nav">
+				
+				
+					<li class="nav-item">
+						
+							<a class="nav-link" href="/blog/">
+								<i class="fas fa-fw fa-chevron-right"></i>
+								ホーム
+							</a>
+						
+					</li>
+				
+					<li class="nav-item">
+						
+							<a class="nav-link" href="/blog/posts/">
+								<i class="fas fa-fw fa-chevron-right"></i>
+								カテゴリ
+							</a>
+						
+					</li>
+				
+					<li class="nav-item">
+						
+							<a class="nav-link" href="/blog/posts/%E6%8A%80%E8%A1%93%E6%97%A5%E8%A8%98/">
+								<i class="fas fa-fw fa-chevron-right"></i>
+								技術日記
+							</a>
+						
+					</li>
+				
+					<li class="nav-item">
+						
+							<span class="nav-link">
+								<i class="fas fa-fw fa-chevron-right"></i>
+								00005
+							</span>
+						
+					</li>
+				
+			</ul>
+		</div>
+	</nav>
+</aside>
+
+
+<article class="post-card">
+	<h1>
+		<i class="fas fa-fw fa-newspaper"></i>ブログテーマを大改造したので、Lighthouseで評価してみました
+	</h1>
+	
+
+
+
+
+
+
+
+<div class="post-meta">
+	<ul class="post-time">
+		<li>
+			<i class="fa fa-fw fa-calendar-alt"></i>
+			<span><time datetime="2021/08/21 06:30:00">2021/08/21 06:30:00</time></span>
+		</li>
+		
+		
+		<li>
+			<i class="fas fa-fw fa-edit"></i>
+			<span><time datetime="2021/09/15 09:40:00">2021/09/15 09:40:00</time></span>
+		</li>
+		
+	</ul>
+	
+	
+	<ul class="post-log">
+		<li>
+			<i class="fas fa-fw fa-history"></i>
+			<a href="https://github.com/silverag-corgi/blog/commits/master/_posts/2021-08-21-00005.md" target="_blank" rel="noopener">変更履歴 on GitHub</a>
+		</li>
+	</ul>
+	
+	
+	<ul class="post-category">
+		
+		<li>
+			<i class="fas fa-fw fa-folder"></i>
+			<a href="/blog/posts/%E6%8A%80%E8%A1%93%E6%97%A5%E8%A8%98">
+				技術日記
+			</a>
+		</li>
+		
+	</ul>
+	
+	<ul class="post-tag">
+		
+		<li>
+			<i class="fas fa-fw fa-tag"></i>
+			<a href="/blog/tags/%E3%83%96%E3%83%AD%E3%82%B0%E6%A7%8B%E7%AF%89">
+				ブログ構築
+			</a>
+		</li>
+		
+		<li>
+			<i class="fas fa-fw fa-tag"></i>
+			<a href="/blog/tags/%E3%83%86%E3%83%BC%E3%83%9E%E6%94%B9%E8%89%AF">
+				テーマ改良
+			</a>
+		</li>
+		
+		<li>
+			<i class="fas fa-fw fa-tag"></i>
+			<a href="/blog/tags/%E8%A9%95%E4%BE%A1%E3%83%84%E3%83%BC%E3%83%AB">
+				評価ツール
+			</a>
+		</li>
+		
+		<li>
+			<i class="fas fa-fw fa-tag"></i>
+			<a href="/blog/tags/lighthouse">
+				Lighthouse
+			</a>
+		</li>
+		
+	</ul>
+	
+	
+	<ul class="post-reading-time">
+		<li>
+			<i class="fas fa-fw fa-book-reader"></i>
+			約15分
+		</li>
+	</ul>
+	
+</div>
+
+	
+	
+		<p class="post-header-image">
+			<img src="/blog/assets/post/00005/Lighthouse.png" alt="記事ヘッダ画像">
+		</p>
+	
+	
+	<div class="post-content">
+		
+		
+<h1>目次</h1>
+
+<ul class="toc"><li><a href="#初めに">初めに</a></li><li><a href="#ブログ変更概要">ブログ変更概要</a></li><li><a href="#ブログ変更一覧">ブログ変更一覧</a></li><li><a href="#lighthousewebサイト評価ツール">Lighthouse(Webサイト評価ツール)</a><ul><li><a href="#評価項目">評価項目</a></li><li><a href="#点数の見方">点数の見方</a></li></ul></li><li><a href="#lighthouseによる評価">Lighthouseによる評価</a><ul><li><a href="#jekyllcleandarkテーマ適用時の評価">JekyllCleanDarkテーマ適用時の評価</a></li><li><a href="#このブログの改良後の評価">このブログの改良後の評価</a></li></ul></li><li><a href="#評価にて感じたこと">評価にて感じたこと</a></li><li><a href="#余談">余談</a><ul><li><a href="#20210915-追記">2021/09/15 追記</a></li></ul></li><li><a href="#出典元参考サイト">出典元・参考サイト</a></li></ul>
+
+		
+		
+<h1 id="初めに">初めに</h1>
+
+<p><a href="/blog/posts/%E6%8A%80%E8%A1%93%E6%97%A5%E8%A8%98/00002/">以前の記事</a>でテーマを適用してから大分改良したので、
+画面基準でどこに手を加えたのかをわかりやすくするために一覧化しました。</p>
+
+<p>また、どの程度変化したのか定量的に知りたくなったので、
+Webサイトを評価するLighthouseなるツールを使ってみました。</p>
+
+<h1 id="ブログ変更概要">ブログ変更概要</h1>
+
+<p>まずはテーマ適用時と改良後の変更概要です。</p>
+
+<p>後述の一覧が意外と長くなってしまったので、概要も作成しました。</p>
+
+<div class="scroll-table">
+
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: right">No</th>
+        <th>実装状況</th>
+        <th style="text-align: center">実装状況凡例</th>
+        <th style="text-align: right">適用時</th>
+        <th style="text-align: right">改良後</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: right">01</td>
+        <td>実装済み</td>
+        <td style="text-align: center">〇</td>
+        <td style="text-align: right">17</td>
+        <td style="text-align: right">36(=17+6+13)</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">02</td>
+        <td>不十分な実装(要改良)</td>
+        <td style="text-align: center">△</td>
+        <td style="text-align: right">6</td>
+        <td style="text-align: right">0</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">03</td>
+        <td>代替案あり</td>
+        <td style="text-align: center">-</td>
+        <td style="text-align: right">6</td>
+        <td style="text-align: right">0</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">04</td>
+        <td>未実装(実装の発案含む)</td>
+        <td style="text-align: center">×</td>
+        <td style="text-align: right">13</td>
+        <td style="text-align: right">0</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<h1 id="ブログ変更一覧">ブログ変更一覧</h1>
+
+<p>次にテーマ適用時と改良後の変更一覧です。</p>
+
+<p>ブログデザインは体感70%ほど踏襲したので大きな変化はありませんが、
+ソースコード(html,md,scss,js)は見やすいように整理したり、できることを増やしたりなど、
+大改造したので原型を留めていません。</p>
+
+<div class="scroll-table">
+
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: right">No</th>
+        <th>カテゴリ</th>
+        <th>画面要素</th>
+        <th style="text-align: center">適用時</th>
+        <th style="text-align: center">改良後</th>
+        <th>画面要素説明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: right">01</td>
+        <td>画面共通</td>
+        <td>FontAwesomeアイコン</td>
+        <td style="text-align: center">〇</td>
+        <td style="text-align: center">〇</td>
+        <td>画面上で項目が何を意味するかわかりやすくするため、アイコンを設置する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">02</td>
+        <td> </td>
+        <td>下書き保存</td>
+        <td style="text-align: center">×</td>
+        <td style="text-align: center">〇</td>
+        <td>記事を投稿する前に下書きとして一時的に保存する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">03</td>
+        <td> </td>
+        <td>日本語化</td>
+        <td style="text-align: center">×</td>
+        <td style="text-align: center">〇</td>
+        <td>コンテンツを日本語で表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">04</td>
+        <td> </td>
+        <td>レスポンシブデザイン</td>
+        <td style="text-align: center">〇</td>
+        <td style="text-align: center">〇</td>
+        <td>デバイスの画面サイズに応じて表示を最適化する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">05</td>
+        <td> </td>
+        <td>ダークテーマ</td>
+        <td style="text-align: center">〇</td>
+        <td style="text-align: center">〇</td>
+        <td>テーマのデザインがダークである。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">06</td>
+        <td>画面共通 - ヘッダ</td>
+        <td>ブログ名</td>
+        <td style="text-align: center">〇</td>
+        <td style="text-align: center">〇</td>
+        <td>ブログ名を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">07</td>
+        <td> </td>
+        <td>ナビバー</td>
+        <td style="text-align: center">〇</td>
+        <td style="text-align: center">〇</td>
+        <td>ナビバーを表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">08</td>
+        <td>画面共通 - トップ</td>
+        <td>トップ画像</td>
+        <td style="text-align: center">×</td>
+        <td style="text-align: center">〇</td>
+        <td>トップ画像を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">09</td>
+        <td>画面共通 - サイドバー</td>
+        <td>記事検索</td>
+        <td style="text-align: center">×</td>
+        <td style="text-align: center">〇</td>
+        <td>ブログ内で記事を検索するフォームを表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">10</td>
+        <td> </td>
+        <td>最近の記事</td>
+        <td style="text-align: center">〇</td>
+        <td style="text-align: center">〇</td>
+        <td>最近投稿した記事を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">11</td>
+        <td> </td>
+        <td>タグ</td>
+        <td style="text-align: center">△</td>
+        <td style="text-align: center">-</td>
+        <td>タグのアルファベットの昇順で表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">12</td>
+        <td> </td>
+        <td>⇒　人気のタグ</td>
+        <td style="text-align: center">-</td>
+        <td style="text-align: center">〇</td>
+        <td>タグを記事数の降順で表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">13</td>
+        <td> </td>
+        <td>トップへ戻るリンク</td>
+        <td style="text-align: center">×</td>
+        <td style="text-align: center">〇</td>
+        <td>トップへ戻るリンクを表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">14</td>
+        <td>画面共通 - フッタ</td>
+        <td>コピーライト</td>
+        <td style="text-align: center">〇</td>
+        <td style="text-align: center">〇</td>
+        <td>著作権情報を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">15</td>
+        <td> </td>
+        <td>ソーシャルリンク</td>
+        <td style="text-align: center">〇</td>
+        <td style="text-align: center">〇</td>
+        <td>ソーシャルアカウントのリンクを表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">16</td>
+        <td>ホーム画面</td>
+        <td>記事一覧(簡易)</td>
+        <td style="text-align: center">△</td>
+        <td style="text-align: center">-</td>
+        <td>記事一覧(簡易)を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">17</td>
+        <td> </td>
+        <td>⇒　記事一覧(詳細)</td>
+        <td style="text-align: center">-</td>
+        <td style="text-align: center">〇</td>
+        <td>記事一覧(詳細)を表示する。1記事あたりの情報量を多くし、見やすい形式。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">18</td>
+        <td> </td>
+        <td>記事ヘッダ画像</td>
+        <td style="text-align: center">×</td>
+        <td style="text-align: center">〇</td>
+        <td>記事の情報を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">19</td>
+        <td> </td>
+        <td>投稿時間</td>
+        <td style="text-align: center">〇</td>
+        <td style="text-align: center">〇</td>
+        <td>記事の情報を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">20</td>
+        <td> </td>
+        <td>編集時間</td>
+        <td style="text-align: center">×</td>
+        <td style="text-align: center">〇</td>
+        <td>記事の情報を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">21</td>
+        <td> </td>
+        <td>タグ</td>
+        <td style="text-align: center">〇</td>
+        <td style="text-align: center">〇</td>
+        <td>記事の情報を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">22</td>
+        <td> </td>
+        <td>記事説明</td>
+        <td style="text-align: center">△</td>
+        <td style="text-align: center">-</td>
+        <td>記事の情報を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">23</td>
+        <td> </td>
+        <td>⇒　記事抜粋</td>
+        <td style="text-align: center">-</td>
+        <td style="text-align: center">〇</td>
+        <td>記事の情報を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">24</td>
+        <td> </td>
+        <td>記事を読むリンク</td>
+        <td style="text-align: center">×</td>
+        <td style="text-align: center">〇</td>
+        <td>記事の情報を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">25</td>
+        <td> </td>
+        <td>記事一覧(詳細)のページ送り</td>
+        <td style="text-align: center">×</td>
+        <td style="text-align: center">〇</td>
+        <td>記事一覧(詳細)のページ送りを表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">26</td>
+        <td>タグ一覧画面</td>
+        <td>タグ一覧(投稿日昇順)</td>
+        <td style="text-align: center">△</td>
+        <td style="text-align: center">-</td>
+        <td>タグ一覧を記事の投稿日の昇順で表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">27</td>
+        <td> </td>
+        <td>⇒　タグ一覧(記事数降順)</td>
+        <td style="text-align: center">-</td>
+        <td style="text-align: center">〇</td>
+        <td>タグ一覧を記事数の降順で表示する。また各項目に記事の件数を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">28</td>
+        <td>アーカイブ画面</td>
+        <td>年別アーカイブ</td>
+        <td style="text-align: center">△</td>
+        <td style="text-align: center">-</td>
+        <td>年別の記事一覧(簡易)を全て表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">29</td>
+        <td> </td>
+        <td>⇒　年月別、タグ別アーカイブ</td>
+        <td style="text-align: center">-</td>
+        <td style="text-align: center">〇</td>
+        <td>年月別、タグ別の記事一覧(簡易)を個別に表示する。また各項目に記事の件数を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">30</td>
+        <td>タグ別記事一覧画面</td>
+        <td>タグ別記事一覧(簡易)</td>
+        <td style="text-align: center">△</td>
+        <td style="text-align: center">-</td>
+        <td>タグ内の記事一覧(簡易)を投稿日の降順で表示する。記事を作成する際に新しいタグを使う場合はタグ専用ファイルを作成する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">31</td>
+        <td> </td>
+        <td>⇒　タグ別記事一覧(詳細)</td>
+        <td style="text-align: center">-</td>
+        <td style="text-align: center">〇</td>
+        <td>タグ内の記事一覧(詳細)を投稿日の降順で表示する。タグ専用ファイルは作成しない。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">32</td>
+        <td>プロフィール画面</td>
+        <td>紹介文</td>
+        <td style="text-align: center">〇</td>
+        <td style="text-align: center">〇</td>
+        <td>投稿者やブログの紹介文を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">33</td>
+        <td>記事画面</td>
+        <td>タイトル</td>
+        <td style="text-align: center">〇</td>
+        <td style="text-align: center">〇</td>
+        <td>記事の情報を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">34</td>
+        <td> </td>
+        <td>投稿時間</td>
+        <td style="text-align: center">〇</td>
+        <td style="text-align: center">〇</td>
+        <td>記事の情報を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">35</td>
+        <td> </td>
+        <td>編集時間</td>
+        <td style="text-align: center">×</td>
+        <td style="text-align: center">〇</td>
+        <td>記事の情報を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">36</td>
+        <td> </td>
+        <td>変更履歴 on GitHub</td>
+        <td style="text-align: center">×</td>
+        <td style="text-align: center">〇</td>
+        <td>記事の情報を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">37</td>
+        <td> </td>
+        <td>タグ</td>
+        <td style="text-align: center">〇</td>
+        <td style="text-align: center">〇</td>
+        <td>記事の情報を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">38</td>
+        <td> </td>
+        <td>記事ヘッダ画像</td>
+        <td style="text-align: center">×</td>
+        <td style="text-align: center">〇</td>
+        <td>記事の情報を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">39</td>
+        <td> </td>
+        <td>目次</td>
+        <td style="text-align: center">〇</td>
+        <td style="text-align: center">〇</td>
+        <td>記事の情報を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">40</td>
+        <td> </td>
+        <td>記事内容</td>
+        <td style="text-align: center">〇</td>
+        <td style="text-align: center">〇</td>
+        <td>記事の情報を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">41</td>
+        <td> </td>
+        <td>記事内容画像</td>
+        <td style="text-align: center">〇</td>
+        <td style="text-align: center">〇</td>
+        <td>記事の情報を表示する。</td>
+      </tr>
+      <tr>
+        <td style="text-align: right">42</td>
+        <td> </td>
+        <td>記事のページ送り</td>
+        <td style="text-align: center">×</td>
+        <td style="text-align: center">〇</td>
+        <td>記事のページ送りを表示する。</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<h1 id="lighthousewebサイト評価ツール">Lighthouse(Webサイト評価ツール)</h1>
+
+<p>Google製のWebサイト評価ツールを使えば独自の観点で品質を評価してくれるみたいです。
+デベロッパーツールから実行できるので手間いらずです。</p>
+
+<p>実行前に評価項目や点数の見方を簡単に整理してみました。
+大体の内容を掴めれば問題ないかと思います。</p>
+
+<h2 id="評価項目">評価項目</h2>
+
+<p><a href="https://web.dev/learn/#lighthouse">Lighthouse公式ドキュメント(WEB.DEV)</a>
+を基に翻訳して情報を整理してみました。</p>
+
+<ul>
+  <li>Performance (パフォーマンス)
+    <ul>
+      <li>サイト内の処理速度に関する評価
+        <ul>
+          <li>ページの読み込み速度</li>
+          <li>画像の表示速度</li>
+          <li>ユーザーの操作に対するレスポンス速度</li>
+          <li>など</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Accessibility (アクセシビリティ)
+    <ul>
+      <li>以下に対して最適な作りになっているか
+        <ul>
+          <li>サイトの訪問者</li>
+          <li>検索エンジンのための収集ロボット</li>
+          <li>など</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Best Practices (ベストプラクティス)
+    <ul>
+      <li>パフォーマンス低下に繋がる事をしていないか
+        <ul>
+          <li>httpsを使用しているか</li>
+          <li>キャッシュを利用しているか</li>
+          <li>画像のアスペクト比が適切あるか</li>
+          <li>古く脆弱性があるAPIを使っていないか</li>
+          <li>など</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>SEO (検索エンジン最適化)
+    <ul>
+      <li>検索エンジンの結果ランキングでページが最適化されているか
+        <ul>
+          <li>タイトルタグがあるか</li>
+          <li>メタタグのディスクリプションがあるか</li>
+          <li>モバイルフレンドリーになっているか</li>
+          <li>など</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="点数の見方">点数の見方</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>色</th>
+      <th>点数</th>
+      <th>合否</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>赤</td>
+      <td>0～ 49</td>
+      <td>不合格</td>
+    </tr>
+    <tr>
+      <td>オレンジ</td>
+      <td>50～ 89</td>
+      <td>要改良</td>
+    </tr>
+    <tr>
+      <td>緑</td>
+      <td>90～100</td>
+      <td>合格</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="lighthouseによる評価">Lighthouseによる評価</h1>
+
+<h2 id="jekyllcleandarkテーマ適用時の評価">JekyllCleanDarkテーマ適用時の評価</h2>
+
+<p>本当は自分のリポジトリに適用した時点で評価したかったんですが、
+いろいろな理由(要約するとめんどくさい)でテーマのデモサイトで評価してみました。</p>
+
+<p>評価概要を画像で掲載します。
+詳細は
+<a href="/blog/assets/post/00005/score_at_the_time_of_application.html" target="_blank">こちら</a>
+になります。</p>
+
+<p><img src="/blog/assets/post/00005/score_at_the_time_of_application.JPG" alt="適用時の評価" /></p>
+
+<h2 id="このブログの改良後の評価">このブログの改良後の評価</h2>
+
+<p>続いて改良後を評価してみました。</p>
+
+<p>評価概要を画像で掲載します。
+詳細は
+<a href="/blog/assets/post/00005/score_after_improvement.html" target="_blank">こちら</a>
+になります。</p>
+
+<p><img src="/blog/assets/post/00005/score_after_improvement.JPG" alt="改良後の評価" /></p>
+
+<h1 id="評価にて感じたこと">評価にて感じたこと</h1>
+
+<p>これでテーマ適用時と改良後の点数が評価ツールによりわかりました。
+所感では大分良くなったと思っていましたが、点数からも良くなったことが分かりました。</p>
+
+<p>後は評価項目以外でも評価できる箇所(各ページの情報の出し方や記事検索など)はあるので、
+使ってみてどうなるかというところですね。</p>
+
+<p>これからも改良は続けていきたいです。</p>
+
+<h1 id="余談">余談</h1>
+
+<p>テーブルの表示に関してです。</p>
+
+<p>テーブルにスクロールバーを表示させて見出しを固定させたかったのですが、
+前者は現状のmd記法(kramdown)では不可能で、独自拡張されたmd記法でないと記述できなさそうです。
+もしくはmd記法内でhtml記法のテーブルを直接記述しないと実現できないみたいですが、
+編集が大変そうで手が出せません。
+なので代替案としてON/OFFボタンを設置しました。</p>
+
+<h2 id="20210915-追記">2021/09/15 追記</h2>
+
+<p>現状のmd記法にスクロールバーを表示させる方法があったので、テーブルの表示方法を変更しました。
+詳細は
+<a href="https://stackoverflow.com/questions/22291211/jekyll-how-to-get-markdown-parsing-inside-blocks-using-kramdown">このリンク
+</a>
+を参照してください。</p>
+
+<h1 id="出典元参考サイト">出典元・参考サイト</h1>
+
+<ol>
+  <li><a href="https://web.dev/learn/#lighthouse">Lighthouse公式ドキュメント(WEB.DEV)
+</a></li>
+  <li><a href="https://stackoverflow.com/questions/22291211/jekyll-how-to-get-markdown-parsing-inside-blocks-using-kramdown">Jekyll: How to get markdown parsing inside blocks using Kramdown? - Stack Overflow
+</a></li>
+</ol>
+
+
+		
+
+	<div class="share-bar">
+		<ul class="share-buttons">
+			
+			
+				<li class="share-twitter">
+					<a href="https://twitter.com/intent/tweet?text=%E3%83%96%E3%83%AD%E3%82%B0%E3%83%86%E3%83%BC%E3%83%9E%E3%82%92%E5%A4%A7%E6%94%B9%E9%80%A0%E3%81%97%E3%81%9F%E3%81%AE%E3%81%A7%E3%80%81Lighthouse%E3%81%A7%E8%A9%95%E4%BE%A1%E3%81%97%E3%81%A6%E3%81%BF%E3%81%BE%E3%81%97%E3%81%9F+%7C+Rem_Note%0ahttps://silverag-corgi.github.io/blog/posts/%E6%8A%80%E8%A1%93%E6%97%A5%E8%A8%98/00005/" target="_blank" rel="noopener" title="Tweet">
+						<i class="fab fa-fw fa-2x fa-twitter-square"></i>
+					</a>
+				</li>
+			
+			
+			
+				<li class="share-line">
+					<a href="https://social-plugins.line.me/lineit/share?url=https://silverag-corgi.github.io/blog/posts/%E6%8A%80%E8%A1%93%E6%97%A5%E8%A8%98/00005/" target="_blank" rel="noopener" title="Tweet">
+						<i class="fab fa-fw fa-2x fa-line"></i>
+					</a>
+				</li>
+			
+			
+		</ul>
+	</div>
+
+
+	</div>
+</article>
+
+<aside class="post-navi-card">
+	<ul class="pagination justify-content-around">
+		
+			
+				<li class="page-item col-lg-6">
+					<a class="page-link" href="/blog/posts/%E6%8A%80%E8%A1%93%E7%B4%B9%E4%BB%8B/00004/">TortoiseGitで過去改変する方法</a>
+				</li>
+			
+			
+			
+				<li class="page-item col-lg-6">
+					<a class="page-link" href="/blog/posts/%E6%8A%80%E8%A1%93%E7%B4%B9%E4%BB%8B/00006/">リポジトリの言語統計から外部ライブラリを除外する方法</a>
+				</li>
+			
+		
+	</ul>
+</aside>
+
+				</div>
+				
+				<div class="col-lg-3">
+<aside class="recent-posts-card">
+	<h2>最近の記事</h2>
+	<ul class="fa-ul">
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-newspaper"></i></span>
+				<a href="/blog/posts/%E6%8A%80%E8%A1%93%E7%B4%B9%E4%BB%8B/00009/">
+					GitHubStars上位5件の静的サイトジェネレーターの情報整理
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-newspaper"></i></span>
+				<a href="/blog/posts/%E6%8A%80%E8%A1%93%E7%B4%B9%E4%BB%8B/00008/">
+					GitHubActionsで実行されるGemインストールの高速化手順
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-newspaper"></i></span>
+				<a href="/blog/posts/%E6%8A%80%E8%A1%93%E7%B4%B9%E4%BB%8B/00007/">
+					セーフモードOFFのJekyllをGitHubActionsにより楽に使用する環境の構築手順
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-newspaper"></i></span>
+				<a href="/blog/posts/%E6%8A%80%E8%A1%93%E7%B4%B9%E4%BB%8B/00006/">
+					リポジトリの言語統計から外部ライブラリを除外する方法
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-newspaper"></i></span>
+				<a href="/blog/posts/%E6%8A%80%E8%A1%93%E6%97%A5%E8%A8%98/00005/">
+					ブログテーマを大改造したので、Lighthouseで評価してみました
+				</a>
+			</li>
+		
+	</ul>
+</aside>
+
+<aside class="popular-tags-card">
+	<h2>タグ(記事数降順)</h2>
+	<ul class="fa-ul">
+		
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/%E3%83%96%E3%83%AD%E3%82%B0%E6%A7%8B%E7%AF%89">
+					ブログ構築 (6)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/github">
+					GitHub (3)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/githubpages">
+					GitHubPages (3)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/git">
+					Git (2)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/githubactions">
+					GitHubActions (2)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/jekyll">
+					Jekyll (2)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/commit">
+					commit (1)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/lighthouse">
+					Lighthouse (1)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/rebase">
+					rebase (1)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/tortoisegit">
+					TortoiseGit (1)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/%E3%82%B3%E3%83%9F%E3%83%83%E3%83%88">
+					コミット (1)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/%E3%83%86%E3%83%BC%E3%83%9E%E6%94%B9%E8%89%AF">
+					テーマ改良 (1)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/%E3%83%AA%E3%83%99%E3%83%BC%E3%82%B9">
+					リベース (1)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/%E8%A9%95%E4%BE%A1%E3%83%84%E3%83%BC%E3%83%AB">
+					評価ツール (1)
+				</a>
+			</li>
+		
+			<li>
+				<span class="fa-li"><i class="fas fa-fw fa-tag"></i></span>
+				<a href="/blog/tags/%E9%9D%99%E7%9A%84%E3%82%B5%E3%82%A4%E3%83%88%E3%82%B8%E3%82%A7%E3%83%8D%E3%83%AC%E3%83%BC%E3%82%BF%E3%83%BC">
+					静的サイトジェネレーター (1)
+				</a>
+			</li>
+		
+	</ul>
+</aside>
+
+				</div>
+			</div>
+			
+		</div>
+	</main>
+	
+<footer>
+	<div class="author">
+		<div class="container">
+			<p>&copy; 2021 Rem_</p>
+<ul class="social-media">
+	
+	
+		<li>
+			<a title="silverag-corgi on Github" href="https://github.com/silverag-corgi" target="_blank" rel="noopener"><i class="fab fa-github fa-2x"></i></a>
+		</li>
+	
+	
+	
+		<li>
+			<a title="silverag_corgi on Twitter" href="https://twitter.com/silverag_corgi" target="_blank" rel="noopener"><i class="fab fa-twitter fa-2x"></i></a>
+		</li>
+	
+	
+	
+		<li>
+			<a title="/feed.xml RSS" href="/blog/feed.xml" target="_blank" rel="noopener"><i class="fas fa-fw fa-rss fa-2x"></i></a>
+		</li>
+	
+	
+</ul>
+
+		</div>
+	</div>
+	
+	<div class="page-top position-fixed">
+		<i class="fas fa-arrow-up"></i>
+	</div>
+	
+	<div class="nav-bottom fixed-bottom">
+		<div class="container">
+			<nav class="navbar navbar-expand">
+				<div class="collapse navbar-collapse">
+					<ul class="navbar-nav justify-content-between">
+						<li class="nav-item nav-bottom-icon d-table-cell text-center align-middle">
+							<a class="nav-link" href="/blog/">
+								<i class="fas fa-fw fa-home"></i>
+								<div>ホーム</div>
+							</a>
+						</li>
+						<li class="nav-item nav-bottom-icon d-table-cell text-center align-middle">
+							<a class="nav-link" href="/blog/posts/%E6%8A%80%E8%A1%93%E6%97%A5%E8%A8%98/">
+								<i class="fas fa-fw fa-folder"></i>
+								<div>技術日記</div>
+							</a>
+						</li>
+						<li class="nav-item nav-bottom-icon d-table-cell text-center align-middle">
+							<a class="nav-link" href="/blog/posts/%E6%8A%80%E8%A1%93%E7%B4%B9%E4%BB%8B/">
+								<i class="fas fa-fw fa-folder"></i>
+								<div>技術紹介</div>
+							</a>
+						</li>
+						<li class="nav-item nav-bottom-icon d-table-cell text-center align-middle">
+							<a class="nav-link" href="/blog/archive/">
+								<i class="fas fa-fw fa-book"></i>
+								<div>アーカイブ</div>
+							</a>
+						</li>
+						<li class="nav-item nav-bottom-icon d-table-cell text-center align-middle">
+							<a class="nav-link" href="/blog/about/">
+								<i class="fas fa-fw fa-user"></i>
+								<div>プロフ</div>
+							</a>
+						</li>
+						<li class="nav-item nav-bottom-icon d-table-cell text-center align-middle">
+							<div class="page-top">
+								<i class="fas fa-fw fa-arrow-up"></i>
+								<div>トップ</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</div>
+</footer>
+
+	
+</body>
+
+</html>
